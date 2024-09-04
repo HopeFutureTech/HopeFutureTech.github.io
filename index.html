@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" href="https://alliance.xyz/favicon.ico">
+  <title>AZRobot | Embodied AI Robotic</title>
+</head>
+<body>
+<style type="text/css">
+* { font: 300 14px/150% "SF Pro Text","SF Pro Icons","Helvetica Neue",'Microsoft YaHei',Arial,Helvetica,apple color emoji,segoe ui emoji,noto color emoji,android emoji,emojisymbols,emojione mozilla,twemoji mozilla,segoe ui symbol,sans-serif;
+  position: relative; vertical-align: middle; color: #1a1a1a; box-sizing: border-box; border-radius: 1rem 2px; border-color: currentColor }
+body, html { padding: 0; margin: 0; background: #fff }
+a { transition: .3s all ease-in }
+input, button, textarea, select, .btn, .select, .input { font-weight: 300; display: inline-block; padding: .6rem 1rem; text-decoration: none; border: none; background-color: #eee; transition: .3s all ease-in } .select >:first-child:after { content: ' ▼' }
+b, s, u, i, img, div, span { text-decoration: none; transition: .2s all ease-in }
+button, .btn { border: none; color: #fff; background-color: #000; cursor: pointer }
+button:hover, .btn:hover { color: #000; background-color: #b9ff40; box-shadow: 0 10px 30px #0002; transform: translateY(-2px) }
+button:hover > * { color: #fff !important }
+h1, h2, h3, h4, h5 { font-weight: bold; margin: 0; margin-bottom: .5rem } h1 { font-size: 3rem; font-weight: bold; } h2 { font-size: 1.2rem } h3, h4, h5 { font-size: 1rem }
+big, .big { font-size: 1.5rem } small, sub, .small { font-size: .8rem }
+main { padding-top: 4rem } footer { border-top: 1px solid rgba(0, 0, 0, .1); padding: 3rem 1rem 2rem 1rem }
+section, .section { width: 1000px; margin: 0 auto }
+code, pre, .code { font-family: menlo, consolas, monospace !important }
+img { color: #fff; box-shadow: 4px 6px 10px 2px rgb(0 0 0 / 9%) }
+svg { border-radius: 0 }
+nav { width: 100%; position: fixed; background-color: #000; z-index: 10 }
+nav .menu a { color: #fff; line-height: 3rem; text-decoration: none; display: inline-block; border-radius: 0; margin: 0 2rem; border-bottom: 2px solid transparent }
+nav .menu a.active, nav .menu a:hover { color: #b9ff40 }
+nav .menu a.active { border-bottom: 2px solid currentColor; color: #b9ff40; font-weight: bold }
+
+.bd, hr { border: 2px solid currentColor } .no-bd, .no-bd-all > * { border: none }
+.ff, .ff-eq { display: flex; align-items: center }
+.ff-eq > * { flex: 1 } .ff-a { flex: auto } .ff-right { margin-left: auto }
+.w100 { width: 100% } .w75 { width: 75% } .w66 { width: 66.666% } .w50 { width: 50% } .w33 { width: 33.333% } .w25 { width: 25% } .w15 { width: 15% } .w10 { width: 10% }
+.center { text-align: center } .ff.center { justify-content: center }
+:focus { outline: 3px solid #b9ff40; outline-offset: 2px }
+::selection{ background: #b9ff40; color: #1a1a1a }
+
+.bg { position:absolute; width:100%; height:100vh; pointer-events: none }
+.bg i { background-image: linear-gradient(0deg, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0)); width: 100%; height: 300px; display: block; bottom: 0; left: 0; margin-top: -300px; position: relative; }
+.blur { -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px) }
+
+
+.bg2 {
+  display: inline-block;
+  /*z-index: -20;*/
+  line-height: 0;
+  opacity: 1;
+  /*background-color: rgb(232, 238, 251); */
+  background-image: url(https://uploads-ssl.webflow.com/63e9fe942b626c5adbd80bf9/63e9fe942b626c0306d80c90_Header%20-%20Flowbase.png);
+  background-position: center top;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.gradient-main {
+  min-height: 100vh;
+  background-image: radial-gradient(circle, rgba(58, 98, 158, .33), rgba(255, 255, 255, 0) 77%);
+}
+.gradient-1 {
+  width: 400px; height: 400px; position: absolute; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(201, 142, 255, .33), rgba(255, 255, 255, 0) 47%);
+}
+.gradient-2 {
+  width: 600px; height: 600px; position: absolute; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(58, 158, 98, .33), rgba(255, 255, 255, 0) 47%);
+}
+.splash {
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  padding: 30vh 2rem 2rem 2rem;
+  display: flex;
+  position: relative;
+}
+
+@media screen and (max-width: 750px) {
+  section { width: 100% }
+  nav .menu { width: 100% !important }
+}
+
+</style>
+
+
+<nav class="blur" style="border-radius: 0px;">
+  <div class="menu center" style="margin: 0px auto; width: 800px;">
+    <a href="/" class="active">Home</a>
+    <a href="javascript:void(0)">FAQs</a>
+    <a href="javascript:void(0)">Roadmap</a>
+    <a href="javascript:void(0)">Whitepaper</a>
+  </div>
+</nav>
+
+<main class="gradient-main">
+  <section style="height: 100vh">
+    <div class="gradient-1" style="top: 40%"></div>
+    <div class="gradient-2" style="right: 0"></div>
+    <div class="splash">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="518.527" height="99.882" viewBox="0 0 1047.529 201.781">
+        <defs>
+          <style>
+            .cls-1 {
+              fill: #000;
+              fill-rule: evenodd;
+            }
+          </style>
+        </defs>
+        <path d="M1017.890,102.712 L1017.890,139.112 C1017.890,145.702 1019.320,150.162 1022.180,152.502 C1025.040,154.842 1028.980,156.012 1034.010,156.012 C1035.915,156.012 1037.910,155.842 1039.990,155.492 C1042.070,155.147 1043.715,154.802 1044.930,154.452 L1044.930,195.532 C1041.810,196.918 1037.430,198.043 1031.800,198.912 C1026.165,199.778 1020.230,200.212 1013.990,200.212 C995.615,200.212 982.010,196.272 973.170,188.382 C964.330,180.497 959.910,168.232 959.910,151.592 L959.910,102.712 L947.943,102.712 C950.545,110.264 951.853,118.583 951.853,127.672 C951.853,139.462 949.729,149.947 945.483,159.132 C941.234,168.322 935.514,176.077 928.323,182.402 C921.129,188.732 912.809,193.542 903.363,196.832 C893.914,200.123 883.993,201.772 873.593,201.772 C863.364,201.772 853.529,200.123 844.083,196.832 C834.634,193.542 826.359,188.732 819.253,182.402 C812.144,176.077 806.469,168.322 802.223,159.132 C799.970,154.261 798.321,149.020 797.264,143.416 C796.615,147.035 795.797,150.632 794.695,154.192 C792.014,162.862 788.078,170.617 782.890,177.462 C777.702,184.312 771.218,189.812 763.435,193.972 C755.651,198.132 746.660,200.212 736.460,200.212 C727.985,200.212 719.941,198.608 712.332,195.402 C704.719,192.197 698.926,187.822 694.953,182.272 L694.433,182.272 L694.433,196.572 L640.377,196.572 L640.377,0.012 L700.437,0.012 L700.437,70.732 L700.957,70.732 C704.930,66.052 710.204,62.457 716.773,59.942 C723.342,57.432 729.911,56.172 736.484,56.172 C746.681,56.172 755.671,58.252 763.451,62.412 C771.226,66.572 777.710,72.032 782.898,78.792 C788.082,85.552 792.014,93.182 794.695,101.672 C795.792,105.148 796.607,108.659 797.255,112.192 C798.312,106.641 799.964,101.442 802.223,96.602 C806.469,87.502 812.144,79.832 819.253,73.592 C826.359,67.352 834.634,62.632 844.083,59.422 C853.529,56.217 863.364,54.612 873.593,54.612 C883.993,54.612 893.914,56.217 903.363,59.422 C912.809,62.632 921.129,67.352 928.323,73.592 C933.085,77.725 937.198,82.488 940.670,87.874 L940.670,59.812 L959.650,59.812 L959.650,29.132 L1017.890,29.132 L1017.890,59.812 L1047.530,59.812 L1047.530,102.712 L1017.890,102.712 ZM737.357,111.812 C733.543,107.307 727.997,105.052 720.717,105.052 C713.608,105.052 707.933,107.307 703.687,111.812 C699.438,116.322 697.317,121.607 697.317,127.672 C697.317,134.087 699.438,139.547 703.687,144.052 C707.933,148.562 713.608,150.812 720.717,150.812 C727.997,150.812 733.543,148.602 737.357,144.182 C741.168,139.762 743.077,134.262 743.077,127.672 C743.077,121.607 741.168,116.322 737.357,111.812 ZM889.843,112.072 C885.594,107.567 880.179,105.312 873.593,105.312 C867.004,105.312 861.674,107.567 857.603,112.072 C853.529,116.582 851.493,121.867 851.493,127.932 C851.493,134.347 853.573,139.807 857.733,144.312 C861.893,148.822 867.264,151.072 873.853,151.072 C880.439,151.072 885.813,148.822 889.973,144.312 C894.133,139.807 896.213,134.347 896.213,127.932 C896.213,121.867 894.089,116.582 889.843,112.072 ZM614.251,182.402 C607.056,188.732 598.736,193.542 589.291,196.832 C579.842,200.123 569.921,201.772 559.521,201.772 C549.292,201.772 539.456,200.123 530.011,196.832 C520.562,193.542 512.286,188.732 505.181,182.402 C498.072,176.077 492.396,168.322 488.151,159.132 C483.902,149.947 481.781,139.462 481.781,127.672 C481.781,116.062 483.902,105.702 488.151,96.602 C492.396,87.502 498.072,79.832 505.181,73.592 C512.286,67.352 520.562,62.632 530.011,59.422 C539.456,56.217 549.292,54.612 559.521,54.612 C569.921,54.612 579.842,56.217 589.291,59.422 C598.736,62.632 607.056,67.352 614.251,73.592 C621.442,79.832 627.162,87.502 631.411,96.602 C635.656,105.702 637.781,116.062 637.781,127.672 C637.781,139.462 635.656,149.947 631.411,159.132 C627.162,168.322 621.442,176.077 614.251,182.402 ZM575.771,112.072 C571.522,107.567 566.106,105.312 559.521,105.312 C552.932,105.312 547.602,107.567 543.531,112.072 C539.456,116.582 537.421,121.867 537.421,127.932 C537.421,134.347 539.501,139.807 543.661,144.312 C547.821,148.822 553.192,151.072 559.781,151.072 C566.366,151.072 571.741,148.822 575.901,144.312 C580.061,139.807 582.141,134.347 582.141,127.932 C582.141,121.867 580.016,116.582 575.771,112.072 ZM459.511,121.952 L506.222,196.572 L435.140,196.572 L399.878,130.792 L398.062,130.792 L398.062,196.572 L339.303,196.572 L338.002,196.572 L210.087,196.572 L187.463,196.572 L142.747,196.572 L133.127,169.532 L74.627,169.532 L65.527,196.572 L0.007,196.572 L72.547,12.492 L138.327,12.492 L189.145,142.852 L256.363,63.712 L190.323,63.712 L190.323,12.492 L337.223,12.492 L337.223,57.212 L263.903,143.792 L338.002,143.792 L338.002,12.492 L417.302,12.492 C426.313,12.492 435.283,13.402 444.212,15.222 C453.137,17.042 461.112,20.252 468.132,24.842 C475.152,29.437 480.827,35.592 485.162,43.302 C489.493,51.017 491.662,60.682 491.662,72.292 C491.662,83.562 488.895,93.482 483.362,102.062 C477.829,110.642 469.879,117.272 459.511,121.952 ZM104.527,76.712 L89.447,122.212 L119.347,122.212 L104.527,76.712 ZM429.274,67.092 C428.072,65.187 426.524,63.757 424.631,62.802 C422.738,61.852 420.674,61.242 418.440,60.982 C416.205,60.722 414.141,60.592 412.248,60.592 L397.542,60.592 L397.542,90.232 L409.669,90.232 C411.732,90.232 414.011,90.062 416.506,89.712 C419.000,89.367 421.320,88.632 423.469,87.502 C425.618,86.377 427.426,84.817 428.888,82.822 C430.351,80.832 431.082,78.187 431.082,74.892 C431.082,71.602 430.477,69.002 429.274,67.092 Z" class="cls-1"/>
+      </svg>
+    </div>
+    <div class="center">
+      <h1 style="font-size: 1.5rem; font-weight: 300">AZRobot × Powered by the Embodied AI Robotic</h2>
+      <p style="max-width: 700px; padding: 1rem; margin: 0 auto">
+  AZRobot team consists of Robotic, AI, IoT and Networking experts. <br />
+  The AZRobot founded in Beijing 2023. Core team earned P.h.D. and Master degrees from Peking University, Nanyang Technological University (Singapore), Shandong University and top universities, and worked for Meituan, JingDong, Alibaba, Tencent, Microsoft and Fortune 500 companies.</p>
+      <p><button style="padding: 1rem 2rem">The Future is now! Coming soon.</button></p>
+    </div>
+  </section>
+  <footer class="center"><p>&copy; 2024 AZRobot, All rights Reserved.</p></footer>
+</main>
+
+</body>
+</html>
