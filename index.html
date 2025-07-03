@@ -1,126 +1,1236 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="icon" href="https://alliance.xyz/favicon.ico">
-  <title>HFTech | AI Eduction</title>
-</head>
-<body>
-<style type="text/css">
-body, html { padding: 0; margin: 0; background: #fff }
-a { transition: .3s all ease-in }
-input, button, textarea, select, .btn, .select, .input { font-weight: 300; display: inline-block; padding: .6rem 1rem; text-decoration: none; border: none; background-color: #eee; transition: .3s all ease-in } .select >:first-child:after { content: ' ▼' }
-b, s, u, i, img, div, span { text-decoration: none; transition: .2s all ease-in }
-button, .btn { border: none; color: #fff; background-color: #000; cursor: pointer }
-button:hover, .btn:hover { color: #000; background-color: #b9ff40; box-shadow: 0 10px 30px #0002; transform: translateY(-2px) }
-button:hover > * { color: #fff !important }
-h1, h2, h3, h4, h5 { font-weight: bold; margin: 0; margin-bottom: .5rem } h1 { font-size: 3rem; font-weight: bold; } h2 { font-size: 1.2rem } h3, h4, h5 { font-size: 1rem }
-big, .big { font-size: 1.5rem } small, sub, .small { font-size: .8rem }
-main { padding-top: 4rem } footer { border-top: 1px solid rgba(0, 0, 0, .1); padding: 3rem 1rem 2rem 1rem }
-section, .section { width: 1000px; margin: 0 auto }
-code, pre, .code { font-family: menlo, consolas, monospace !important }
-img { color: #fff; box-shadow: 4px 6px 10px 2px rgb(0 0 0 / 9%) }
-svg { border-radius: 0 }
-nav { width: 100%; position: fixed; background-color: #000; z-index: 10 }
-nav .menu a { color: #fff; line-height: 3rem; text-decoration: none; display: inline-block; border-radius: 0; margin: 0 2rem; border-bottom: 2px solid transparent }
-nav .menu a.active, nav .menu a:hover { color: #b9ff40 }
-nav .menu a.active { border-bottom: 2px solid currentColor; color: #b9ff40; font-weight: bold }
-
-.bd, hr { border: 2px solid currentColor } .no-bd, .no-bd-all > * { border: none }
-.ff, .ff-eq { display: flex; align-items: center }
-.ff-eq > * { flex: 1 } .ff-a { flex: auto } .ff-right { margin-left: auto }
-.w100 { width: 100% } .w75 { width: 75% } .w66 { width: 66.666% } .w50 { width: 50% } .w33 { width: 33.333% } .w25 { width: 25% } .w15 { width: 15% } .w10 { width: 10% }
-.center { text-align: center } .ff.center { justify-content: center }
-:focus { outline: 3px solid #b9ff40; outline-offset: 2px }
-::selection{ background: #b9ff40; color: #1a1a1a }
-
-.bg { position:absolute; width:100%; height:100vh; pointer-events: none }
-.bg i { background-image: linear-gradient(0deg, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0)); width: 100%; height: 300px; display: block; bottom: 0; left: 0; margin-top: -300px; position: relative; }
-.blur { -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px) }
-
-
-.bg2 {
-  display: inline-block;
-  /*z-index: -20;*/
-  line-height: 0;
-  opacity: 1;
-  /*background-color: rgb(232, 238, 251); */
-  background-image: url(https://uploads-ssl.webflow.com/63e9fe942b626c5adbd80bf9/63e9fe942b626c0306d80c90_Header%20-%20Flowbase.png);
-  background-position: center top;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-.gradient-main {
-  min-height: 100vh;
-  background-image: radial-gradient(circle, rgba(58, 98, 158, .33), rgba(255, 255, 255, 0) 77%);
-}
-.gradient-1 {
-  width: 400px; height: 400px; position: absolute; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(201, 142, 255, .33), rgba(255, 255, 255, 0) 47%);
-}
-.gradient-2 {
-  width: 600px; height: 600px; position: absolute; pointer-events: none;
-  background-image: radial-gradient(circle, rgba(58, 158, 98, .33), rgba(255, 255, 255, 0) 47%);
-}
-.splash {
-  justify-content: center;
-  align-self: center;
-  align-items: center;
-  padding: 30vh 2rem 2rem 2rem;
-  display: flex;
-  position: relative;
-}
-
-@media screen and (max-width: 750px) {
-  section { width: 100% }
-  nav .menu { width: 100% !important }
-}
-
-</style>
-
-
-<nav class="blur" style="border-radius: 0px;">
-  <div class="menu center" style="margin: 0px auto; width: 800px;">
-    <a href="/" class="active">Home</a>
-    <a href="javascript:void(0)">FAQs</a>
-    <a href="javascript:void(0)">Roadmap</a>
-    <a href="javascript:void(0)">Whitepaper</a>
-  </div>
-</nav>
-
-<main class="gradient-main">
-  <section style="height: 100vh">
-    <div class="gradient-1" style="top: 40%"></div>
-    <div class="gradient-2" style="right: 0"></div>
-    <div class="splash">
-<svg width="400" height="200"><text x="0" y="140" font-size="90px" font-family="Arial, sans-serif" font-weight="bold" letter-spacing="-5px">HFTech</text></svg>
-      <defs>
-          <style>
-            .cls-1 {
-              fill: #000;
-              fill-rule: evenodd;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">EduPlatform - 专业在线课堂SaaS解决方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
             }
-          </style>
-        </defs>
-        <path d="M1017.890,102.712 L1017.890,139.112 C1017.890,145.702 1019.320,150.162 1022.180,152.502 C1025.040,154.842 1028.980,156.012 1034.010,156.012 C1035.915,156.012 1037.910,155.842 1039.990,155.492 C1042.070,155.147 1043.715,154.802 1044.930,154.452 L1044.930,195.532 C1041.810,196.918 1037.430,198.043 1031.800,198.912 C1026.165,199.778 1020.230,200.212 1013.990,200.212 C995.615,200.212 982.010,196.272 973.170,188.382 C964.330,180.497 959.910,168.232 959.910,151.592 L959.910,102.712 L947.943,102.712 C950.545,110.264 951.853,118.583 951.853,127.672 C951.853,139.462 949.729,149.947 945.483,159.132 C941.234,168.322 935.514,176.077 928.323,182.402 C921.129,188.732 912.809,193.542 903.363,196.832 C893.914,200.123 883.993,201.772 873.593,201.772 C863.364,201.772 853.529,200.123 844.083,196.832 C834.634,193.542 826.359,188.732 819.253,182.402 C812.144,176.077 806.469,168.322 802.223,159.132 C799.970,154.261 798.321,149.020 797.264,143.416 C796.615,147.035 795.797,150.632 794.695,154.192 C792.014,162.862 788.078,170.617 782.890,177.462 C777.702,184.312 771.218,189.812 763.435,193.972 C755.651,198.132 746.660,200.212 736.460,200.212 C727.985,200.212 719.941,198.608 712.332,195.402 C704.719,192.197 698.926,187.822 694.953,182.272 L694.433,182.272 L694.433,196.572 L640.377,196.572 L640.377,0.012 L700.437,0.012 L700.437,70.732 L700.957,70.732 C704.930,66.052 710.204,62.457 716.773,59.942 C723.342,57.432 729.911,56.172 736.484,56.172 C746.681,56.172 755.671,58.252 763.451,62.412 C771.226,66.572 777.710,72.032 782.898,78.792 C788.082,85.552 792.014,93.182 794.695,101.672 C795.792,105.148 796.607,108.659 797.255,112.192 C798.312,106.641 799.964,101.442 802.223,96.602 C806.469,87.502 812.144,79.832 819.253,73.592 C826.359,67.352 834.634,62.632 844.083,59.422 C853.529,56.217 863.364,54.612 873.593,54.612 C883.993,54.612 893.914,56.217 903.363,59.422 C912.809,62.632 921.129,67.352 928.323,73.592 C933.085,77.725 937.198,82.488 940.670,87.874 L940.670,59.812 L959.650,59.812 L959.650,29.132 L1017.890,29.132 L1017.890,59.812 L1047.530,59.812 L1047.530,102.712 L1017.890,102.712 ZM737.357,111.812 C733.543,107.307 727.997,105.052 720.717,105.052 C713.608,105.052 707.933,107.307 703.687,111.812 C699.438,116.322 697.317,121.607 697.317,127.672 C697.317,134.087 699.438,139.547 703.687,144.052 C707.933,148.562 713.608,150.812 720.717,150.812 C727.997,150.812 733.543,148.602 737.357,144.182 C741.168,139.762 743.077,134.262 743.077,127.672 C743.077,121.607 741.168,116.322 737.357,111.812 ZM889.843,112.072 C885.594,107.567 880.179,105.312 873.593,105.312 C867.004,105.312 861.674,107.567 857.603,112.072 C853.529,116.582 851.493,121.867 851.493,127.932 C851.493,134.347 853.573,139.807 857.733,144.312 C861.893,148.822 867.264,151.072 873.853,151.072 C880.439,151.072 885.813,148.822 889.973,144.312 C894.133,139.807 896.213,134.347 896.213,127.932 C896.213,121.867 894.089,116.582 889.843,112.072 ZM614.251,182.402 C607.056,188.732 598.736,193.542 589.291,196.832 C579.842,200.123 569.921,201.772 559.521,201.772 C549.292,201.772 539.456,200.123 530.011,196.832 C520.562,193.542 512.286,188.732 505.181,182.402 C498.072,176.077 492.396,168.322 488.151,159.132 C483.902,149.947 481.781,139.462 481.781,127.672 C481.781,116.062 483.902,105.702 488.151,96.602 C492.396,87.502 498.072,79.832 505.181,73.592 C512.286,67.352 520.562,62.632 530.011,59.422 C539.456,56.217 549.292,54.612 559.521,54.612 C569.921,54.612 579.842,56.217 589.291,59.422 C598.736,62.632 607.056,67.352 614.251,73.592 C621.442,79.832 627.162,87.502 631.411,96.602 C635.656,105.702 637.781,116.062 637.781,127.672 C637.781,139.462 635.656,149.947 631.411,159.132 C627.162,168.322 621.442,176.077 614.251,182.402 ZM575.771,112.072 C571.522,107.567 566.106,105.312 559.521,105.312 C552.932,105.312 547.602,107.567 543.531,112.072 C539.456,116.582 537.421,121.867 537.421,127.932 C537.421,134.347 539.501,139.807 543.661,144.312 C547.821,148.822 553.192,151.072 559.781,151.072 C566.366,151.072 571.741,148.822 575.901,144.312 C580.061,139.807 582.141,134.347 582.141,127.932 C582.141,121.867 580.016,116.582 575.771,112.072 ZM459.511,121.952 L506.222,196.572 L435.140,196.572 L399.878,130.792 L398.062,130.792 L398.062,196.572 L339.303,196.572 L338.002,196.572 L210.087,196.572 L187.463,196.572 L142.747,196.572 L133.127,169.532 L74.627,169.532 L65.527,196.572 L0.007,196.572 L72.547,12.492 L138.327,12.492 L189.145,142.852 L256.363,63.712 L190.323,63.712 L190.323,12.492 L337.223,12.492 L337.223,57.212 L263.903,143.792 L338.002,143.792 L338.002,12.492 L417.302,12.492 C426.313,12.492 435.283,13.402 444.212,15.222 C453.137,17.042 461.112,20.252 468.132,24.842 C475.152,29.437 480.827,35.592 485.162,43.302 C489.493,51.017 491.662,60.682 491.662,72.292 C491.662,83.562 488.895,93.482 483.362,102.062 C477.829,110.642 469.879,117.272 459.511,121.952 ZM104.527,76.712 L89.447,122.212 L119.347,122.212 L104.527,76.712 ZM429.274,67.092 C428.072,65.187 426.524,63.757 424.631,62.802 C422.738,61.852 420.674,61.242 418.440,60.982 C416.205,60.722 414.141,60.592 412.248,60.592 L397.542,60.592 L397.542,90.232 L409.669,90.232 C411.732,90.232 414.011,90.062 416.506,89.712 C419.000,89.367 421.320,88.632 423.469,87.502 C425.618,86.377 427.426,84.817 428.888,82.822 C430.351,80.832 431.082,78.187 431.082,74.892 C431.082,71.602 430.477,69.002 429.274,67.092 Z" class="cls-1"/>
-      </svg>
-    </div>
-    <div class="center">
-      <h1 style="font-size: 1.5rem; font-weight: 300">HFTech × Powered by the AI Eduction</h2>
-      <p style="max-width: 700px; padding: 1rem; margin: 0 auto">
-  HFTech team consists of Eduction, AI and Networking experts. <br />
-  The HFTech founded in Beijing 2024. The core team has a doctor's degree and a master's degree from top universities such as Tsinghua University and Shandong University, and has worked in the world's top 500 enterprises such as Tencent, Baidu and TAL.</p>
-      <p><button style="padding: 1rem 2rem">The Future is now! Coming soon.</button></p>
-    </div>
-  </section>
-  <footer class="center"><p>&copy; 2024 HFTech, All rights Reserved.</p></footer>
-</main>
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+            }
+        }
+    </style>
+    <!-- 先加载i18n.js -->
+    <script src="js/i18n.js"></script>
+    <!-- 然后加载language-switcher.js -->
+    <script src="js/language-switcher.js"></script>
+    <script>
+        // 等待DOM加载完成后初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化销售趋势图表
+            const salesCtx = document.getElementById('salesChart');
+            if (salesCtx) {
+                window.salesChart = new Chart(salesCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            i18n[currentLang].chart_month_1,
+                            i18n[currentLang].chart_month_2,
+                            i18n[currentLang].chart_month_3,
+                            i18n[currentLang].chart_month_4,
+                            i18n[currentLang].chart_month_5,
+                            i18n[currentLang].chart_month_6,
+                            i18n[currentLang].chart_month_7,
+                            i18n[currentLang].chart_month_8,
+                            i18n[currentLang].chart_month_9,
+                            i18n[currentLang].chart_month_10,
+                            i18n[currentLang].chart_month_11,
+                            i18n[currentLang].chart_month_12
+                        ],
+                        datasets: [{
+                            label: i18n[currentLang].chart_sales_unit,
+                            data: [120, 190, 230, 290, 320, 490, 550, 630, 720, 830, 950, 1100],
+                            borderColor: '#165DFF',
+                            backgroundColor: 'rgba(22, 93, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 初始化地域分布图表
+            const geoCtx = document.getElementById('geoChart');
+            if (geoCtx) {
+                window.geoChart = new Chart(geoCtx.getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            i18n[currentLang].chart_region_1,
+                            i18n[currentLang].chart_region_2,
+                            i18n[currentLang].chart_region_3,
+                            i18n[currentLang].chart_region_4,
+                            i18n[currentLang].chart_region_5,
+                            i18n[currentLang].chart_region_6,
+                            i18n[currentLang].chart_region_7
+                        ],
+                        datasets: [{
+                            data: [35, 25, 15, 10, 5, 5, 5],
+                            backgroundColor: [
+                                '#165DFF',
+                                '#36D399',
+                                '#7C3AED',
+                                '#F59E0B',
+                                '#EC4899',
+                                '#10B981',
+                                '#6366F1'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">EduPlatform</span>
+                    </a>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="features">功能</a>
+                    <a href="#pricing" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="pricing">价格</a>
+                    <a href="#testimonials" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="testimonials">客户评价</a>
+                    <a href="#faq" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="faq">常见问题</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- 语言切换 -->
+                    <div class="relative group">
+                        <button class="flex items-center text-dark/80 hover:text-primary transition-custom">
+                            <span id="current-lang">繁體中文</span>
+                            <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-primary/5 hover:text-primary" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-primary/5 hover:text-primary" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-primary/5 hover:text-primary" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="hidden md:inline-flex items-center px-4 py-2 border border-primary text-primary bg-transparent hover:bg-primary/5 font-medium rounded-lg transition-custom" data-i18n="contact_us">
+                        联系我们
+                    </a>
+                    <a href="#demo" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-custom shadow-sm" data-i18n="free_trial">
+                        免费试用
+                    </a>
+                    
+                    <!-- 移动端菜单按钮 -->
+                    <button id="menu-toggle" class="md:hidden text-dark/80 hover:text-primary transition-custom">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="features">功能</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="pricing">价格</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="testimonials">客户评价</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="faq">常见问题</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/5" data-i18n="contact_us">联系我们</a>
+            </div>
+        </div>
+    </header>
 
+    <main>
+        <!-- 英雄区域 -->
+        <section class="pt-28 pb-20 md:pt-32 md:pb-28 bg-gradient-to-br from-primary/5 to-accent/5">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="w-full lg:w-1/2 mb-10 lg:mb-0">
+                        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-dark">
+                            <span class="text-primary" data-i18n="hero_title">在线课堂 SaaS 解决方案</span>
+                        </h1>
+                        <p class="mt-6 text-lg text-dark/70" data-i18n="hero_subtitle">
+                            为教育机构和企业培训提供一站式解决方案，轻松创建、管理和推广您的在线课程。
+                        </p>
+                        <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#demo" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-custom shadow-lg shadow-primary/20" data-i18n="start_free_trial">
+                                开始14天免费试用 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#features" class="inline-flex items-center justify-center px-6 py-3 border border-dark/20 text-base font-medium rounded-lg text-dark hover:bg-dark/5 transition-custom" data-i18n="learn_more">
+                                了解更多 <i class="fa fa-angle-down ml-2"></i>
+                            </a>
+                        </div>
+                        <div class="mt-8 flex items-center">
+                            <div class="flex -space-x-2">
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://picsum.photos/id/1001/100/100" alt="用户头像" data-i18n-alt="user_avatar">
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://picsum.photos/id/1002/100/100" alt="用户头像" data-i18n-alt="user_avatar">
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://picsum.photos/id/1003/100/100" alt="用户头像" data-i18n-alt="user_avatar">
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://picsum.photos/id/1004/100/100" alt="用户头像" data-i18n-alt="user_avatar">
+                            </div>
+                            <div class="ml-4">
+                                <div class="flex items-center">
+                                    <i class="fa fa-star text-yellow-400"></i>
+                                    <i class="fa fa-star text-yellow-400"></i>
+                                    <i class="fa fa-star text-yellow-400"></i>
+                                    <i class="fa fa-star text-yellow-400"></i>
+                                    <i class="fa fa-star text-yellow-400"></i>
+                                    <span class="ml-2 text-sm font-medium text-dark/80" data-i18n="customer_rating">4.9/5</span>
+                                </div>
+                                <p class="text-sm text-dark/60" data-i18n="satisfied_customers">来自2,500+满意客户</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 relative">
+                        <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl">
+                            <img src="https://picsum.photos/id/1/800/600" alt="在线课堂演示" class="w-full h-auto" data-i18n-alt="demo_preview">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                <div class="p-6">
+                                    <div class="flex items-center">
+                                        <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                            <i class="fa fa-play text-white"></i>
+                                        </div>
+                                        <div class="ml-4">
+                                            <h3 class="text-white font-semibold" data-i18n="watch_demo_title">观看演示</h3>
+                                            <p class="text-white/80 text-sm" data-i18n="watch_demo_desc">了解平台如何工作</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 装饰元素 -->
+                        <div class="absolute top-1/4 -right-4 w-24 h-24 bg-secondary/20 rounded-full blur-2xl"></div>
+                        <div class="absolute bottom-1/4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
+                
+                <!-- 信任标识 -->
+                <div class="mt-20">
+                    <p class="text-center text-dark/50 text-sm font-medium uppercase tracking-wider" data-i18n="trusted_by">受到全球领先教育机构的信任</p>
+                    <div class="mt-6 flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                        <img src="https://picsum.photos/id/180/120/40" alt="合作伙伴" class="h-6 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-custom" data-i18n-alt="partner_logo">
+                        <img src="https://picsum.photos/id/181/120/40" alt="合作伙伴" class="h-6 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-custom" data-i18n-alt="partner_logo">
+                        <img src="https://picsum.photos/id/182/120/40" alt="合作伙伴" class="h-6 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-custom" data-i18n-alt="partner_logo">
+                        <img src="https://picsum.photos/id/183/120/40" alt="合作伙伴" class="h-6 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-custom" data-i18n-alt="partner_logo">
+                        <img src="https://picsum.photos/id/184/120/40" alt="合作伙伴" class="h-6 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-custom" data-i18n-alt="partner_logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能部分 -->
+        <section id="features" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="features_title">强大功能，简单操作</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="features_subtitle">我们的SaaS平台提供了创建和管理在线课程所需的一切工具，让您专注于教学内容</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 功能卡片 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-graduation-cap text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="course_creation">课程创建</h3>
+                        <p class="text-dark/70" data-i18n="course_creation_desc">使用我们直观的编辑器轻松创建专业课程，支持多种内容格式，包括视频、文档和互动测验。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="drag_drop_builder">拖放式课程构建器</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="multi_content_support">多种内容格式支持</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="chapter_organization">章节和课程组织</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 功能卡片 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="student_management">学员管理</h3>
+                        <p class="text-dark/70" data-i18n="student_management_desc">轻松管理学员注册、进度跟踪和参与度分析，提供个性化学习体验。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="realtime_analytics">实时学员数据分析</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="progress_tracking">进度跟踪和完成证书</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="learning_paths">学习路径和个性化推荐</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 功能卡片 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-credit-card text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="payment_integration">支付集成</h3>
+                        <p class="text-dark/70" data-i18n="payment_integration_desc">多种支付方式集成，灵活的定价策略，帮助您轻松实现课程变现。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="global_payment">支持全球主要支付方式</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="flexible_pricing">灵活的定价模式</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="coupon_management">优惠券和折扣管理</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 功能卡片 4 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-comments text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="interactive_learning">互动学习</h3>
+                        <p class="text-dark/70" data-i18n="interactive_learning_desc">通过实时问答、讨论论坛和协作工具，增强学员参与度和社区建设。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="realtime_chat">实时聊天和视频会议</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="discussion_forum">讨论论坛和问答系统</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="group_projects">小组项目和协作工具</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 功能卡片 5 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-line-chart text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="data_analytics">数据分析</h3>
+                        <p class="text-dark/70" data-i18n="data_analytics_desc">全面的分析工具帮助您了解学员行为，优化课程内容，提高转化率。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="student_behavior">详细的学员行为分析</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="completion_tracking">课程完成率跟踪</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="revenue_analytics">收入和销售分析</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 功能卡片 6 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom border border-gray-100 group">
+                        <div class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-custom">
+                            <i class="fa fa-plug text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="integration">集成与扩展</h3>
+                        <p class="text-dark/70" data-i18n="integration_desc">与您已使用的工具无缝集成，扩展功能，提高工作效率。</p>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="api_support">丰富的API和Webhook支持</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="popular_tools">流行工具集成</span>
+                            </li>
+                            <li class="flex items-center text-dark/70">
+                                <i class="fa fa-check text-secondary mr-2"></i>
+                                <span data-i18n="custom_plugins">自定义插件和扩展</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 功能统计 -->
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" data-i18n="stats_students">150,000+</div>
+                        <p class="text-dark/70" data-i18n="active_students">活跃学员</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" data-i18n="stats_courses">10,000+</div>
+                        <p class="text-dark/70" data-i18n="online_courses">在线课程</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" data-i18n="stats_instructors">5,000+</div>
+                        <p class="text-dark/70" data-i18n="instructors">讲师</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" data-i18n="stats_revenue">$25M+</div>
+                        <p class="text-dark/70" data-i18n="course_revenue">课程收入</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工作流程 -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="workflow_title">简单三步，开启在线教学</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="workflow_subtitle">无需技术背景，轻松创建专业在线课程，开始您的教学之旅</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 步骤 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg relative">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg">1</div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                                <i class="fa fa-pencil text-3xl text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="step1_title">创建课程</h3>
+                            <p class="text-dark/70" data-i18n="step1_desc">使用我们的拖放式编辑器，轻松创建引人入胜的课程内容，包括视频、文档和互动练习。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg relative">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg">2</div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                                <i class="fa fa-credit-card text-3xl text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="step2_title">设置价格</h3>
+                            <p class="text-dark/70" data-i18n="step2_desc">选择最适合您的定价模式，包括一次性购买、订阅制或免费课程，轻松实现课程变现。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg relative">
+                        <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg">3</div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                                <i class="fa fa-bullhorn text-3xl text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="step3_title">推广与销售</h3>
+                            <p class="text-dark/70" data-i18n="step3_desc">利用我们的营销工具和社交媒体集成，推广您的课程，吸引更多学员。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#demo" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 transition-custom shadow-lg shadow-primary/20" data-i18n="start_free_trial">
+                        开始免费试用 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 价格方案 -->
+        <section id="pricing" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="pricing_title">灵活的价格方案</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="pricing_subtitle">选择最适合您需求的方案，随时升级或降级</p>
+                    
+                    <!-- 价格切换 -->
+                    <div class="mt-8 inline-flex p-1 bg-gray-100 rounded-full">
+                        <button id="monthly-toggle" class="px-6 py-2 rounded-full bg-white text-dark font-medium shadow-sm" data-i18n="monthly_plan">月付</button>
+                        <button id="annual-toggle" class="px-6 py-2 rounded-full text-dark/70 font-medium" data-i18n="annual_plan">年付 <span class="text-xs font-semibold text-secondary ml-1" data-i18n="save_amount">省20%</span></button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 基础版 -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-custom hover:shadow-xl">
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark" data-i18n="basic_plan_title">基础版</h3>
+                            <p class="mt-2 text-dark/70" data-i18n="basic_plan_desc">适合个人教师和小型机构</p>
+                            
+                            <div class="mt-6">
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold text-dark" id="price-basic">¥299</span>
+                                    <span class="text-dark/70 ml-2 mb-1" data-i18n="per_month">/月</span>
+                                </div>
+                                <p class="mt-2 text-sm text-dark/60" data-i18n="basic_plan_feature_summary">包含基础功能，最多5门课程</p>
+                            </div>
+                            
+                            <a href="#demo" class="mt-6 block w-full py-3 px-4 text-center border border-primary text-primary bg-transparent hover:bg-primary/5 font-medium rounded-lg transition-custom" data-i18n="choose_basic_plan">
+                                选择基础版
+                            </a>
+                            
+                            <ul class="mt-8 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="basic_feature_1">最多5门课程</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="basic_feature_2">最多500名学员</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="basic_feature_3">基础课程创建工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="basic_feature_4">电子邮件支持</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="basic_feature_5">基础数据分析</span>
+                                </li>
+                                <li class="flex items-start text-dark/40">
+                                    <i class="fa fa-times mt-1 mr-2"></i>
+                                    <span data-i18n="basic_feature_6">高级营销工具</span>
+                                </li>
+                                <li class="flex items-start text-dark/40">
+                                    <i class="fa fa-times mt-1 mr-2"></i>
+                                    <span data-i18n="basic_feature_7">自定义域名</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 专业版 -->
+                    <div class="bg-white rounded-xl shadow-xl border-2 border-primary overflow-hidden relative transition-custom hover:shadow-2xl transform hover:-translate-y-1">
+                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-medium" data-i18n="most_popular">
+                            最受欢迎
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark" data-i18n="pro_plan_title">专业版</h3>
+                            <p class="mt-2 text-dark/70" data-i18n="pro_plan_desc">适合成长中的教育机构</p>
+                            
+                            <div class="mt-6">
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold text-dark" id="price-pro">¥799</span>
+                                    <span class="text-dark/70 ml-2 mb-1" data-i18n="per_month">/月</span>
+                                </div>
+                                <p class="mt-2 text-sm text-dark/60" data-i18n="pro_plan_feature_summary">包含高级功能，最多20门课程</p>
+                            </div>
+                            
+                            <a href="#demo" class="mt-6 block w-full py-3 px-4 text-center border border-transparent text-white bg-primary hover:bg-primary/90 font-medium rounded-lg transition-custom shadow-lg shadow-primary/20" data-i18n="choose_pro_plan">
+                                选择专业版
+                            </a>
+                            
+                            <ul class="mt-8 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_1">最多20门课程</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_2">最多5000名学员</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_3">高级课程创建工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_4">优先电子邮件和聊天支持</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_5">详细数据分析和报告</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_6">基础营销工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="pro_plan_feature_7">1个自定义域名</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 企业版 -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden transition-custom hover:shadow-xl">
+                        <div class="p-8">
+                            <h3 class="text-xl font-semibold text-dark" data-i18n="enterprise_plan_title">企业版</h3>
+                            <p class="mt-2 text-dark/70" data-i18n="enterprise_plan_desc">适合大型教育机构和企业</p>
+                            
+                            <div class="mt-6">
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold text-dark" id="price-enterprise">¥1999</span>
+                                    <span class="text-dark/70 ml-2 mb-1" data-i18n="per_month">/月</span>
+                                </div>
+                                <p class="mt-2 text-sm text-dark/60" data-i18n="enterprise_plan_feature_summary">包含所有高级功能，无限课程</p>
+                            </div>
+                            
+                            <a href="#contact" class="mt-6 block w-full py-3 px-4 text-center border border-primary text-primary bg-transparent hover:bg-primary/5 font-medium rounded-lg transition-custom" data-i18n="contact_sales">
+                                联系销售
+                            </a>
+                            
+                            <ul class="mt-8 space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_1">无限课程</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_2">无限学员</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_3">企业级课程创建工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_4">24/7专属客户经理</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_5">高级数据分析和预测</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_6">高级营销和推广工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check text-secondary mt-1 mr-2"></i>
+                                    <span class="text-dark/80" data-i18n="enterprise_plan_feature_7">无限自定义域名</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 功能对比 -->
+                <div class="mt-16 bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-dark/60 uppercase tracking-wider" data-i18n="compare_feature">功能</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-dark/60 uppercase tracking-wider" data-i18n="basic">基础版</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-dark/60 uppercase tracking-wider" data-i18n="pro">专业版</th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-dark/60 uppercase tracking-wider" data-i18n="enterprise">企业版</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_courses">课程数量</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="basic_courses">5</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_courses">20</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_courses">无限</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_students">学员数量</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="basic_students">500</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_students">5,000</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_students">无限</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_domain">自定义域名</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_domain">×</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_domain">1个</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_domain">无限</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_marketing">营销工具</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_marketing">基础</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_marketing">标准</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_marketing">高级</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_analytics">数据分析</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_analytics">基础</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_analytics">详细</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_analytics">高级+预测</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_support">技术支持</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_support">电子邮件</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_support">优先电子邮件+聊天</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_support">24/7专属客户经理</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_api">API访问</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_api">×</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_api">标准</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_api">高级</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-dark" data-i18n="compare_integration">自定义集成</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/40" data-i18n="basic_integration">×</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="pro_integration">5个</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-dark/80" data-i18n="enterprise_integration">无限</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户评价 -->
+        <section id="testimonials" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="testimonials_title">客户怎么说</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="testimonials_subtitle">来自真实用户的评价，了解他们如何使用我们的平台取得成功</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 评价 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom">
+                        <div class="flex items-center mb-6">
+                            <img src="https://picsum.photos/id/1005/100/100" alt="用户头像" class="w-14 h-14 rounded-full">
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-dark" data-i18n="customer_name_1">张明</h4>
+                                <p class="text-dark/60 text-sm" data-i18n="customer_title_1">英语培训学校创始人</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-dark/80" data-i18n="customer_review_1">"使用EduPlatform后，我们的课程销售额增长了300%。平台的易用性让我们能够专注于教学内容，而不是技术问题。学员体验也大大提升，现在我们的课程完成率比以前高出了40%。"</p>
+                    </div>
+                    
+                    <!-- 评价 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom">
+                        <div class="flex items-center mb-6">
+                            <img src="https://picsum.photos/id/1006/100/100" alt="用户头像" class="w-14 h-14 rounded-full">
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-dark" data-i18n="customer_name_2">李婷</h4>
+                                <p class="text-dark/60 text-sm" data-i18n="customer_title_2">职业技能培训师</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-dark/80" data-i18n="customer_review_2">"作为一名独立培训师，我需要一个既专业又经济实惠的平台。EduPlatform完美满足了我的需求。客户支持团队总是快速响应，帮助我解决任何问题。强烈推荐给所有想要创建在线课程的人！"</p>
+                    </div>
+                    
+                    <!-- 评价 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-custom">
+                        <div class="flex items-center mb-6">
+                            <img src="https://picsum.photos/id/1009/100/100" alt="用户头像" class="w-14 h-14 rounded-full">
+                            <div class="ml-4">
+                                <h4 class="font-semibold text-dark" data-i18n="customer_name_3">王建国</h4>
+                                <p class="text-dark/60 text-sm" data-i18n="customer_title_3">科技公司培训主管</p>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <p class="text-dark/80" data-i18n="customer_review_3">"我们公司使用EduPlatform为员工提供培训课程。平台的企业版功能非常强大，特别是自定义域名和高级分析工具。我们能够精确跟踪员工的学习进度，这对我们的培训计划评估非常有帮助。"</p>
+                    </div>
+                </div>
+                
+                <!-- 数据统计 -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                        <p class="text-dark/80" data-i18n="customer_satisfaction">客户满意度</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">300+</div>
+                        <p class="text-dark/80" data-i18n="daily_new_courses">每天新增课程</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">50+</div>
+                        <p class="text-dark/80" data-i18n="countries_covered">覆盖国家和地区</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 -->
+        <section id="faq" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="faq_section_title">常见问题</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="faq_section_subtitle">了解更多关于我们平台的信息，如有其他问题请联系我们</p>
+                </div>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="space-y-6">
+                        <!-- FAQ 项目 1 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none" data-target="faq-1">
+                                <span class="text-lg font-medium text-dark" data-i18n="faq_title_1">我需要具备什么技术知识才能使用你们的平台？</span>
+                                <i class="fa fa-chevron-down text-dark/50 transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-1" class="faq-content hidden p-6 pt-0 border-t border-gray-100">
+                                <p class="text-dark/70" data-i18n="faq_content_1">不需要任何技术知识！我们的平台设计得非常直观，任何人都可以轻松使用。我们提供了详细的教程和视频指南，帮助您快速上手。如果您遇到任何问题，我们的客户支持团队随时为您提供帮助。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 项目 2 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none" data-target="faq-2">
+                                <span class="text-lg font-medium text-dark" data-i18n="faq_title_2">我可以上传哪些类型的课程内容？</span>
+                                <i class="fa fa-chevron-down text-dark/50 transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-2" class="faq-content hidden p-6 pt-0 border-t border-gray-100">
+                                <p class="text-dark/70" data-i18n="faq_content_2">您可以上传多种类型的内容，包括视频、音频、文档（PDF、Word、PPT等）、图片、测验、作业和讨论话题。我们支持直接上传文件，也可以嵌入来自YouTube、Vimeo等平台的内容。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 项目 3 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none" data-target="faq-3">
+                                <span class="text-lg font-medium text-dark" data-i18n="faq_title_3">如何收取课程费用，你们的佣金是多少？</span>
+                                <i class="fa fa-chevron-down text-dark/50 transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-3" class="faq-content hidden p-6 pt-0 border-t border-gray-100">
+                                <p class="text-dark/70" data-i18n="faq_content_3">我们提供多种收费模式，包括一次性购买、订阅制和免费课程。对于基础版和专业版用户，我们收取交易金额的5%作为平台服务费。企业版用户可以享受更低的费率。我们支持多种支付方式，包括信用卡、支付宝、微信支付等。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 项目 4 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none" data-target="faq-4">
+                                <span class="text-lg font-medium text-dark" data-i18n="faq_title_4">我可以自定义课程页面的外观吗？</span>
+                                <i class="fa fa-chevron-down text-dark/50 transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-4" class="faq-content hidden p-6 pt-0 border-t border-gray-100">
+                                <p class="text-dark/70" data-i18n="faq_content_4">是的，您可以完全自定义课程页面的外观，包括颜色、字体、布局等。专业版和企业版用户还可以使用自定义域名，使您的课程看起来更加专业。我们提供了多种模板和主题，让您可以轻松创建出符合品牌风格的课程页面。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 项目 5 -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left focus:outline-none" data-target="faq-5">
+                                <span class="text-lg font-medium text-dark" data-i18n="faq_title_5">你们提供哪些类型的客户支持？</span>
+                                <i class="fa fa-chevron-down text-dark/50 transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-5" class="faq-content hidden p-6 pt-0 border-t border-gray-100">
+                                <p class="text-dark/70" data-i18n="faq_content_5">我们提供多种支持渠道，包括详细的帮助中心、视频教程、电子邮件支持和实时聊天支持。专业版用户可以享受优先支持，企业版用户则可以获得专属客户经理和24/7支持。我们的目标是在24小时内回复所有客户咨询。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center">
+                        <p class="text-dark/70" data-i18n="faq_more_questions">还有其他问题？</p>
+                        <a href="#contact" class="inline-flex items-center mt-4 px-6 py-3 border border-primary text-primary bg-transparent hover:bg-primary/5 font-medium rounded-lg transition-custom" data-i18n="faq_contact_us">
+                            联系我们 <i class="fa fa-envelope ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据可视化 -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="platform_data_title">平台数据表现</h2>
+                    <p class="mt-4 text-lg text-dark/70" data-i18n="platform_data_subtitle">了解我们平台的增长情况和用户表现数据</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- 图表 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-dark mb-6" data-i18n="chart_title_1">课程销售趋势</h3>
+                        <div class="h-80">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 图表 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-dark mb-6" data-i18n="chart_title_2">学员地域分布</h3>
+                        <div class="h-80">
+                            <canvas id="geoChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark" data-i18n="contact_title">联系我们</h2>
+                            <p class="mt-4 text-lg text-dark/70" data-i18n="contact_subtitle">有任何问题或需要帮助？填写表单，我们的团队将尽快与您联系</p>
+                            
+                            <div class="mt-8 space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-medium text-dark" data-i18n="contact_address_title">地址</h3>
+                                        <p class="mt-1 text-dark/70" data-i18n="contact_address">北京市海淀区中关村科技园区8号楼</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-medium text-dark" data-i18n="contact_email_title">电子邮件</h3>
+                                        <p class="mt-1 text-dark/70" data-i18n="contact_email">support@eduplatform.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-medium text-dark" data-i18n="contact_phone_title">电话</h3>
+                                        <p class="mt-1 text-dark/70" data-i18n="contact_phone">+86 10 8888 8888</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h3 class="text-lg font-medium text-dark" data-i18n="follow_us">关注我们</h3>
+                                <div class="mt-4 flex space-x-4">
+                                    <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                        <i class="fa fa-weixin" title="WeChat"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                        <i class="fa fa-weibo" title="Weibo"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                        <i class="fa fa-linkedin" title="LinkedIn"></i>
+                                    </a>
+                                    <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                                        <i class="fa fa-youtube-play" title="YouTube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-dark/80 mb-1" data-i18n="name">姓名</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" data-i18n="enter_name" placeholder="请输入您的姓名" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-dark/80 mb-1" data-i18n="email">电子邮件</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" data-i18n="enter_email" placeholder="请输入您的电子邮件" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-dark/80 mb-1" data-i18n="subject">主题</label>
+                                    <select id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" required>
+                                        <option value="" data-i18n="select_subject">请选择咨询主题</option>
+                                        <option value="demo" data-i18n="demo_request">请求演示</option>
+                                        <option value="pricing" data-i18n="pricing_inquiry">价格咨询</option>
+                                        <option value="support" data-i18n="tech_support">技术支持</option>
+                                        <option value="other" data-i18n="other_inquiry">其他问题</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-dark/80 mb-1" data-i18n="message">留言</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-custom" data-i18n="enter_message" placeholder="请输入您的留言内容" required></textarea>
+                                </div>
+                                
+                                <div>
+                                    <button type="submit" class="w-full py-3 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-custom shadow-sm" data-i18n="send_message">
+                                        发送留言
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 免费试用 -->
+        <section id="demo" class="py-20 bg-gradient-to-br from-primary to-accent text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold" data-i18n="free_trial_title">开始14天免费试用</h2>
+                    <p class="mt-4 text-lg text-white/80 max-w-2xl mx-auto" data-i18n="free_trial_subtitle">无需信用卡，立即体验所有高级功能，轻松创建您的第一门在线课程</p>
+                    
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#" class="inline-flex items-center justify-center px-8 py-4 border border-white/20 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 font-medium rounded-lg transition-custom" data-i18n="watch_demo">
+                            <i class="fa fa-play-circle mr-2"></i> 观看演示视频
+                        </a>
+                        <a href="#" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-white bg-white hover:text-primary font-medium rounded-lg transition-custom shadow-lg" data-i18n="start_free">
+                            免费开始使用 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <p class="mt-6 text-white/60 text-sm" data-i18n="trial_terms">无需信用卡 · 14天后自动停止 · 随时取消</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white/80 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-white">EduPlatform</span>
+                    </div>
+                    <p class="mb-6 max-w-md" data-i18n="footer_description">EduPlatform是领先的在线教育SaaS平台，帮助教育机构和个人教师轻松创建、管理和销售在线课程。</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6" data-i18n="product">产品</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="features">功能</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="pricing">价格</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="testimonials">客户评价</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="faq">常见问题</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6" data-i18n="resources">资源</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="help_center">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="tutorials">教程</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="blog">博客</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="webinars">网络研讨会</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="api_docs">API文档</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-6" data-i18n="company">公司</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="about_us">关于我们</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="careers">加入我们</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="privacy_policy">隐私政策</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="terms_service">服务条款</a></li>
+                        <li><a href="#" class="hover:text-primary transition-custom" data-i18n="cookie_policy">Cookie政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+                <p data-i18n="copyright">© 2025 EduPlatform. 保留所有权利。</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="hover:text-primary transition-custom" data-i18n="privacy_policy">隐私政策</a>
+                    <a href="#" class="hover:text-primary transition-custom" data-i18n="terms_service">服务条款</a>
+                    <a href="#" class="hover:text-primary transition-custom" data-i18n="cookie_policy">Cookie政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+        
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // FAQ 切换
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // 价格切换
+        document.getElementById('monthly-toggle').addEventListener('click', function() {
+            this.classList.add('bg-white', 'text-dark', 'shadow-sm');
+            this.classList.remove('text-dark/70');
+            
+            document.getElementById('annual-toggle').classList.remove('bg-white', 'text-dark', 'shadow-sm');
+            document.getElementById('annual-toggle').classList.add('text-dark/70');
+            
+            // 更新价格
+            document.getElementById('price-basic').textContent = '¥299';
+            document.getElementById('price-pro').textContent = '¥799';
+            document.getElementById('price-enterprise').textContent = '¥1999';
+        });
+        
+        document.getElementById('annual-toggle').addEventListener('click', function() {
+            this.classList.add('bg-white', 'text-dark', 'shadow-sm');
+            this.classList.remove('text-dark/70');
+            
+            document.getElementById('monthly-toggle').classList.remove('bg-white', 'text-dark', 'shadow-sm');
+            document.getElementById('monthly-toggle').classList.add('text-dark/70');
+            
+            // 更新价格
+            document.getElementById('price-basic').textContent = '¥239';
+            document.getElementById('price-pro').textContent = '¥639';
+            document.getElementById('price-enterprise').textContent = '¥1599';
+        });
+        
+        // 表单提交
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // 这里可以添加表单提交逻辑
+            alert('感谢您的留言！我们将尽快与您联系。');
+            this.reset();
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 关闭移动菜单（如果打开）
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    // 滚动到目标位置
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 语言切换
+        document.querySelectorAll('[data-lang]').forEach(langBtn => {
+            langBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                const langNames = {
+                    'zh-CN': '简体中文',
+                    'zh-TW': '繁體中文',
+                    'en-US': 'English'
+                };
+                
+                // 更新当前语言显示
+                document.getElementById('current-lang').textContent = langNames[lang];
+                
+                // 这里可以添加实际的语言切换逻辑
+                console.log(`语言已切换到: ${lang}`);
+            });
+        });
+    </script>
 </body>
-</html>
+</html>    
