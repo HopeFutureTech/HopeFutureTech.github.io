@@ -20,8 +20,8 @@ const i18n = {
         'features_subtitle': '我们的SaaS平台提供了创建和管理在线课程所需的一切工具，让您专注于教学内容',
         
         // 价格区域
-        'pricing_title': '灵活的价格方案',
-        'pricing_subtitle': '选择最适合您需求的方案，随时升级或降级',
+        'pricing_title': '价格清单',
+        'pricing_subtitle': '年度服务费：港币 40,000 元',
         'monthly': '月付',
         'annually': '年付',
         'save_20': '省20%',
