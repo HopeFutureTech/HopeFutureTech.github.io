@@ -10,7 +10,7 @@ const i18n = {
         
         // 英雄区域
         'hero_title': '在线课堂 SaaS 解决方案',
-        'hero_subtitle': '为教育机构和企业培训提供一站式解决方案，轻松创建、管理和推广您的在线课程。',
+        'hero_subtitle': '为个人教师和教育机构提供一站式解决方案，轻松创建、管理和推广您的在线课程。',
         'start_free_trial': '开始14天免费试用',
         'learn_more': '了解更多',
         'satisfied_customers': '来自2,500+满意客户',
@@ -31,13 +31,13 @@ const i18n = {
         
         // 联系表单
         'contact_title': '联系我们',
-        'contact_subtitle': '有任何问题或需要帮助？填写表单，我们的团队将尽快与您联系',
+        'contact_subtitle': '有任何问题或需要帮助？请通过以下方式联系我们',
         'contact_address_title': '地址',
-        'contact_address': '北京市海淀区中关村科技园区8号楼',
+        'contact_address': '香港九龍新蒲崗大有街2-4號旺景工業大廈3樓D18室',
         'contact_email_title': '电子邮件',
-        'contact_email': 'support@eduplatform.com',
+        'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': '电话',
-        'contact_phone': '+86 10 8888 8888',
+        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
         'follow_us': '关注我们',
         'name': '姓名',
         'email': '电子邮件',
@@ -54,7 +54,7 @@ const i18n = {
         'send_message': '发送留言',
         
         // 页脚
-        'footer_description': 'EduPlatform是领先的在线教育SaaS平台，帮助教育机构和个人教师轻松创建、管理和销售在线课程。',
+        'footer_description': 'EduPlatform是领先的在线教育SaaS平台，帮助个人教师和教育机构轻松创建、管理和销售在线课程。',
         'copyright': '© 2025 EduPlatform. 保留所有权利。',
         
         // 功能卡片
@@ -101,6 +101,33 @@ const i18n = {
         'course_revenue': '课程收入',
         
         // 价格相关
+        'pricing_title': '价格清单',
+        'pricing_subtitle': '年度服务费：港币 40,000 元',
+        'module_name': '模块名称',
+        'basic_fee': '基础功能费 (港币)',
+        'optional_services': '可选增值服务 (单价)',
+        'description': '说明',
+        'user_management': '用户管理系统',
+        'enrollment_system': '招生续报系统',
+        'supply_chain': '供应链管理系统',
+        'live_streaming': '在线直播系统',
+        'tech_service': '基础技术服务',
+        'user_management_fee': '8,000',
+        'enrollment_fee': '12,000',
+        'supply_chain_fee': '6,000',
+        'live_streaming_fee': '12,000',
+        'tech_service_fee': '2,000',
+        'user_management_addon': '每增加 100 账号: 500',
+        'enrollment_addon': '定制开发: 2,000 / 人天',
+        'supply_chain_addon': '仓储对接接口: 3,000',
+        'live_streaming_addon': '并发流扩容: 100/10 流',
+        'tech_service_addon': '7×24 小时专属支持: 5,000',
+        'user_management_desc': '超出 1000 账号需另行付费',
+        'enrollment_desc': '基础包含 3 套模板设计',
+        'supply_chain_desc': '仅支持主流物流平台对接',
+        'live_streaming_desc': '超过 100 并发按实际使用计费',
+        'tech_service_desc': '标准支持为 7×12 小时',
+        'contact_for_quote': '联系我们获取详细报价和定制方案',
         'choose_basic': '选择基础版',
         'choose_pro': '选择专业版',
         'contact_sales': '联系销售',
@@ -167,17 +194,17 @@ const i18n = {
         'stats_revenue': '$25M+',
         
         // 客户评价详情
-        'customer_title_1': '英语培训学校创始人',
-        'customer_name_1': '张明',
+        'customer_title_1': '个人英语培训教师',
+        'customer_name_1': '夏志强',
         'customer_review_1': '"使用EduPlatform后，我们的课程销售额增长了300%。平台的易用性让我们能够专注于教学内容，而不是技术问题。学员体验也大大提升，现在我们的课程完成率比以前高出了40%。"',
         
         'customer_title_2': '职业技能培训师',
-        'customer_name_2': '李婷',
+        'customer_name_2': '黄桃',
         'customer_review_2': '"作为一名独立培训师，我需要一个既专业又经济实惠的平台。EduPlatform完美满足了我的需求。客户支持团队总是快速响应，帮助我解决任何问题。强烈推荐给所有想要创建在线课程的人！"',
         
-        'customer_title_3': '科技公司培训主管',
-        'customer_name_3': '王建国',
-        'customer_review_3': '"我们公司使用EduPlatform为员工提供培训课程。平台的企业版功能非常强大，特别是自定义域名和高级分析工具。我们能够精确跟踪员工的学习进度，这对我们的培训计划评估非常有帮助。"',
+        'customer_title_3': '个人创业者',
+        'customer_name_3': '闫小坤',
+        'customer_review_3': '"我使用EduPlatform为学生提供培训课程。平台的企业版功能非常强大，特别是自定义域名和高级分析工具。我能够精确跟踪学生的学习进度，这对我的培训计划评估非常有帮助。"',
         
         // FAQ
         'faq_section_title': '常见问题',
@@ -357,7 +384,7 @@ const i18n = {
         
         // 英雄區域
         'hero_title': '線上課堂 SaaS 解決方案',
-        'hero_subtitle': '為教育機構和企業培訓提供一站式解決方案，輕鬆創建、管理和推廣您的線上課程。',
+        'hero_subtitle': '為個人教師和教育機構提供一站式解決方案，輕鬆創建、管理和推廣您的線上課程。',
         'start_free_trial': '開始14天免費試用',
         'learn_more': '了解更多',
         'satisfied_customers': '來自2,500+滿意客戶',
@@ -367,8 +394,33 @@ const i18n = {
         'features_subtitle': '我們的SaaS平台提供了創建和管理線上課程所需的一切工具，讓您專注於教學內容',
         
         // 價格區域
-        'pricing_title': '靈活的價格方案',
-        'pricing_subtitle': '選擇最適合您需求的方案，隨時升級或降級',
+        'pricing_title': '價格清單',
+        'pricing_subtitle': '年度服務費：港幣 40,000 元',
+        'module_name': '模塊名稱',
+        'basic_fee': '基礎功能費 (港幣)',
+        'optional_services': '可選增值服務 (單價)',
+        'description': '說明',
+        'user_management': '用戶管理系統',
+        'enrollment_system': '招生續報系統',
+        'supply_chain': '供應鏈管理系統',
+        'live_streaming': '在線直播系統',
+        'tech_service': '基礎技術服務',
+        'user_management_fee': '8,000',
+        'enrollment_fee': '12,000',
+        'supply_chain_fee': '6,000',
+        'live_streaming_fee': '12,000',
+        'tech_service_fee': '2,000',
+        'user_management_addon': '每增加 100 帳號: 500',
+        'enrollment_addon': '定制開發: 2,000 / 人天',
+        'supply_chain_addon': '倉儲對接接口: 3,000',
+        'live_streaming_addon': '併發流擴容: 100/10 流',
+        'tech_service_addon': '7×24 小時專屬支持: 5,000',
+        'user_management_desc': '超出 1000 帳號需另行付費',
+        'enrollment_desc': '基礎包含 3 套模板設計',
+        'supply_chain_desc': '僅支持主流物流平台對接',
+        'live_streaming_desc': '超過 100 併發按實際使用計費',
+        'tech_service_desc': '標準支持為 7×12 小時',
+        'contact_for_quote': '聯繫我們獲取詳細報價和定制方案',
         'monthly': '月付',
         'annually': '年付',
         'save_20': '省20%',
@@ -378,13 +430,13 @@ const i18n = {
         
         // 聯繫表單
         'contact_title': '聯繫我們',
-        'contact_subtitle': '有任何問題或需要幫助？填寫表單，我們的團隊將儘快與您聯繫',
+        'contact_subtitle': '有任何問題或需要幫助？請通過以下方式聯繫我們',
         'contact_address_title': '地址',
-        'contact_address': '北京市海淀區中關村科技園區8號樓',
+        'contact_address': '香港九龍新蒲崗大有街2-4號旺景工業大廈3樓D18室',
         'contact_email_title': '電子郵件',
-        'contact_email': 'support@eduplatform.com',
+        'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': '電話',
-        'contact_phone': '+86 10 8888 8888',
+        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
         'follow_us': '關注我們',
         'name': '姓名',
         'email': '電子郵件',
@@ -401,7 +453,7 @@ const i18n = {
         'send_message': '發送留言',
         
         // 頁腳
-        'footer_description': 'EduPlatform是領先的線上教育SaaS平台，幫助教育機構和個人教師輕鬆創建、管理和銷售線上課程。',
+        'footer_description': 'EduPlatform是領先的線上教育SaaS平台，幫助個人教師和教育機構輕鬆創建、管理和銷售線上課程。',
         'copyright': '© 2025 EduPlatform. 保留所有權利。',
         
         // 功能卡片
@@ -514,17 +566,17 @@ const i18n = {
         'stats_revenue': '$25M+',
         
         // 客戶評價詳情
-        'customer_title_1': '英語培訓學校創始人',
-        'customer_name_1': '張明',
+        'customer_title_1': '個人英語培訓教師',
+        'customer_name_1': '夏志強',
         'customer_review_1': '"使用EduPlatform後，我們的課程銷售額增長了300%。平台的易用性讓我們能夠專注於教學內容，而不是技術問題。學員體驗也大大提升，現在我們的課程完成率比以前高出了40%。"',
         
         'customer_title_2': '職業技能培訓師',
-        'customer_name_2': '李婷',
+        'customer_name_2': '黃桃',
         'customer_review_2': '"作為一名獨立培訓師，我需要一個既專業又經濟實惠的平台。EduPlatform完美滿足了我的需求。客戶支持團隊總是快速響應，幫助我解決任何問題。強烈推薦給所有想要創建線上課程的人！"',
         
-        'customer_title_3': '科技公司培訓主管',
-        'customer_name_3': '王建國',
-        'customer_review_3': '"我們公司使用EduPlatform為員工提供培訓課程。平台的企業版功能非常強大，特別是自定義域名和高級分析工具。我們能夠精確跟蹤員工的學習進度，這對我們的培訓計劃評估非常有幫助。"',
+        'customer_title_3': '個人創業者',
+        'customer_name_3': '閆小坤',
+        'customer_review_3': '"我使用EduPlatform為學生提供培訓課程。平台的企業版功能非常強大，特別是自定義域名和高級分析工具。我能夠精確跟蹤學生的學習進度，這對我的培訓計劃評估非常有幫助。"',
         
         // FAQ
         'faq_section_title': '常見問題',
@@ -704,7 +756,7 @@ const i18n = {
         
         // Hero Section
         'hero_title': 'Online Classroom SaaS Solution',
-        'hero_subtitle': 'One-stop solution for educational institutions and corporate training to easily create, manage and promote your online courses.',
+        'hero_subtitle': 'One-stop solution for individual teachers and educational institutions to easily create, manage and promote your online courses.',
         'start_free_trial': 'Start 14-Day Free Trial',
         'learn_more': 'Learn More',
         'satisfied_customers': 'From 2,500+ Satisfied Customers',
@@ -714,8 +766,33 @@ const i18n = {
         'features_subtitle': 'Our SaaS platform provides all the tools needed to create and manage online courses, letting you focus on teaching content',
         
         // Pricing Section
-        'pricing_title': 'Flexible Pricing Plans',
-        'pricing_subtitle': 'Choose the plan that best suits your needs, upgrade or downgrade anytime',
+        'pricing_title': 'Price List',
+        'pricing_subtitle': 'Annual Service Fee: HKD 40,000',
+        'module_name': 'Module Name',
+        'basic_fee': 'Basic Functional Fee (HKD)',
+        'optional_services': 'Optional Value-Added Services (Unit Price)',
+        'description': 'Description',
+        'user_management': 'User Management System',
+        'enrollment_system': 'Enrollment and Re-enrollment System',
+        'supply_chain': 'Supply Chain Management System',
+        'live_streaming': 'Online Live Streaming System',
+        'tech_service': 'Basic Technical Service',
+        'user_management_fee': '8,000',
+        'enrollment_fee': '12,000',
+        'supply_chain_fee': '6,000',
+        'live_streaming_fee': '12,000',
+        'tech_service_fee': '2,000',
+        'user_management_addon': 'For every additional 100 accounts: 500',
+        'enrollment_addon': 'Custom Development: 2,000 / person-day',
+        'supply_chain_addon': 'Warehouse Integration Interface: 3,000',
+        'live_streaming_addon': 'Concurrent Stream Expansion: 100/10 streams',
+        'tech_service_addon': '7x24 hour dedicated support: 5,000',
+        'user_management_desc': 'Additional fees apply for accounts exceeding 1000',
+        'enrollment_desc': 'Basic includes 3 template designs',
+        'supply_chain_desc': 'Only supports integration with mainstream logistics platforms',
+        'live_streaming_desc': 'Charges based on actual usage for over 100 concurrent streams',
+        'tech_service_desc': 'Standard support is 7x12 hours',
+        'contact_for_quote': 'Contact us for detailed quotes and custom solutions',
         'monthly': 'Monthly',
         'annually': 'Annually',
         'save_20': 'Save 20%',
@@ -725,13 +802,13 @@ const i18n = {
         
         // Contact Form
         'contact_title': 'Contact Us',
-        'contact_subtitle': 'Have questions or need help? Fill out the form and our team will get back to you shortly',
+        'contact_subtitle': 'Have questions or need help? Please contact us through the following methods',
         'contact_address_title': 'Address',
-        'contact_address': 'Building 8, Zhongguancun Science Park, Haidian District, Beijing',
+        'contact_address': 'Unit D18, 3/F, Wong King Industrial Building, No.2-4 Tai Yau Street, Kowloon',
         'contact_email_title': 'Email',
-        'contact_email': 'support@eduplatform.com',
+        'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': 'Phone',
-        'contact_phone': '+86 10 8888 8888',
+        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
         'follow_us': 'Follow Us',
         'name': 'Name',
         'email': 'Email',
@@ -748,7 +825,7 @@ const i18n = {
         'send_message': 'Send Message',
         
         // Footer
-        'footer_description': 'EduPlatform is a leading online education SaaS platform helping educational institutions and individual teachers easily create, manage and sell online courses.',
+        'footer_description': 'EduPlatform is a leading online education SaaS platform helping individual teachers and educational institutions easily create, manage and sell online courses.',
         'copyright': '© 2025 EduPlatform. All rights reserved.',
         
         // Feature Cards
@@ -861,17 +938,17 @@ const i18n = {
         'stats_revenue': '$25M+',
         
         // Customer Reviews
-        'customer_title_1': 'English Training School Founder',
-        'customer_name_1': 'Zhang Ming',
+        'customer_title_1': 'Individual English Training Teacher',
+        'customer_name_1': 'Xia Zhiqiang',
         'customer_review_1': '"After using EduPlatform, our course sales increased by 300%. The platform\'s ease of use allows us to focus on teaching content rather than technical issues. Student experience has also greatly improved, with course completion rates now 40% higher than before."',
         
         'customer_title_2': 'Professional Skills Trainer',
-        'customer_name_2': 'Li Ting',
+        'customer_name_2': 'Huang Tao',
         'customer_review_2': '"As an independent trainer, I needed a platform that was both professional and affordable. EduPlatform perfectly meets my needs. The customer support team is always quick to respond and helps resolve any issues. Highly recommended for anyone looking to create online courses!"',
         
-        'customer_title_3': 'Tech Company Training Manager',
-        'customer_name_3': 'Wang Jianguo',
-        'customer_review_3': '"Our company uses EduPlatform to provide training courses for employees. The enterprise version features are very powerful, especially the custom domain and advanced analytics tools. We can accurately track employee progress, which is very helpful for evaluating our training programs."',
+        'customer_title_3': 'Individual Entrepreneur',
+        'customer_name_3': 'Yan Xiaokun',
+        'customer_review_3': '"I use EduPlatform to provide training courses for students. The enterprise version features are very powerful, especially the custom domain and advanced analytics tools. I can accurately track student progress, which is very helpful for evaluating my training programs."',
         
         // FAQ
         'faq_section_title': 'Frequently Asked Questions',
