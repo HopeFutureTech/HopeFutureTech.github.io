@@ -372,6 +372,9 @@ const i18n = {
         'user_avatar': '用户头像',
         'customer_rating': '4.9/5',
         'satisfied_customers': '来自2,500+满意客户',
+        
+        // 商务合作
+        'business_cooperation': '商务合作',
     },
     'zh-TW': {
         // 導航
@@ -744,6 +747,9 @@ const i18n = {
         'user_avatar': '用戶頭像',
         'customer_rating': '4.9/5',
         'satisfied_customers': '來自2,500+滿意客戶',
+        
+        // 商務合作
+        'business_cooperation': '商務合作',
     },
     'en-US': {
         // Navigation
@@ -1116,5 +1122,8 @@ const i18n = {
         'user_avatar': 'User Avatar',
         'customer_rating': '4.9/5',
         'satisfied_customers': 'From 2,500+ satisfied customers',
+        
+        // Business Cooperation
+        'business_cooperation': 'Business Cooperation',
     }
 }; 
