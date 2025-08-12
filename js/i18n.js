@@ -204,7 +204,7 @@ const i18n = {
         
         'customer_title_3': '个人创业者',
         'customer_name_3': '闫小坤',
-        'customer_review_3': '"我使用EduPlatform为学生提供培训课程。平台的企业版功能非常强大，特别是自定义域名和高级分析工具。我能够精确跟踪学生的学习进度，这对我的培训计划评估非常有帮助。"',
+        'customer_review_3': '"我使用EduPlatform为学生提供培训课程。平台的功能非常强大，特别是自定义域名和高级分析工具。我能够精确跟踪学生的学习进度，这对我的培训计划评估非常有帮助。"',
         
         // FAQ
         'faq_section_title': '常见问题',
@@ -216,9 +216,9 @@ const i18n = {
         'faq_title_3': '如何收取课程费用，你们的佣金是多少？',
         'faq_content_3': '当前我们按年度收费，一年40000港币，不另收其他费用，除非需要额外的定制需求，当前我们支持银行线上转账（大新银行），其他支付方式正在开发中。',
         'faq_title_4': '我可以自定义课程页面的外观吗？',
-        'faq_content_4': '是的，您可以完全自定义课程页面的外观，包括颜色、字体、布局等。专业版和企业版用户还可以使用自定义域名，使您的课程看起来更加专业。我们提供了多种模板和主题，让您可以轻松创建出符合品牌风格的课程页面。',
+        'faq_content_4': '是的，您可以完全自定义课程页面的外观，包括颜色、字体、布局等。您还可以使用自定义域名，使您的课程看起来更加专业。我们提供了多种模板和主题，让您可以轻松创建出符合品牌风格的课程页面。',
         'faq_title_5': '你们提供哪些类型的客户支持？',
-        'faq_content_5': '我们提供多种支持渠道，包括详细的帮助中心、视频教程、电子邮件支持和实时聊天支持。专业版用户可以享受优先支持，企业版用户则可以获得专属客户经理和24/7支持。我们的目标是在24小时内回复所有客户咨询。',
+        'faq_content_5': '我们提供多种支持渠道，包括详细的帮助中心、视频教程、电子邮件支持和实时聊天支持。用户则可以获得专属客户经理和24/7支持。我们的目标是在24小时内回复所有客户咨询。',
         'faq_more_questions': '还有其他问题？',
         'faq_contact_us': '联系我们',
         
@@ -579,7 +579,7 @@ const i18n = {
         
         'customer_title_3': '個人創業者',
         'customer_name_3': '閆小坤',
-        'customer_review_3': '"我使用EduPlatform為學生提供培訓課程。平台的企業版功能非常強大，特別是自定義域名和高級分析工具。我能夠精確跟蹤學生的學習進度，這對我的培訓計劃評估非常有幫助。"',
+        'customer_review_3': '"我使用EduPlatform為學生提供培訓課程。平台的功能非常強大，特別是自定義域名和高級分析工具。我能夠精確跟蹤學生的學習進度，這對我的培訓計劃評估非常有幫助。"',
         
         // FAQ
         'faq_section_title': '常見問題',
@@ -591,9 +591,9 @@ const i18n = {
         'faq_title_3': '如何收取課程費用，你們的佣金是多少？',
         'faq_content_3': '當前我們按年度收費，一年40000港幣，不另收其他費用，除非需要額外的定制需求，當前我們支持銀行線上轉賬（大新銀行），其他支付方式正在開發中。',
         'faq_title_4': '我可以自定義課程頁面的外觀嗎？',
-        'faq_content_4': '是的，您可以完全自定義課程頁面的外觀，包括顏色、字體、布局等。專業版和企業版用戶還可以使用自定義域名，使您的課程看起來更加專業。我們提供了多種模板和主題，讓您可以輕鬆創建出符合品牌風格的課程頁面。',
+        'faq_content_4': '是的，您可以完全自定義課程頁面的外觀，包括顏色、字體、布局等。您還可以使用自定義域名，使您的課程看起來更加專業。我們提供了多種模板和主題，讓您可以輕鬆創建出符合品牌風格的課程頁面。',
         'faq_title_5': '你們提供哪些類型的客戶支持？',
-        'faq_content_5': '我們提供多種支持渠道，包括詳細的幫助中心、視頻教程、電子郵件支持和實時聊天支持。專業版用戶可以享受優先支持，企業版用戶則可以獲得專屬客戶經理和24/7支持。我們的目標是在24小時內回復所有客戶諮詢。',
+        'faq_content_5': '我們提供多種支持渠道，包括詳細的幫助中心、視頻教程、電子郵件支持和實時聊天支持。用戶則可以獲得專屬客戶經理和24/7支持。我們的目標是在24小時內回復所有客戶諮詢。',
         'faq_more_questions': '還有其他問題？',
         'faq_contact_us': '聯繫我們',
         
@@ -954,7 +954,7 @@ const i18n = {
         
         'customer_title_3': 'Individual Entrepreneur',
         'customer_name_3': 'Yan Xiaokun',
-        'customer_review_3': '"I use EduPlatform to provide training courses for students. The enterprise version features are very powerful, especially the custom domain and advanced analytics tools. I can accurately track student progress, which is very helpful for evaluating my training programs."',
+        'customer_review_3': '"I use EduPlatform to provide training courses for students. The platform features are very powerful, especially the custom domain and advanced analytics tools. I can accurately track student progress, which is very helpful for evaluating my training programs."',
         
         // FAQ
         'faq_section_title': 'Frequently Asked Questions',
@@ -966,9 +966,9 @@ const i18n = {
         'faq_title_3': 'How do you charge for courses, and what is your commission?',
         'faq_content_3': 'Currently we charge on an annual basis, HKD 40,000 per year, with no additional fees unless additional customization is required. We currently support online bank transfers (Dah Sing Bank), and other payment methods are under development.',
         'faq_title_4': 'Can I customize the appearance of my course pages?',
-        'faq_content_4': 'Yes, you can fully customize the appearance of your course pages, including colors, fonts, and layout. Pro and Enterprise users can also use custom domains to make their courses look more professional. We provide various templates and themes to help you easily create course pages that match your brand style.',
+        'faq_content_4': 'Yes, you can fully customize the appearance of your course pages, including colors, fonts, and layout. You can also use custom domains to make your courses look more professional. We provide various templates and themes to help you easily create course pages that match your brand style.',
         'faq_title_5': 'What types of customer support do you provide?',
-        'faq_content_5': 'We offer multiple support channels, including a detailed help center, video tutorials, email support, and live chat. Pro users enjoy priority support, while Enterprise users get a dedicated account manager and 24/7 support. Our goal is to respond to all customer inquiries within 24 hours.',
+        'faq_content_5': 'We offer multiple support channels, including a detailed help center, video tutorials, email support, and live chat. Users can get a dedicated account manager and 24/7 support. Our goal is to respond to all customer inquiries within 24 hours.',
         'faq_more_questions': 'Have more questions?',
         'faq_contact_us': 'Contact Us',
         
