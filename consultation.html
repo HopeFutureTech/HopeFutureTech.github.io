@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="consultation_page_title">EduPlatform - 专业教育咨询服务</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+            }
+            .consultant-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+    
+    <!-- 先加载i18n.js -->
+    <script src="js/i18n.js"></script>
+    <!-- 然后加载language-switcher.js -->
+    <script src="js/language-switcher.js"></script>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">EduPlatform</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_pricing">价格</a>
+                    <a href="consultation.html" class="text-primary font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_about">关于我们</a>
+                    <a href="index.html#contact" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_contact">联系我们</a>
+                </div>
+                
+                <!-- 语言切换器 -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center text-dark/80 hover:text-primary transition-custom px-3 py-2 rounded">
+                            <span id="current-lang">繁體中文</span>
+                            <span class="ml-1 text-xs">▼</span>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-1 hidden z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="bg-gradient-custom text-white py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-[clamp(2rem,4vw,3.5rem)] font-bold mb-6" data-i18n="consultation_hero_title">
+                    专业教育咨询服务
+                </h1>
+                <p class="text-xl mb-8 opacity-90" data-i18n="consultation_hero_subtitle">
+                    由资深教育专家为您提供个性化的教育解决方案，助力您的教育事业发展
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#consultants" class="inline-flex items-center justify-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-custom">
+                        <span data-i18n="meet_consultants">认识咨询师</span>
+                        <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#booking" class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary transition-custom">
+                        <span data-i18n="book_consultation">预约咨询</span>
+                        <i class="fa fa-calendar ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务特色 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="consultation_features_title">
+                    为什么选择我们的咨询服务
+                </h2>
+                <p class="text-lg text-dark/70" data-i18n="consultation_features_subtitle">
+                    我们拥有丰富的教育行业经验，为您提供专业、个性化的咨询服务
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 rounded-xl bg-gray-50 hover:bg-white hover:shadow-lg transition-custom">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-user text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark mb-4" data-i18n="feature_expertise">专业经验</h3>
+                    <p class="text-dark/70" data-i18n="feature_expertise_desc">拥有10年以上教育行业经验，深度了解教育市场趋势和最佳实践</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-xl bg-gray-50 hover:bg-white hover:shadow-lg transition-custom">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark mb-4" data-i18n="feature_personalized">个性化方案</h3>
+                    <p class="text-dark/70" data-i18n="feature_personalized_desc">根据您的具体需求和目标，制定专属的教育发展策略和实施方案</p>
+                </div>
+                
+                <div class="text-center p-8 rounded-xl bg-gray-50 hover:bg-white hover:shadow-lg transition-custom">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-clock-o text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark mb-4" data-i18n="feature_support">持续支持</h3>
+                    <p class="text-dark/70" data-i18n="feature_support_desc">提供长期跟踪服务，确保您的教育项目顺利实施并取得预期效果</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 咨询师团队 -->
+    <section id="consultants" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="consultants_title">专业咨询师团队</h2>
+                <p class="text-lg text-dark/70" data-i18n="consultants_subtitle">我们的专家团队拥有丰富的教育行业经验，为您提供最专业的咨询服务</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden consultant-card">
+                    <div class="p-8 text-center">
+                        <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-user text-3xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2" data-i18n="consultant_1_name">张教授</h3>
+                        <p class="text-primary font-medium mb-4" data-i18n="consultant_1_title">教育技术专家</p>
+                        <p class="text-dark/70 text-sm mb-4" data-i18n="consultant_1_desc">15年教育技术经验，专注于在线教育平台设计和教育数字化转型</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full" data-i18n="consultant_1_skill_1">在线教育</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full" data-i18n="consultant_1_skill_2">数字化转型</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden consultant-card">
+                    <div class="p-8 text-center">
+                        <div class="w-24 h-24 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-user text-3xl text-secondary"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2" data-i18n="consultant_2_name">李博士</h3>
+                        <p class="text-secondary font-medium mb-4" data-i18n="consultant_2_title">课程设计专家</p>
+                        <p class="text-dark/70 text-sm mb-4" data-i18n="consultant_2_desc">12年课程设计经验，擅长个性化学习路径设计和教学效果评估</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full" data-i18n="consultant_2_skill_1">课程设计</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full" data-i18n="consultant_2_skill_2">学习评估</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden consultant-card">
+                    <div class="p-8 text-center">
+                        <div class="w-24 h-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-user text-3xl text-accent"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-dark mb-2" data-i18n="consultant_3_name">王总监</h3>
+                        <p class="text-accent font-medium mb-4" data-i18n="consultant_3_title">教育运营专家</p>
+                        <p class="text-dark/70 text-sm mb-4" data-i18n="consultant_3_desc">10年教育机构运营经验，专注于教育品牌建设和市场推广策略</p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full" data-i18n="consultant_3_skill_1">品牌建设</span>
+                            <span class="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full" data-i18n="consultant_3_skill_2">市场推广</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="process_title">咨询服务流程</h2>
+                <p class="text-lg text-dark/70" data-i18n="process_subtitle">我们采用系统化的咨询流程，确保为您提供最优质的解决方案</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="process_step_1_title">需求分析</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="process_step_1_desc">深入了解您的教育需求和目标，制定个性化咨询方案</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="process_step_2_title">方案设计</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="process_step_2_desc">基于需求分析，设计详细的教育发展策略和实施方案</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="process_step_3_title">实施指导</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="process_step_3_desc">全程指导方案实施，确保项目顺利进行并达到预期效果</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">4</div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="process_step_4_title">效果评估</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="process_step_4_desc">定期评估实施效果，持续优化方案，确保长期成功</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约咨询 -->
+    <section id="booking" class="py-20 bg-gradient-custom text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-6" data-i18n="booking_title">立即预约专业咨询</h2>
+                <p class="text-xl mb-8 opacity-90" data-i18n="booking_subtitle">发送邮件，我们的专业咨询师将在24小时内与您联系</p>
+                
+                <div class="max-w-2xl mx-auto space-y-6">
+                    <div class="text-center mb-8">
+                        <p class="text-lg text-white/90 mb-4 whitespace-nowrap" data-i18n="booking_email_info">
+                            点击下方按钮，我们将为您打开邮件客户端，您可以直接发送咨询需求到我们的专业团队。
+                        </p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button id="send-email-btn" class="w-full md:w-auto px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-custom flex items-center justify-center mx-auto" data-i18n="booking_send_email">
+                            <i class="fa fa-envelope mr-2"></i>
+                            发送咨询邮件
+                        </button>
+                    </div>
+                    
+                    <div class="text-center text-white/80 text-sm">
+                        <p data-i18n="booking_email_address">邮箱地址：consult@hopefuturetech.com</p>
+                        <p data-i18n="booking_email_note">我们将在24小时内回复您的咨询</p>
+                    </div>
+                </div>
+                
+                <!-- 提交成功提示 -->
+                <div id="success-message" class="max-w-2xl mx-auto mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded hidden">
+                    <div class="flex items-center">
+                        <i class="fa fa-check-circle mr-2"></i>
+                        <span data-i18n="booking_success">预约申请提交成功！我们会尽快与您联系。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p data-i18n="copyright">© 2025 EduPlatform. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script src="js/i18n.js"></script>
+    <script src="js/language-switcher.js"></script>
+    <script>
+        // 邮件发送处理
+        document.addEventListener('DOMContentLoaded', () => {
+            const sendEmailBtn = document.getElementById('send-email-btn');
+            
+            if (sendEmailBtn) {
+                sendEmailBtn.addEventListener('click', handleEmailSend);
+            }
+        });
+
+        // 处理邮件发送
+        function handleEmailSend() {
+            const emailSubject = getEmailSubject();
+            const emailBody = getEmailBody();
+            
+            // 构建邮件链接
+            const mailtoLink = `mailto:consult@hopefuturetech.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // 打开邮件客户端
+            window.location.href = mailtoLink;
+        }
+
+        // 获取邮件主题
+        function getEmailSubject() {
+            const subjects = {
+                'zh-CN': '教育咨询预约申请',
+                'zh-TW': '教育諮詢預約申請',
+                'en-US': 'Education Consultation Booking Request'
+            };
+            return subjects[currentLang] || subjects['zh-TW'];
+        }
+
+        // 获取邮件正文
+        function getEmailBody() {
+            const templates = {
+                'zh-CN': `尊敬的EduPlatform咨询团队：
+
+您好！
+
+我希望能获得您的专业教育咨询服务。
+
+请提供以下信息：
+
+1. 您的姓名：
+2. 您的邮箱：
+3. 您的机构名称：
+4. 咨询类型（请选择）：
+   □ 教育技术咨询
+   □ 课程设计咨询
+   □ 教育运营咨询
+   □ 数字化转型咨询
+
+5. 咨询需求详细描述：
+
+
+6. 您希望我们何时与您联系：
+
+
+期待您的回复！
+
+此致
+敬礼
+
+---
+此邮件通过EduPlatform网站发送
+发送时间：${new Date().toLocaleString('zh-CN')}`,
+                
+                'zh-TW': `尊敬的EduPlatform諮詢團隊：
+
+您好！
+
+我希望能獲得您的專業教育諮詢服務。
+
+請提供以下信息：
+
+1. 您的姓名：
+2. 您的郵箱：
+3. 您的機構名稱：
+4. 諮詢類型（請選擇）：
+   □ 教育技術諮詢
+   □ 課程設計諮詢
+   □ 教育運營諮詢
+   □ 數字化轉型諮詢
+
+5. 諮詢需求詳細描述：
+
+
+6. 您希望我們何時與您聯繫：
+
+
+期待您的回覆！
+
+此致
+敬禮
+
+---
+此郵件通過EduPlatform網站發送
+發送時間：${new Date().toLocaleString('zh-TW')}`,
+                
+                'en-US': `Dear EduPlatform Consultation Team,
+
+Hello!
+
+I would like to request your professional education consultation services.
+
+Please provide the following information:
+
+1. Your Name:
+2. Your Email:
+3. Your Institution Name:
+4. Consultation Type (Please select):
+   □ Educational Technology Consultation
+   □ Curriculum Design Consultation
+   □ Educational Operations Consultation
+   □ Digital Transformation Consultation
+
+5. Detailed Description of Consultation Needs:
+
+6. When would you like us to contact you:
+
+Looking forward to your reply!
+
+Best regards,
+
+---
+This email was sent via EduPlatform website
+Sent time: ${new Date().toLocaleString('en-US')}`
+            };
+            
+            return templates[currentLang] || templates['zh-TW'];
+        }
+    </script>
+</body>
+</html> 

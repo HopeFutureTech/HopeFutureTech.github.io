@@ -10,6 +10,7 @@ if (typeof i18n === 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded, initializing language system...');
     console.log('Current language:', currentLang);
+    console.log('i18n object available:', typeof i18n !== 'undefined');
     
     // 设置HTML语言属性
     document.documentElement.lang = currentLang;
@@ -21,19 +22,82 @@ document.addEventListener('DOMContentLoaded', () => {
     translatePage();
     
     // 绑定语言切换事件
-    document.querySelectorAll('[data-lang]').forEach(btn => {
+    const langButtons = document.querySelectorAll('[data-lang]');
+    console.log('Found language buttons:', langButtons.length);
+    
+    langButtons.forEach((btn, index) => {
+        console.log(`Binding event to button ${index}:`, btn.getAttribute('data-lang'));
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const newLang = btn.getAttribute('data-lang');
             console.log('Language switch clicked:', newLang);
             switchLanguage(newLang);
+            // 隐藏下拉菜单
+            hideLangDropdown();
         });
     });
+    
+    // 绑定下拉菜单切换事件
+    const langToggle = document.getElementById('lang-toggle');
+    console.log('Language toggle button found:', !!langToggle);
+    if (langToggle) {
+        langToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Language toggle clicked');
+            toggleLangDropdown();
+        });
+    } else {
+        console.error('Language toggle button not found');
+    }
+    
+    // 点击其他地方隐藏下拉菜单
+    document.addEventListener('click', (e) => {
+        const langToggle = document.getElementById('lang-toggle');
+        const dropdown = document.getElementById('lang-dropdown');
+        if (!langToggle?.contains(e.target) && !dropdown?.contains(e.target)) {
+            hideLangDropdown();
+        }
+    });
 });
+
+// 切换下拉菜单显示状态
+function toggleLangDropdown() {
+    const dropdown = document.getElementById('lang-dropdown');
+    console.log('Dropdown element found:', !!dropdown);
+    if (dropdown) {
+        const isHidden = dropdown.classList.contains('hidden');
+        console.log('Dropdown is hidden:', isHidden);
+        if (isHidden) {
+            dropdown.style.display = 'block';
+            dropdown.classList.remove('hidden');
+            console.log('Dropdown shown');
+        } else {
+            dropdown.style.display = 'none';
+            dropdown.classList.add('hidden');
+            console.log('Dropdown hidden');
+        }
+    } else {
+        console.error('Dropdown element not found');
+    }
+}
+
+// 隐藏下拉菜单
+function hideLangDropdown() {
+    const dropdown = document.getElementById('lang-dropdown');
+    if (dropdown) {
+        dropdown.style.display = 'none';
+        dropdown.classList.add('hidden');
+    }
+}
 
 // 切换语言
 function switchLanguage(newLang) {
     console.log('Switching language from', currentLang, 'to', newLang);
+    console.log('i18n object available:', typeof i18n !== 'undefined');
+    console.log('i18n keys:', Object.keys(i18n));
+    console.log('Target language available:', i18n[newLang] ? 'Yes' : 'No');
+    
     if (newLang && i18n[newLang]) {
         currentLang = newLang;
         localStorage.setItem('preferred_language', newLang);
@@ -43,6 +107,9 @@ function switchLanguage(newLang) {
         console.log('Language switch completed');
     } else {
         console.error('Invalid language or translations not found for:', newLang);
+        if (i18n[newLang]) {
+            console.log('Available keys in', newLang, ':', Object.keys(i18n[newLang]));
+        }
     }
 }
 
@@ -114,13 +181,18 @@ function updateCharts() {
 
 // 翻译页面内容
 function translatePage() {
-    console.log('Starting page translation...');
+    console.log('Starting page translation for language:', currentLang);
     let translatedCount = 0;
     let errorCount = 0;
     
     // 翻译所有带data-i18n属性的元素
-    document.querySelectorAll('[data-i18n]').forEach(element => {
+    const elements = document.querySelectorAll('[data-i18n]');
+    console.log('Found elements to translate:', elements.length);
+    
+    elements.forEach((element, index) => {
         const key = element.getAttribute('data-i18n');
+        console.log(`Translating element ${index}:`, key);
+        
         if (i18n[currentLang] && i18n[currentLang][key]) {
             try {
                 // 对于input和textarea，更新placeholder
@@ -136,12 +208,13 @@ function translatePage() {
                     element.textContent = i18n[currentLang][key];
                 }
                 translatedCount++;
+                console.log(`Successfully translated: ${key}`);
             } catch (error) {
                 console.error('Error translating element:', element, 'with key:', key, error);
                 errorCount++;
             }
         } else {
-            console.warn('Translation not found for key:', key);
+            console.warn('Translation not found for key:', key, 'in language:', currentLang);
             errorCount++;
         }
     });

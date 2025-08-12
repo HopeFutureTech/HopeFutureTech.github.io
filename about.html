@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="about_page_title">关于我们 - 希望未来科技有限公司</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+            }
+            .team-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+    
+    <!-- 先加载i18n.js -->
+    <script src="js/i18n.js"></script>
+    <!-- 然后加载language-switcher.js -->
+    <script src="js/language-switcher.js"></script>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">EduPlatform</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_pricing">价格</a>
+                    <a href="consultation.html" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-primary font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="index.html#contact" class="text-dark/70 hover:text-primary transition-custom" data-i18n="nav_contact">联系我们</a>
+                </div>
+                
+                <!-- 语言切换器 -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center text-dark/80 hover:text-primary transition-custom px-3 py-2 rounded">
+                            <span id="current-lang">繁體中文</span>
+                            <span class="ml-1 text-xs">▼</span>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-1 hidden z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="bg-gradient-custom text-white py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-[clamp(2rem,4vw,3.5rem)] font-bold mb-6" data-i18n="about_hero_title">
+                    关于希望未来科技有限公司
+                </h1>
+                <p class="text-xl mb-8 opacity-90" data-i18n="about_hero_subtitle">
+                    致力于通过创新技术推动教育数字化转型，为全球教育机构提供领先的SaaS解决方案
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司简介 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-6" data-i18n="about_company_title">
+                            公司简介
+                        </h2>
+                        <p class="text-lg text-dark/70 mb-6" data-i18n="about_company_desc_1">
+                            希望未来科技有限公司成立于2024年8月，是一家专注于教育科技创新的高新技术企业。我们致力于通过先进的SaaS技术，为教育机构、企业和个人提供全方位的在线教育解决方案。
+                        </p>
+                        <p class="text-lg text-dark/70 mb-6" data-i18n="about_company_desc_2">
+                            公司总部位于香港，在北京、深圳等地设有研发中心，拥有一支由教育专家、技术工程师和产品设计师组成的专业团队。我们深度理解教育行业需求，结合前沿技术，打造了EduPlatform这一领先的在线教育SaaS平台。
+                        </p>
+                        <p class="text-lg text-dark/70" data-i18n="about_company_desc_3">
+                            截至目前，我们已服务超过5000家教育机构，覆盖K12教育、高等教育、企业培训等多个领域，累计帮助超过100万学员实现在线学习。
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="bg-gradient-custom rounded-2xl p-8 text-white">
+                            <div class="grid grid-cols-2 gap-6 text-center">
+                                <div>
+                                    <div class="text-3xl font-bold mb-2">5000+</div>
+                                    <div class="text-white/80" data-i18n="about_stats_institutions">合作机构</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl font-bold mb-2">100万+</div>
+                                    <div class="text-white/80" data-i18n="about_stats_students">服务学员</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl font-bold mb-2">50+</div>
+                                    <div class="text-white/80" data-i18n="about_stats_countries">服务国家</div>
+                                </div>
+                                <div>
+                                    <div class="text-3xl font-bold mb-2">99.9%</div>
+                                    <div class="text-white/80" data-i18n="about_stats_uptime">系统可用性</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企业使命与愿景 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="about_mission_title">
+                    企业使命与愿景
+                </h2>
+                <p class="text-lg text-dark/70" data-i18n="about_mission_subtitle">
+                    让优质教育触手可及，推动教育公平与创新
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-bullseye text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark mb-4 text-center" data-i18n="about_mission">企业使命</h3>
+                    <p class="text-dark/70 text-center" data-i18n="about_mission_desc">
+                        通过技术创新打破教育地域限制，让每个人都能享受到优质的教育资源，推动教育公平发展，为构建学习型社会贡献力量。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-eye text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-dark mb-4 text-center" data-i18n="about_vision">企业愿景</h3>
+                    <p class="text-dark/70 text-center" data-i18n="about_vision_desc">
+                        成为全球领先的教育科技公司，通过持续创新和技术突破，引领教育数字化转型，让教育更加智能、高效、个性化。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值观 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="about_values_title">
+                    核心价值观
+                </h2>
+                <p class="text-lg text-dark/70" data-i18n="about_values_subtitle">
+                    以用户为中心，以创新为驱动，以质量为生命
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-users text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="about_value_1_title">用户至上</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="about_value_1_desc">始终以用户需求为中心，提供优质的产品和服务体验</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="about_value_2_title">创新驱动</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="about_value_2_desc">持续技术创新，引领行业发展，推动教育进步</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-check-circle text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="about_value_3_title">质量为本</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="about_value_3_desc">严格把控产品质量，确保系统稳定性和安全性</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-handshake-o text-2xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-dark mb-3" data-i18n="about_value_4_title">诚信合作</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="about_value_4_desc">与合作伙伴建立长期稳定的合作关系，共同发展</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 发展历程 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="about_timeline_title">
+                    发展历程
+                </h2>
+                <p class="text-lg text-dark/70" data-i18n="about_timeline_subtitle">
+                    从创立到成长，见证我们的每一步发展
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- 时间线连接线 -->
+                    <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent"></div>
+                    
+                    <div class="space-y-12">
+                        <div class="flex items-start space-x-8">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-white">
+                                    <div class="text-center">
+                                        <div class="text-xs leading-tight">2024</div>
+                                        <div class="text-xs leading-tight">8月</div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg flex-1 border-l-4 border-primary">
+                                <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="about_timeline_2024_08_title">公司成立</h3>
+                                <p class="text-dark/70 leading-relaxed" data-i18n="about_timeline_2024_08_desc">希望未来科技有限公司在香港正式成立，开始专注于教育科技领域的技术研发</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-8">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-white">
+                                    <div class="text-center">
+                                        <div class="text-xs leading-tight">2025</div>
+                                        <div class="text-xs leading-tight">2月</div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-secondary rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg flex-1 border-l-4 border-secondary">
+                                <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="about_timeline_2025_02_title">产品发布</h3>
+                                <p class="text-dark/70 leading-relaxed" data-i18n="about_timeline_2025_02_desc">EduPlatform 1.0正式发布，获得首批100家教育机构的认可和使用</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-8">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent/80 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-white">
+                                    <div class="text-center">
+                                        <div class="text-xs leading-tight">2025</div>
+                                        <div class="text-xs leading-tight">3月</div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg flex-1 border-l-4 border-accent">
+                                <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="about_timeline_2025_03_title">业务扩展</h3>
+                                <p class="text-dark/70 leading-relaxed" data-i18n="about_timeline_2025_03_desc">服务客户突破100家，产品功能不断完善，获得多项技术专利</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-8">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-white">
+                                    <div class="text-center">
+                                        <div class="text-xs leading-tight">2025</div>
+                                        <div class="text-xs leading-tight">5月</div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg flex-1 border-l-4 border-green-500">
+                                <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="about_timeline_2025_05_title">国际化发展</h3>
+                                <p class="text-dark/70 leading-relaxed" data-i18n="about_timeline_2025_05_desc">产品开始走向国际市场，服务覆盖30多个国家和地区</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-8">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-400 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-white">
+                                    <div class="text-center">
+                                        <div class="text-xs leading-tight">2025</div>
+                                        <div class="text-xs leading-tight">8月</div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 rounded-full border-2 border-white"></div>
+                            </div>
+                            <div class="bg-white rounded-xl p-6 shadow-lg flex-1 border-l-4 border-purple-500">
+                                <h3 class="text-xl font-semibold text-dark mb-3" data-i18n="about_timeline_2025_08_title">技术突破</h3>
+                                <p class="text-dark/70 leading-relaxed" data-i18n="about_timeline_2025_08_desc">推出AI驱动的个性化学习系统，服务客户突破500家</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-dark mb-4" data-i18n="about_contact_title">
+                    联系我们
+                </h2>
+                <p class="text-lg text-dark/70" data-i18n="about_contact_subtitle">
+                    期待与您建立合作关系，共同推动教育科技发展
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-map-marker text-xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-dark mb-2" data-i18n="about_contact_address_title">公司地址</h3>
+                    <p class="text-dark/70 text-sm" data-i18n="about_contact_address">香港九龍新蒲崗大有街2-4號旺景工業大廈3樓D18室</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-envelope text-xl text-secondary"></i>
+                    </div>
+                    <h3 class="font-semibold text-dark mb-2" data-i18n="about_contact_email_title">商务合作</h3>
+                    <p class="text-dark/70 text-sm">business@hopefuturetech.com</p>
+                </div>
+                
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-phone text-xl text-accent"></i>
+                    </div>
+                    <h3 class="font-semibold text-dark mb-2" data-i18n="about_contact_phone_title">联系电话</h3>
+                    <p class="text-dark/70 text-sm">+852 5539 3275</p>
+                    <p class="text-dark/70 text-sm">+86 159 1112 1975</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p data-i18n="copyright">© 2025 希望未来科技有限公司. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script src="js/i18n.js"></script>
+    <script src="js/language-switcher.js"></script>
+</body>
+</html> 
