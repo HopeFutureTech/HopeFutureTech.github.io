@@ -155,7 +155,7 @@ const i18n = {
         'page_title': 'EduPlatform - 专业在线课堂SaaS解决方案',
         
         // 信任标识
-        'trusted_by': '受到全球领先教育机构的信任',
+        'trusted_by': '受到全球优秀教师和领先教育机构的信任',
         'partner_logo': '合作伙伴',
         
         // 工作流程
@@ -530,7 +530,7 @@ const i18n = {
         'page_title': 'EduPlatform - 專業線上課堂SaaS解決方案',
         
         // 信任標識
-        'trusted_by': '受到全球領先教育機構的信任',
+        'trusted_by': '受到全球優秀教師和領先教育機構的信任',
         'partner_logo': '合作夥伴',
         
         // 工作流程
@@ -905,7 +905,7 @@ const i18n = {
         'page_title': 'EduPlatform - Professional Online Classroom SaaS Solution',
         
         // Trust Badges Section
-        'trusted_by': 'Trusted by Leading Educational Institutions Worldwide',
+        'trusted_by': 'Trusted by Excellent Teachers and Leading Educational Institutions Worldwide',
         'partner_logo': 'Partner Logo',
         
         // Workflow
