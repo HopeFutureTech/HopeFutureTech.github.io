@@ -16,6 +16,12 @@ const i18n = {
         'nav_contact': '联系我们',
         'language': '语言',
         
+        // 月份
+        'month_02': '2月',
+        'month_03': '3月',
+        'month_05': '5月',
+        'month_08': '8月',
+        
         // 英雄区域
         'hero_title': '在线课堂 SaaS 解决方案',
         'hero_subtitle': '为个人教师和教育机构提供一站式解决方案，轻松创建、管理和推广您的在线课程。',
@@ -564,6 +570,12 @@ const i18n = {
         'nav_contact': '聯繫我們',
         'language': '語言',
         
+        // 月份
+        'month_02': '2月',
+        'month_03': '3月',
+        'month_05': '5月',
+        'month_08': '8月',
+        
         // 英雄區域
         'hero_title': '線上課堂 SaaS 解決方案',
         'hero_subtitle': '為個人教師和教育機構提供一站式解決方案，輕鬆創建、管理和推廣您的線上課程。',
@@ -1109,6 +1121,12 @@ const i18n = {
         'nav_apps': 'App Downloads',
         'nav_contact': 'Contact Us',
         'language': 'Language',
+        
+        // Months
+        'month_02': 'Feb',
+        'month_03': 'Mar',
+        'month_05': 'May',
+        'month_08': 'Aug',
         
         // Hero Section
         'hero_title': 'Online Classroom SaaS Solution',
