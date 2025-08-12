@@ -10,6 +10,9 @@ const i18n = {
         'nav_home': '首页',
         'nav_features': '功能',
         'nav_pricing': '价格',
+        'nav_consultation': '教育咨询',
+        'nav_about': '关于我们',
+        'nav_apps': '应用下载',
         'nav_contact': '联系我们',
         'language': '语言',
         
@@ -555,6 +558,9 @@ const i18n = {
         'nav_home': '首頁',
         'nav_features': '功能',
         'nav_pricing': '價格',
+        'nav_consultation': '教育諮詢',
+        'nav_about': '關於我們',
+        'nav_apps': '應用下載',
         'nav_contact': '聯繫我們',
         'language': '語言',
         
@@ -1098,6 +1104,9 @@ const i18n = {
         'nav_home': 'Home',
         'nav_features': 'Features',
         'nav_pricing': 'Pricing',
+        'nav_consultation': 'Consultation',
+        'nav_about': 'About Us',
+        'nav_apps': 'App Downloads',
         'nav_contact': 'Contact Us',
         'language': 'Language',
         

@@ -63,7 +63,7 @@
                     </div>
                     <div class="ml-2 sm:ml-3">
                         <span class="text-lg sm:text-xl font-bold text-gray-900">EduPlatform</span>
-                        <div class="text-xs text-gray-500 -mt-1 hidden sm:block">应用下载</div>
+                        <div class="text-xs text-gray-500 -mt-1 hidden sm:block" data-i18n="nav_apps">应用下载</div>
                     </div>
                 </a>
                 
@@ -140,7 +140,7 @@
                         <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
                     </a>
                     <a href="apps.html" class="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-md font-medium" data-i18n="nav_apps">
-                        <i class="fa fa-mobile mr-3 text-blue-500"></i>应用下载
+                        <i class="fa fa-mobile mr-3 text-blue-500"></i><span data-i18n="nav_apps">应用下载</span>
                     </a>
                 </div>
                 
@@ -188,8 +188,8 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 希望学App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/xiwangxue.webp?v=1.0.0" alt="希望学" class="w-full h-full object-cover">
@@ -199,12 +199,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_xiwangxue_category">K12全学科学习</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangxue_desc">智能化的K12全学科学习平台，提供个性化学习路径和实时反馈</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/希望学-方法对了更有效/id1467084270" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_xiwangxue_desc">智能化的K12全学科学习平台，提供个性化学习路径和实时反馈</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/希望学-方法对了更有效/id1467084270" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://xwapp.xue.xiwang.com/Android/mulapp/xwx/95906/release-9.59.06_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://xwapp.xue.xiwang.com/Android/mulapp/xwx/95906/release-9.59.06_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
@@ -212,8 +212,8 @@
                 </div>
 
                 <!-- 希望素养App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/xiwangsuyang.webp?v=1.0.0" alt="希望素养" class="w-full h-full object-cover">
@@ -223,12 +223,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_xiwangsuyang_category">综合素质培养</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangsuyang_desc">专注于学生综合素质培养，涵盖艺术、体育、科技等多个领域</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/希望学素养/id6497171289" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_xiwangsuyang_desc">专注于学生综合素质培养，涵盖艺术、体育、科技等多个领域</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/希望学素养/id6497171289" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://xwapp.xue.xiwang.com/Android/mulapp/xxx/95910/release-9.59.10_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://xwapp.xue.xiwang.com/Android/mulapp/xxx/95910/release-9.59.10_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
@@ -236,8 +236,8 @@
                 </div>
 
                 <!-- 希望优课App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/xiwangyouke.jpeg?v=1.0.0" alt="希望优课" class="w-full h-full object-cover">
@@ -247,12 +247,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_xiwangyouke_category">精品课程平台</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangyouke_desc">汇聚名师精品课程，提供高质量的在线学习资源和互动体验</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/希望优课/id6463211250" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_xiwangyouke_desc">汇聚名师精品课程，提供高质量的在线学习资源和互动体验</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/希望优课/id6463211250" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://ykapp.xue.wen-su.com/Android/mulapp/yk/95702/release-9.57.02_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://ykapp.xue.wen-su.com/Android/mulapp/yk/95702/release-9.57.02_guanwang.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
@@ -260,8 +260,8 @@
                 </div>
 
                 <!-- 学而思网校App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/xueersiwagxiao.webp?v=1.0.0" alt="学而思网校" class="w-full h-full object-cover">
@@ -271,12 +271,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_xueersi_category">在线直播课堂</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_xueersi_desc">专业的在线直播课堂平台，提供实时互动教学和个性化辅导</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/学而思网校/id896405406" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_xueersi_desc">专业的在线直播课堂平台，提供实时互动教学和个性化辅导</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/学而思网校/id896405406" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://touch.xueersi.com/d" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://touch.xueersi.com/d" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
@@ -284,8 +284,8 @@
                 </div>
 
                 <!-- 学而思素养App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/xueersi.png?v=1.0.0" alt="学而思素养" class="w-full h-full object-cover">
@@ -295,12 +295,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_xueersisuyang_category">素养教育平台</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_xueersisuyang_desc">专注于学生核心素养培养，提供多元化的素质教育课程</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/学而思/id882419058" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_xueersisuyang_desc">专注于学生核心素养培养，提供多元化的素质教育课程</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/学而思/id882419058" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.xes.jazhanghui.activity" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://a.app.qq.com/o/simple.jsp?pkgname=com.xes.jazhanghui.activity" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
@@ -308,8 +308,8 @@
                 </div>
 
                 <!-- 英语天天练App -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
-                    <div class="p-6">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
+                    <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
                                 <img src="imgs/yingyujiao.png?v=1.0.0" alt="英语天天练" class="w-full h-full object-cover">
@@ -319,12 +319,12 @@
                                 <p class="text-gray-500 text-sm" data-i18n="app_yingyutiantian_category">英语学习工具</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 mb-6" data-i18n="app_yingyutiantian_desc">每日英语练习平台，通过游戏化学习提升英语听说读写能力</p>
-                        <div class="flex space-x-3">
-                            <a href="https://apps.apple.com/cn/app/英语天天练-校内好提分/id6451403869" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                        <p class="text-gray-600 mb-6 flex-1" data-i18n="app_yingyutiantian_desc">每日英语练习平台，通过游戏化学习提升英语听说读写能力</p>
+                        <div class="flex space-x-3 mt-auto">
+                            <a href="https://apps.apple.com/cn/app/英语天天练-校内好提分/id6451403869" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://abczone.chuangjing.com/abcDownload" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                            <a href="https://abczone.chuangjing.com/abcDownload" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>

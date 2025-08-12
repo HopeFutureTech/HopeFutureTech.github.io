@@ -1,7 +1,7 @@
 // 版本控制配置
 const VERSION_CONFIG = {
     // 当前版本号
-    version: '1.0.0',
+    version: '1.0.1',
     
     // 构建时间戳
     buildTime: '2025-08-12',
@@ -9,24 +9,24 @@ const VERSION_CONFIG = {
     // 静态资源版本映射
     assets: {
         // CSS文件
-        'css/font-awesome.min.css': '1.0.0',
+        'css/font-awesome.min.css': '1.0.1',
         
         // JavaScript文件
-        'js/i18n.js': '1.0.0',
-        'js/language-switcher.js': '1.0.0',
-        'js/version.js': '1.0.0',
+        'js/i18n.js': '1.0.1',
+        'js/language-switcher.js': '1.0.1',
+        'js/version.js': '1.0.1',
         
         // 图片资源
-        'imgs/xiwangxue.webp': '1.0.0',
-        'imgs/xiwangsuyang.webp': '1.0.0',
-        'imgs/xiwangyouke.jpeg': '1.0.0',
-        'imgs/xueersi.png': '1.0.0',
-        'imgs/xueersiwagxiao.webp': '1.0.0',
-        'imgs/yingyujiao.png': '1.0.0',
+        'imgs/xiwangxue.webp': '1.0.1',
+        'imgs/xiwangsuyang.webp': '1.0.1',
+        'imgs/xiwangyouke.jpeg': '1.0.1',
+        'imgs/xueersi.png': '1.0.1',
+        'imgs/xueersiwagxiao.webp': '1.0.1',
+        'imgs/yingyujiao.png': '1.0.1',
         
         // 图标文件
-        'favicon.png': '1.0.0',
-        'favicon.svg': '1.0.0'
+        'favicon.png': '1.0.1',
+        'favicon.svg': '1.0.1'
     }
 };
 
