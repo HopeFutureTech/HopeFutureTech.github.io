@@ -1625,6 +1625,5 @@ const i18n = {
         'app_yingyutiantian_desc': 'Daily English practice platform, improving English listening, speaking, reading and writing skills through gamified learning',
         
         // Test content
-        'test_content': 'This is a test page to verify that the language switching function is working properly.',
-    }
-};
+        'test_content': 'This is a test page to verify that the language switching function is working properly.'
+    };
