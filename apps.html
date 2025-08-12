@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="apps_page_title">应用下载 - 希望未来科技</title>
+    <meta name="description" content="下载希望未来科技旗下优质教育应用，包括希望学、希望素养、希望优课等">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=1.0.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png?v=1.0.0">
+    
+    <!-- Meta tags for better SEO and mobile experience -->
+    <meta name="keywords" content="教育应用,在线学习,K12教育,希望学,希望素养,希望优课,学而思网校,英语学习">
+    <meta name="author" content="希望未来科技有限公司">
+    <meta property="og:title" content="应用下载 - 希望未来科技">
+    <meta property="og:description" content="下载希望未来科技旗下优质教育应用，包括希望学、希望素养、希望优课等">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css?v=1.0.0">
+    
+    <!-- 自定义样式 -->
+    <style>
+        .gradient-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .transition-custom {
+            transition: all 0.3s ease;
+        }
+    </style>
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#f093fb',
+                        dark: '#1a202c'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center text-white shadow-lg">
+                        <i class="fa fa-graduation-cap text-lg sm:text-2xl"></i>
+                    </div>
+                    <div class="ml-2 sm:ml-3">
+                        <span class="text-lg sm:text-xl font-bold text-gray-900">EduPlatform</span>
+                        <div class="text-xs text-gray-500 -mt-1 hidden sm:block">应用下载</div>
+                    </div>
+                </a>
+                
+                <!-- 桌面端导航链接 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-blue-600 font-medium" data-i18n="nav_apps">应用下载</a>
+                </div>
+                
+                <!-- 右侧按钮组 -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- 语言切换 -->
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-blue-600 transition-custom">
+                            <span id="current-lang" class="text-sm hidden sm:inline">简体中文</span>
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 移动端菜单按钮 -->
+                    <button id="mobile-menu-toggle" class="md:hidden flex items-center text-gray-700 hover:text-blue-600 transition-custom p-1">
+                        <i class="fa fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏菜单 -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-50 md:hidden hidden">
+        <!-- 背景遮罩 -->
+        <div id="mobile-sidebar-overlay" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        <!-- 侧边栏内容 -->
+        <div class="absolute left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <!-- 侧边栏头部 -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="ml-2 text-lg font-bold text-gray-900">EduPlatform</span>
+                </div>
+                <button id="mobile-sidebar-close" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 侧边栏导航菜单 -->
+            <div class="p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_home">
+                        <i class="fa fa-home mr-3 text-gray-400"></i>首页
+                    </a>
+                    <a href="index.html#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features">
+                        <i class="fa fa-star mr-3 text-gray-400"></i>功能
+                    </a>
+                    <a href="index.html#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing">
+                        <i class="fa fa-tags mr-3 text-gray-400"></i>价格
+                    </a>
+                    <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation">
+                        <i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询
+                    </a>
+                    <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about">
+                        <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
+                    </a>
+                    <a href="apps.html" class="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-md font-medium" data-i18n="nav_apps">
+                        <i class="fa fa-mobile mr-3 text-blue-500"></i>应用下载
+                    </a>
+                </div>
+                
+                <!-- 侧边栏底部 -->
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <div class="text-xs text-gray-500 text-center">
+                        © 2025 希望未来科技
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面标题 -->
+    <section class="py-20 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-[clamp(2rem,4vw,3rem)] font-bold mb-6" data-i18n="apps_hero_title">优质教育应用下载</h1>
+            <p class="text-xl opacity-90 max-w-3xl mx-auto" data-i18n="apps_hero_subtitle">下载希望未来科技旗下精品教育应用，让学习更高效、更有趣</p>
+        </div>
+    </section>
+
+    <!-- 应用列表 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="apps_section_title">精选教育应用</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-i18n="apps_section_subtitle">覆盖K12全学科，提供个性化学习体验</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 希望学App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/xiwangxue.webp?v=1.0.0" alt="希望学" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_xiwangxue_name">希望学</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_xiwangxue_category">K12全学科学习</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangxue_desc">智能化的K12全学科学习平台，提供个性化学习路径和实时反馈</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567890" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.xiwangxue" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 希望素养App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/xiwangsuyang.webp?v=1.0.0" alt="希望素养" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_xiwangsuyang_name">希望素养</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_xiwangsuyang_category">综合素质培养</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangsuyang_desc">专注于学生综合素质培养，涵盖艺术、体育、科技等多个领域</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567891" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.xiwangsuyang" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 希望优课App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/xiwangyouke.jpeg?v=1.0.0" alt="希望优课" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_xiwangyouke_name">希望优课</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_xiwangyouke_category">精品课程平台</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_xiwangyouke_desc">汇聚名师精品课程，提供高质量的在线学习资源和互动体验</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567892" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.xiwangyouke" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学而思网校App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/xueersiwagxiao.webp?v=1.0.0" alt="学而思网校" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_xueersi_name">学而思网校</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_xueersi_category">在线直播课堂</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_xueersi_desc">专业的在线直播课堂平台，提供实时互动教学和个性化辅导</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567893" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.xueersi" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学而思素养App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/xueersi.png?v=1.0.0" alt="学而思素养" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_xueersisuyang_name">学而思素养</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_xueersisuyang_category">素养教育平台</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_xueersisuyang_desc">专注于学生核心素养培养，提供多元化的素质教育课程</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567894" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.xueersisuyang" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 英语天天练App -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
+                                <img src="imgs/yingyujiao.png?v=1.0.0" alt="英语天天练" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_yingyutiantian_name">英语天天练</h3>
+                                <p class="text-gray-500 text-sm" data-i18n="app_yingyutiantian_category">英语学习工具</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6" data-i18n="app_yingyutiantian_desc">每日英语练习平台，通过游戏化学习提升英语听说读写能力</p>
+                        <div class="flex space-x-3">
+                            <a href="https://apps.apple.com/cn/app/id1234567895" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-apple mr-2"></i>iOS
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.hopefuturetech.yingyutiantian" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom">
+                                <i class="fa fa-android mr-2"></i>Android
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载说明 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="apps_download_title">下载说明</h2>
+                    <p class="text-lg text-gray-600" data-i18n="apps_download_subtitle">了解如何下载和使用我们的教育应用</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-8 shadow-lg">
+                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fa fa-apple"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4" data-i18n="apps_ios_title">iOS版本</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_ios_step1">支持iOS 12.0及以上版本</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_ios_step2">通过App Store下载安装</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_ios_step3">支持iPhone和iPad设备</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-8 shadow-lg">
+                        <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fa fa-android"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4" data-i18n="apps_android_title">Android版本</h3>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_android_step1">支持Android 6.0及以上版本</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_android_step2">通过应用商店或官网下载</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-green-500 mt-1 mr-3"></i>
+                                <span data-i18n="apps_android_step3">支持手机和平板设备</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p data-i18n="copyright">© 2025 希望未来科技有限公司. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script src="js/version.js?v=1.0.0"></script>
+    <script src="js/i18n.js?v=1.0.0"></script>
+    <script src="js/language-switcher.js?v=1.0.0"></script>
+    
+    <!-- 移动端侧边栏脚本 -->
+    <script>
+        // 移动端侧边栏菜单
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+            const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
+            const sidebarContent = mobileSidebar?.querySelector('.absolute.left-0');
+            
+            function openSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    mobileSidebar.classList.remove('hidden');
+                    // 延迟添加动画类，确保元素已显示
+                    setTimeout(() => {
+                        sidebarContent.classList.remove('-translate-x-full');
+                    }, 10);
+                    // 禁止页面滚动
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            function closeSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    sidebarContent.classList.add('-translate-x-full');
+                    // 等待动画完成后隐藏
+                    setTimeout(() => {
+                        mobileSidebar.classList.add('hidden');
+                    }, 300);
+                    // 恢复页面滚动
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // 打开侧边栏
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openSidebar);
+            }
+            
+            // 关闭侧边栏
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击遮罩关闭侧边栏
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击菜单项后关闭侧边栏
+            const sidebarMenuItems = mobileSidebar?.querySelectorAll('a');
+            if (sidebarMenuItems) {
+                sidebarMenuItems.forEach(item => {
+                    item.addEventListener('click', closeSidebar);
+                });
+            }
+            
+            // ESC键关闭侧边栏
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

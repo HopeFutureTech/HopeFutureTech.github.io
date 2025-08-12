@@ -7,7 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
     <script src="js/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,53 +163,94 @@
                     </a>
                 </div>
                 
-                <!-- 桌面导航 -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#features" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="features">功能</a>
-                    <a href="#pricing" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="pricing">价格</a>
-                    <a href="#testimonials" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="testimonials">客户评价</a>
-                    <a href="#faq" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="faq">常见问题</a>
-                    <a href="consultation.html" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
-                    <a href="about.html" class="text-dark/80 hover:text-primary transition-custom font-medium" data-i18n="nav_about">关于我们</a>
-                </nav>
+                <!-- 桌面端导航链接 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_apps">应用下载</a>
+                </div>
                 
-                <div class="flex items-center space-x-4">
+                <!-- 右侧按钮组 -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
                     <!-- 语言切换 -->
                     <div class="relative">
-                        <button id="lang-toggle" class="flex items-center text-dark/80 hover:text-primary transition-custom px-3 py-2 rounded">
-                            <span id="current-lang">繁體中文</span>
-                            <span class="ml-1 text-xs">▼</span>
+                        <button id="lang-toggle" class="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-blue-600 transition-custom">
+                            <span id="current-lang" class="text-sm hidden sm:inline">简体中文</span>
+                            <i class="fa fa-chevron-down text-xs"></i>
                         </button>
-                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg py-1 hidden z-50">
-                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-CN">简体中文</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="zh-TW">繁體中文</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-dark/80 hover:bg-gray-100" data-lang="en-US">English</a>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="en-US">English</a>
                         </div>
                     </div>
                     
-                    <a href="#contact" class="hidden md:inline-flex items-center px-4 py-2 border border-primary text-primary bg-transparent hover:bg-primary/5 font-medium rounded-lg transition-custom" data-i18n="contact_us">
-                        联系我们
-                    </a>
-                    
                     <!-- 移动端菜单按钮 -->
-                    <button id="menu-toggle" class="md:hidden text-dark/80 hover:text-primary transition-custom">
-                        <i class="fa fa-bars text-xl"></i>
+                    <button id="mobile-menu-toggle" class="md:hidden flex items-center text-gray-700 hover:text-blue-600 transition-custom p-1">
+                        <i class="fa fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
+    </nav>
+
+    </header>
+
+    <!-- 移动端侧边栏菜单 -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-50 md:hidden hidden">
+        <!-- 背景遮罩 -->
+        <div id="mobile-sidebar-overlay" class="absolute inset-0 bg-black bg-opacity-50"></div>
         
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 shadow-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="features">功能</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="pricing">价格</a>
-                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="testimonials">客户评价</a>
-                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-dark/80 hover:text-primary hover:bg-primary/5" data-i18n="faq">常见问题</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary hover:bg-primary/5" data-i18n="contact_us">联系我们</a>
+        <!-- 侧边栏内容 -->
+        <div class="absolute left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <!-- 侧边栏头部 -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="ml-2 text-lg font-bold text-gray-900">EduPlatform</span>
+                </div>
+                <button id="mobile-sidebar-close" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 侧边栏导航菜单 -->
+            <div class="p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-md font-medium" data-i18n="nav_home">
+                        <i class="fa fa-home mr-3 text-blue-500"></i>首页
+                    </a>
+                    <a href="#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features">
+                        <i class="fa fa-star mr-3 text-gray-400"></i>功能
+                    </a>
+                    <a href="#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing">
+                        <i class="fa fa-tags mr-3 text-gray-400"></i>价格
+                    </a>
+                    <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation">
+                        <i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询
+                    </a>
+                    <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about">
+                        <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
+                    </a>
+                    <a href="apps.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_apps">
+                        <i class="fa fa-mobile mr-3 text-gray-400"></i>应用下载
+                    </a>
+                </div>
+                
+                <!-- 侧边栏底部 -->
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <div class="text-xs text-gray-500 text-center">
+                        © 2025 希望未来科技
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </div>
 
     <main>
         <!-- 英雄区域 -->
@@ -836,11 +877,7 @@
             }
         });
         
-        // 移动端菜单切换
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+        // 移动端菜单切换 - 已移除，使用新的侧边栏系统
         
         // FAQ 切换
         document.querySelectorAll('.faq-toggle').forEach(toggle => {
@@ -854,40 +891,62 @@
             });
         });
         
-        // 价格切换
-        document.getElementById('monthly-toggle').addEventListener('click', function() {
-            this.classList.add('bg-white', 'text-dark', 'shadow-sm');
-            this.classList.remove('text-dark/70');
-            
-            document.getElementById('annual-toggle').classList.remove('bg-white', 'text-dark', 'shadow-sm');
-            document.getElementById('annual-toggle').classList.add('text-dark/70');
-            
-            // 更新价格
-            document.getElementById('price-basic').textContent = '¥299';
-            document.getElementById('price-pro').textContent = '¥799';
-            document.getElementById('price-enterprise').textContent = '¥1999';
-        });
+        // 价格切换 - 添加空值检查
+        const monthlyToggle = document.getElementById('monthly-toggle');
+        const annualToggle = document.getElementById('annual-toggle');
         
-        document.getElementById('annual-toggle').addEventListener('click', function() {
-            this.classList.add('bg-white', 'text-dark', 'shadow-sm');
-            this.classList.remove('text-dark/70');
-            
-            document.getElementById('monthly-toggle').classList.remove('bg-white', 'text-dark', 'shadow-sm');
-            document.getElementById('monthly-toggle').classList.add('text-dark/70');
-            
-            // 更新价格
-            document.getElementById('price-basic').textContent = '¥239';
-            document.getElementById('price-pro').textContent = '¥639';
-            document.getElementById('price-enterprise').textContent = '¥1599';
-        });
+        if (monthlyToggle) {
+            monthlyToggle.addEventListener('click', function() {
+                this.classList.add('bg-white', 'text-dark', 'shadow-sm');
+                this.classList.remove('text-dark/70');
+                
+                if (annualToggle) {
+                    annualToggle.classList.remove('bg-white', 'text-dark', 'shadow-sm');
+                    annualToggle.classList.add('text-dark/70');
+                }
+                
+                // 更新价格
+                const priceBasic = document.getElementById('price-basic');
+                const pricePro = document.getElementById('price-pro');
+                const priceEnterprise = document.getElementById('price-enterprise');
+                
+                if (priceBasic) priceBasic.textContent = '¥299';
+                if (pricePro) pricePro.textContent = '¥799';
+                if (priceEnterprise) priceEnterprise.textContent = '¥1999';
+            });
+        }
         
-        // 表单提交
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // 这里可以添加表单提交逻辑
-            alert('感谢您的留言！我们将尽快与您联系。');
-            this.reset();
-        });
+        if (annualToggle) {
+            annualToggle.addEventListener('click', function() {
+                this.classList.add('bg-white', 'text-dark', 'shadow-sm');
+                this.classList.remove('text-dark/70');
+                
+                if (monthlyToggle) {
+                    monthlyToggle.classList.remove('bg-white', 'text-dark', 'shadow-sm');
+                    monthlyToggle.classList.add('text-dark/70');
+                }
+                
+                // 更新价格
+                const priceBasic = document.getElementById('price-basic');
+                const pricePro = document.getElementById('price-pro');
+                const priceEnterprise = document.getElementById('price-enterprise');
+                
+                if (priceBasic) priceBasic.textContent = '¥239';
+                if (pricePro) pricePro.textContent = '¥639';
+                if (priceEnterprise) priceEnterprise.textContent = '¥1599';
+            });
+        }
+        
+        // 表单提交 - 添加空值检查
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // 这里可以添加表单提交逻辑
+                alert('感谢您的留言！我们将尽快与您联系。');
+                this.reset();
+            });
+        }
         
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -899,8 +958,17 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // 关闭移动菜单（如果打开）
-                    document.getElementById('mobile-menu').classList.add('hidden');
+                    // 关闭移动侧边栏（如果打开）
+                    const mobileSidebar = document.getElementById('mobile-sidebar');
+                    if (mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                        const sidebarContent = mobileSidebar.querySelector('.absolute.left-0');
+                        if (sidebarContent) {
+                            sidebarContent.classList.add('-translate-x-full');
+                            setTimeout(() => {
+                                mobileSidebar.classList.add('hidden');
+                            }, 300);
+                        }
+                    }
                     
                     // 滚动到目标位置
                     window.scrollTo({
@@ -914,7 +982,74 @@
     </script>
     
     <!-- 语言切换脚本 -->
-    <script src="js/i18n.js"></script>
-    <script src="js/language-switcher.js"></script>
+    <script src="js/version.js?v=1.0.0"></script>
+    <script src="js/i18n.js?v=1.0.0"></script>
+    <script src="js/language-switcher.js?v=1.0.0"></script>
+    
+    <!-- 移动端侧边栏脚本 -->
+    <script>
+        // 移动端侧边栏菜单
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+            const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
+            const sidebarContent = mobileSidebar?.querySelector('.absolute.left-0');
+            
+            function openSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    mobileSidebar.classList.remove('hidden');
+                    // 延迟添加动画类，确保元素已显示
+                    setTimeout(() => {
+                        sidebarContent.classList.remove('-translate-x-full');
+                    }, 10);
+                    // 禁止页面滚动
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            function closeSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    sidebarContent.classList.add('-translate-x-full');
+                    // 等待动画完成后隐藏
+                    setTimeout(() => {
+                        mobileSidebar.classList.add('hidden');
+                    }, 300);
+                    // 恢复页面滚动
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // 打开侧边栏
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openSidebar);
+            }
+            
+            // 关闭侧边栏
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击遮罩关闭侧边栏
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击菜单项后关闭侧边栏
+            const sidebarMenuItems = mobileSidebar?.querySelectorAll('a');
+            if (sidebarMenuItems) {
+                sidebarMenuItems.forEach(item => {
+                    item.addEventListener('click', closeSidebar);
+                });
+            }
+            
+            // ESC键关闭侧边栏
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
 </body>
 </html>    
