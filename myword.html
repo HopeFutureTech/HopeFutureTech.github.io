@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="word_study_page_title">中考单词闯关王 - MyWorld</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">AIEducation</span>
+                    </a>
+                </div>
+                
+                <!-- 桌面端导航链接 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="myword.html" class="text-blue-600 font-medium" data-i18n="nav_word_study">背单词</a>
+                    <a href="myclothes.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_clothes">AI换衣</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_apps">应用下载</a>
+                </div>
+                
+                <!-- 右侧按钮组 -->
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <!-- 语言切换 -->
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-blue-600 transition-custom">
+                            <span id="current-lang" class="text-sm hidden sm:inline">简体中文</span>
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 移动端菜单按钮 -->
+                    <button id="mobile-menu-toggle" class="md:hidden flex items-center text-gray-700 hover:text-blue-600 transition-custom p-1">
+                        <i class="fa fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏菜单 -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-50 md:hidden hidden">
+        <!-- 背景遮罩 -->
+        <div id="mobile-sidebar-overlay" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        <!-- 侧边栏内容 -->
+        <div class="absolute left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <!-- 侧边栏头部 -->
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="ml-2 text-lg font-bold text-gray-900">AIEducation</span>
+                </div>
+                <button id="mobile-sidebar-close" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 侧边栏导航菜单 -->
+            <div class="p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_home">
+                        <i class="fa fa-home mr-3 text-gray-400"></i>首页
+                    </a>
+                    <a href="index.html#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features">
+                        <i class="fa fa-star mr-3 text-gray-400"></i>功能
+                    </a>
+                    <a href="index.html#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing">
+                        <i class="fa fa-tags mr-3 text-gray-400"></i>价格
+                    </a>
+                    <a href="myword.html" class="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-md font-medium">
+                        <i class="fa fa-book mr-3 text-blue-500"></i><span data-i18n="nav_word_study">背单词</span>
+                    </a>
+                    <a href="myclothes.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom">
+                        <i class="fa fa-tshirt mr-3 text-gray-400"></i><span data-i18n="nav_clothes">AI换衣</span>
+                    </a>
+                    <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation">
+                        <i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询
+                    </a>
+                    <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about">
+                        <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
+                    </a>
+                    <a href="apps.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_apps">
+                        <i class="fa fa-mobile mr-3 text-gray-400"></i>应用下载
+                    </a>
+                </div>
+                
+                <!-- 侧边栏语言切换 -->
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-medium text-gray-700 mb-3" data-i18n="language">语言</div>
+                    <div class="space-y-2">
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="zh-CN">
+                            <i class="fa fa-globe mr-2"></i>简体中文
+                        </button>
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="zh-TW">
+                            <i class="fa fa-globe mr-2"></i>繁體中文
+                        </button>
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="en-US">
+                            <i class="fa fa-globe mr-2"></i>English
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 侧边栏底部 -->
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <div class="text-xs text-gray-500 text-center">
+                        © 2025 希望未来科技
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section class="py-20 bg-gradient-custom text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-center mb-6 gap-4">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold" data-i18n="word_study_hero_title">中考单词闯关王</h1>
+                <img src="imgs/myword.png" alt="中考单词闯关王图标" class="w-16 h-16 md:w-20 md:h-20 rounded-xl shadow-lg">
+            </div>
+            <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8" data-i18n="word_study_hero_subtitle">
+                专为中考学生设计的英语单词学习应用，通过游戏化闯关方式，让单词学习变得轻松有趣
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="#screenshots" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-custom" data-i18n="word_study_view_screenshots">
+                    查看截图
+                </a>
+                <a href="#features" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-custom" data-i18n="word_study_learn_features">
+                    了解功能
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用下载 -->
+    <section id="download" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="word_study_download_title">立即下载</h2>
+                    <p class="text-lg text-gray-600" data-i18n="word_study_download_subtitle">支持 iOS 和 Android 平台，随时随地学习单词</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- iOS 下载 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-apple text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="word_study_ios_title">iOS 版本</h3>
+                        <p class="text-gray-600 mb-6" data-i18n="word_study_ios_desc">支持 iOS 13.0 及以上版本，专为 iPad 设计</p>
+                        <a href="https://apps.apple.com/cn/app/%E4%B8%AD%E8%80%83%E5%8D%95%E8%AF%8D%E9%97%AF%E5%85%B3%E7%8E%8B/id6758268009" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-custom mb-6">
+                            <i class="fa fa-apple mr-2"></i><span data-i18n="word_study_download_ios">App Store 下载</span>
+                        </a>
+                        <div class="mt-6">
+                            <p class="text-sm text-gray-500 mb-3" data-i18n="word_study_scan_qr">扫描二维码下载</p>
+                            <div class="flex justify-center">
+                                <img src="imgs/myword-ios.png" alt="iOS 下载二维码" class="w-36 h-36 border-2 border-gray-200 rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Android 下载 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-android text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="word_study_android_title">Android 版本</h3>
+                        <p class="text-gray-600 mb-6" data-i18n="word_study_android_desc">支持 Android 6.0 及以上版本</p>
+                        <a href="https://hopefuturetech.com/sources/中考单词闯关王.apk" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-custom mb-6">
+                            <i class="fa fa-android mr-2"></i><span data-i18n="word_study_download_android">直接下载 APK</span>
+                        </a>
+                        <div class="mt-6">
+                            <p class="text-sm text-gray-500 mb-3" data-i18n="word_study_scan_qr">扫描二维码下载</p>
+                            <div class="flex justify-center">
+                                <img src="imgs/myword-android.png" alt="Android 下载二维码" class="w-36 h-36 border-2 border-gray-200 rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用介绍 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="word_study_about_title">关于应用</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-i18n="word_study_about_desc">
+                        中考单词闯关王是一款专为中考学生打造的英语单词学习应用，采用创新的游戏化学习方式，
+                        帮助学生高效记忆和掌握中考必备单词。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-gamepad text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_gamification_title">游戏化学习</h3>
+                        <p class="text-gray-600" data-i18n="word_study_feature_gamification_desc">通过闯关、挑战等游戏方式，让单词学习充满趣味性</p>
+                    </div>
+
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-book text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_vocab_title">中考词汇</h3>
+                        <p class="text-gray-600" data-i18n="word_study_feature_vocab_desc">覆盖中考核心词汇，精准对接考试要求</p>
+                    </div>
+
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_progress_title">学习进度</h3>
+                        <p class="text-gray-600" data-i18n="word_study_feature_progress_desc">实时跟踪学习进度，科学规划复习计划</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用截图 -->
+    <section id="screenshots" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="word_study_screenshots_title">应用截图</h2>
+                <p class="text-lg text-gray-600" data-i18n="word_study_screenshots_subtitle">体验精美的界面设计和流畅的学习流程</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 截图1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.44.24.png" 
+                         alt="中考单词闯关王截图1" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.44.31.png" 
+                         alt="中考单词闯关王截图2" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.44.39.png" 
+                         alt="中考单词闯关王截图3" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.44.45.png" 
+                         alt="中考单词闯关王截图4" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.45.01.png" 
+                         alt="中考单词闯关王截图5" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图6 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.45.10.png" 
+                         alt="中考单词闯关王截图6" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图7 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.47.49.png" 
+                         alt="中考单词闯关王截图7" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图8 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad (A16) - 2026-01-25 at 21.49.05.png" 
+                         alt="中考单词闯关王截图8" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图9 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.55.46.png" 
+                         alt="中考单词闯关王截图9" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图10 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.55.52.png" 
+                         alt="中考单词闯关王截图10" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图11 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.55.58.png" 
+                         alt="中考单词闯关王截图11" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图12 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.56.02.png" 
+                         alt="中考单词闯关王截图12" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图13 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.56.13.png" 
+                         alt="中考单词闯关王截图13" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图14 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 21.59.34.png" 
+                         alt="中考单词闯关王截图14" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图15 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 22.01.07.png" 
+                         alt="中考单词闯关王截图15" 
+                         class="w-full h-auto object-cover">
+                </div>
+
+                <!-- 截图16 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-custom">
+                    <img src="中考单词闯关王/Simulator Screenshot - iPad Pro 13-inch (M4) - 2026-01-25 at 22.01.12.png" 
+                         alt="中考单词闯关王截图16" 
+                         class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特点 -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="word_study_features_title">核心功能</h2>
+                <p class="text-lg text-gray-600" data-i18n="word_study_features_subtitle">全方位的学习体验，助力中考英语备考</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-trophy text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_challenge_title">闯关模式</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_challenge_desc">分关卡学习，循序渐进，每关都有明确的单词目标和学习任务</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-repeat text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_review_title">智能复习</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_review_desc">根据遗忘曲线，自动安排复习计划，提高记忆效率</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-volume-up text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_pronunciation_title">标准发音</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_pronunciation_desc">提供标准美式/英式发音，帮助掌握正确读音</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-list text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_category_title">词汇分类</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_category_desc">按主题、难度分类，方便针对性学习</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-check-circle text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_practice_title">练习测试</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_practice_desc">多种练习模式，包括选择题、拼写、听力等，全面检测掌握程度</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-star text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="word_study_feature_achievement_title">成就系统</h3>
+                            <p class="text-gray-600" data-i18n="word_study_feature_achievement_desc">完成学习任务获得成就徽章，激发学习动力</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-xl"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-bold">AIEducation</span>
+                </div>
+                <p class="text-gray-400" data-i18n="copyright">© 2025 AIEducation. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 语言切换脚本 -->
+    <script src="js/version.js?v=1.0.0"></script>
+    <script src="js/i18n.js?v=1.0.0"></script>
+    <script src="js/language-switcher.js?v=1.0.0"></script>
+    
+    <!-- 移动端侧边栏脚本 -->
+    <script>
+        // 移动端侧边栏菜单
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+            const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
+            const sidebarContent = mobileSidebar?.querySelector('.absolute.left-0');
+            
+            function openSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    mobileSidebar.classList.remove('hidden');
+                    // 延迟添加动画类，确保元素已显示
+                    setTimeout(() => {
+                        sidebarContent.classList.remove('-translate-x-full');
+                    }, 10);
+                    // 禁止页面滚动
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            function closeSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    sidebarContent.classList.add('-translate-x-full');
+                    // 等待动画完成后隐藏
+                    setTimeout(() => {
+                        mobileSidebar.classList.add('hidden');
+                    }, 300);
+                    // 恢复页面滚动
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // 打开侧边栏
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openSidebar);
+            }
+            
+            // 关闭侧边栏
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击遮罩关闭侧边栏
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeSidebar);
+            }
+            
+            // 点击菜单项后关闭侧边栏
+            const sidebarMenuItems = mobileSidebar?.querySelectorAll('a');
+            if (sidebarMenuItems) {
+                sidebarMenuItems.forEach(item => {
+                    item.addEventListener('click', closeSidebar);
+                });
+            }
+            
+            // ESC键关闭侧边栏
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
+    
+    <!-- 平滑滚动 -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

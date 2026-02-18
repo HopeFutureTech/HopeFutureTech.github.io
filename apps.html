@@ -21,17 +21,22 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="css/font-awesome.min.css?v=1.0.0">
     
     <!-- 自定义样式 -->
-    <style>
-        .gradient-custom {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        .transition-custom {
-            transition: all 0.3s ease;
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%);
+            }
         }
     </style>
     
@@ -41,35 +46,44 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#667eea',
-                        secondary: '#764ba2',
-                        accent: '#f093fb',
-                        dark: '#1a202c'
-                    }
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
                 }
             }
         }
     </script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 font-inter">
     <!-- 导航栏 -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center text-white shadow-lg">
-                        <i class="fa fa-graduation-cap text-lg sm:text-2xl"></i>
-                    </div>
-                    <div class="ml-2 sm:ml-3">
-                        <span class="text-lg sm:text-xl font-bold text-gray-900">AIEducation</span>
-                        <div class="text-xs text-gray-500 -mt-1 hidden sm:block" data-i18n="nav_apps">应用下载</div>
-                    </div>
-                </a>
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">AIEducation</span>
+                    </a>
+                </div>
                 
                 <!-- 桌面端导航链接 -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="myword.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_word_study">背单词</a>
+                    <a href="myclothes.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_clothes">AI换衣</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-blue-600 font-medium" data-i18n="nav_apps">应用下载</a>
                 </div>
                 
                 <!-- 右侧按钮组 -->
@@ -121,6 +135,27 @@
                 <div class="space-y-2">
                     <a href="index.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_home">
                         <i class="fa fa-home mr-3 text-gray-400"></i>首页
+                    </a>
+                    <a href="index.html#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features">
+                        <i class="fa fa-star mr-3 text-gray-400"></i>功能
+                    </a>
+                    <a href="index.html#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing">
+                        <i class="fa fa-tags mr-3 text-gray-400"></i>价格
+                    </a>
+                    <a href="myword.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom">
+                        <i class="fa fa-book mr-3 text-gray-400"></i><span data-i18n="nav_word_study">背单词</span>
+                    </a>
+                    <a href="myclothes.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom">
+                        <i class="fa fa-tshirt mr-3 text-gray-400"></i><span data-i18n="nav_clothes">AI换衣</span>
+                    </a>
+                    <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation">
+                        <i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询
+                    </a>
+                    <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about">
+                        <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
+                    </a>
+                    <a href="apps.html" class="flex items-center px-3 py-2 text-blue-600 bg-blue-50 rounded-md font-medium" data-i18n="nav_apps">
+                        <i class="fa fa-mobile mr-3 text-blue-500"></i>应用下载
                     </a>
                 </div>
                 
@@ -287,24 +322,24 @@
                     </div>
                 </div>
 
-                <!-- 英语天天练App -->
+                <!-- 中考单词闯关王App -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-custom flex flex-col">
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="flex items-center mb-4">
                             <div class="w-16 h-16 rounded-xl flex items-center justify-center mr-4 overflow-hidden">
-                                <img src="imgs/yingyujiao.png?v=1.0.0" alt="英语天天练" class="w-full h-full object-cover">
+                                <img src="imgs/myword.png?v=1.0.0" alt="中考单词闯关王" class="w-full h-full object-cover">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_yingyutiantian_name">英语天天练</h3>
+                                <h3 class="text-xl font-bold text-gray-900" data-i18n="app_yingyutiantian_name">中考单词闯关王</h3>
                                 <p class="text-gray-500 text-sm" data-i18n="app_yingyutiantian_category">英语学习工具</p>
                             </div>
                         </div>
                         <p class="text-gray-600 mb-6 flex-1" data-i18n="app_yingyutiantian_desc">每日英语练习平台，通过游戏化学习提升英语听说读写能力</p>
                         <div class="flex space-x-3 mt-auto">
-                            <a href="https://apps.apple.com/cn/app/英语天天练-校内好提分/id6451403869" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
+                            <a href="https://apps.apple.com/cn/app/%E4%B8%AD%E8%80%83%E5%8D%95%E8%AF%8D%E9%97%AF%E5%85%B3%E7%8E%8B/id6758268009" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-apple mr-2"></i>iOS
                             </a>
-                            <a href="https://abczone.chuangjing.com/abcDownload" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
+                            <a href="https://hopefuturetech.com/sources/中考单词闯关王.apk" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white text-center py-3 px-4 rounded-lg font-medium transition-custom h-12 flex items-center justify-center">
                                 <i class="fa fa-android mr-2"></i>Android
                             </a>
                         </div>
