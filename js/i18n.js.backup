@@ -14,7 +14,7 @@ const i18n = {
         'language': '语言',
         
         // 英雄区域
-        'hero_title': '在线课堂 SaaS 解决方案',
+        'hero_title': 'AI教育解决方案',
         'hero_subtitle': '为个人教师和教育机构提供一站式解决方案，轻松创建、管理和推广您的在线课程。',
         'start_free_trial': '开始14天免费试用',
         'learn_more': '了解更多',
@@ -42,7 +42,7 @@ const i18n = {
         'contact_email_title': '电子邮件',
         'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': '电话',
-        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
+        'contact_phone': '+852 5539 3275',
         'follow_us': '关注我们',
         'name': '姓名',
         'email': '电子邮件',
@@ -59,8 +59,8 @@ const i18n = {
         'send_message': '发送留言',
         
         // 页脚
-        'footer_description': 'EduPlatform是领先的在线教育SaaS平台，帮助个人教师和教育机构轻松创建、管理和销售在线课程。',
-        'copyright': '© 2025 EduPlatform. 保留所有权利。',
+        'footer_description': 'AIEducation是领先的在线教育SaaS平台，帮助个人教师和教育机构轻松创建、管理和销售在线课程。',
+        'copyright': '© 2025 AIEducation. 保留所有权利。',
         
         // 功能卡片
         'course_creation': '课程创建',
@@ -157,7 +157,7 @@ const i18n = {
         'cookie_policy': 'Cookie政策',
         
         // 页面标题
-        'page_title': 'EduPlatform - 专业在线课堂SaaS解决方案',
+        'page_title': 'AIEducation - 专业AI教育解决方案',
         
         // 信任标识
         'trusted_by': '受到全球优秀教师和领先教育机构的信任',
@@ -200,16 +200,16 @@ const i18n = {
         
         // 客户评价详情
         'customer_title_1': '个人英语培训教师',
-        'customer_name_1': '夏志强',
-        'customer_review_1': '"使用EduPlatform后，我们的课程销售额增长了300%。平台的易用性让我们能够专注于教学内容，而不是技术问题。学员体验也大大提升，现在我们的课程完成率比以前高出了40%。"',
+        'customer_name_1': '高洪飞',
+        'customer_review_1': '"使用AIEducation后，我们的课程销售额增长了300%。平台的易用性让我们能够专注于教学内容，而不是技术问题。学员体验也大大提升，现在我们的课程完成率比以前高出了40%。"',
         
         'customer_title_2': '职业技能培训师',
-        'customer_name_2': '黄桃',
-        'customer_review_2': '"作为一名独立培训师，我需要一个既专业又经济实惠的平台。EduPlatform完美满足了我的需求。客户支持团队总是快速响应，帮助我解决任何问题。强烈推荐给所有想要创建在线课程的人！"',
+        'customer_name_2': '张天启',
+        'customer_review_2': '"作为一名独立培训师，我需要一个既专业又经济实惠的平台。AIEducation完美满足了我的需求。客户支持团队总是快速响应，帮助我解决任何问题。强烈推荐给所有想要创建在线课程的人！"',
         
         'customer_title_3': '个人创业者',
-        'customer_name_3': '闫小坤',
-        'customer_review_3': '"我使用EduPlatform为学生提供培训课程。平台的功能非常强大，特别是自定义域名和高级分析工具。我能够精确跟踪学生的学习进度，这对我的培训计划评估非常有帮助。"',
+        'customer_name_3': '李飞腾',
+        'customer_review_3': '"我使用AIEducation为学生提供培训课程。平台的功能非常强大，特别是自定义域名和高级分析工具。我能够精确跟踪学生的学习进度，这对我的培训计划评估非常有帮助。"',
         
         // FAQ
         'faq_section_title': '常见问题',
@@ -382,7 +382,7 @@ const i18n = {
         'business_cooperation': '商务合作',
         
         // 教育咨询页面
-        'consultation_page_title': 'EduPlatform - 专业教育咨询服务',
+        'consultation_page_title': 'AIEducation - 专业教育咨询服务',
         'nav_consultation': '教育咨询',
 
         'consultation_hero_title': '专业教育咨询服务',
@@ -463,7 +463,7 @@ const i18n = {
         'about_hero_subtitle': '致力于通过创新技术推动教育数字化转型，为全球教育机构提供领先的SaaS解决方案',
         'about_company_title': '公司简介',
         'about_company_desc_1': '希望未来科技有限公司成立于2024年8月，是一家专注于教育科技创新的高新技术企业。我们致力于通过先进的SaaS技术，为教育机构、企业和个人提供全方位的在线教育解决方案。',
-        'about_company_desc_2': '公司总部位于香港，在北京、深圳等地设有研发中心，拥有一支由教育专家、技术工程师和产品设计师组成的专业团队。我们深度理解教育行业需求，结合前沿技术，打造了EduPlatform这一领先的在线教育SaaS平台。',
+        'about_company_desc_2': '公司总部位于香港，在北京、深圳等地设有研发中心，拥有一支由教育专家、技术工程师和产品设计师组成的专业团队。我们深度理解教育行业需求，结合前沿技术，打造了AIEducation这一领先的在线教育SaaS平台。',
         'about_company_desc_3': '截至目前，我们已服务超过5000家教育机构，覆盖K12教育、高等教育、企业培训等多个领域，累计帮助超过100万学员实现在线学习。',
         'about_stats_institutions': '合作机构',
         'about_stats_students': '服务学员',
@@ -490,7 +490,7 @@ const i18n = {
         'about_timeline_2024_08_title': '公司成立',
         'about_timeline_2024_08_desc': '希望未来科技有限公司在香港正式成立，开始专注于教育科技领域的技术研发',
         'about_timeline_2025_02_title': '产品发布',
-        'about_timeline_2025_02_desc': 'EduPlatform 1.0正式发布，获得首批100家教育机构的认可和使用',
+        'about_timeline_2025_02_desc': 'AIEducation 1.0正式发布，获得首批100家教育机构的认可和使用',
         'about_timeline_2025_03_title': '业务扩展',
         'about_timeline_2025_03_desc': '服务客户突破100家，产品功能不断完善，获得多项技术专利',
         'about_timeline_2025_05_title': '国际化发展',
@@ -559,7 +559,7 @@ const i18n = {
         'language': '語言',
         
         // 英雄區域
-        'hero_title': '線上課堂 SaaS 解決方案',
+        'hero_title': 'AI教育解決方案',
         'hero_subtitle': '為個人教師和教育機構提供一站式解決方案，輕鬆創建、管理和推廣您的線上課程。',
         'start_free_trial': '開始14天免費試用',
         'learn_more': '了解更多',
@@ -612,7 +612,7 @@ const i18n = {
         'contact_email_title': '電子郵件',
         'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': '電話',
-        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
+        'contact_phone': '+852 5539 3275',
         'follow_us': '關注我們',
         'name': '姓名',
         'email': '電子郵件',
@@ -629,8 +629,8 @@ const i18n = {
         'send_message': '發送留言',
         
         // 頁腳
-        'footer_description': 'EduPlatform是領先的線上教育SaaS平台，幫助個人教師和教育機構輕鬆創建、管理和銷售線上課程。',
-        'copyright': '© 2025 EduPlatform. 保留所有權利。',
+        'footer_description': 'AIEducation是領先的線上教育SaaS平台，幫助個人教師和教育機構輕鬆創建、管理和銷售線上課程。',
+        'copyright': '© 2025 AIEducation. 保留所有權利。',
         
         // 功能卡片
         'course_creation': '課程創建',
@@ -700,7 +700,7 @@ const i18n = {
         'cookie_policy': 'Cookie政策',
         
         // 頁面標題
-        'page_title': 'EduPlatform - 專業線上課堂SaaS解決方案',
+        'page_title': 'AIEducation - 專業AI教育解決方案',
         
         // 信任標識
         'trusted_by': '受到全球優秀教師和領先教育機構的信任',
@@ -743,16 +743,16 @@ const i18n = {
         
         // 客戶評價詳情
         'customer_title_1': '個人英語培訓教師',
-        'customer_name_1': '夏志強',
-        'customer_review_1': '"使用EduPlatform後，我們的課程銷售額增長了300%。平台的易用性讓我們能夠專注於教學內容，而不是技術問題。學員體驗也大大提升，現在我們的課程完成率比以前高出了40%。"',
+        'customer_name_1': '高洪飛',
+        'customer_review_1': '"使用AIEducation後，我們的課程銷售額增長了300%。平台的易用性讓我們能夠專注於教學內容，而不是技術問題。學員體驗也大大提升，現在我們的課程完成率比以前高出了40%。"',
         
         'customer_title_2': '職業技能培訓師',
-        'customer_name_2': '黃桃',
-        'customer_review_2': '"作為一名獨立培訓師，我需要一個既專業又經濟實惠的平台。EduPlatform完美滿足了我的需求。客戶支持團隊總是快速響應，幫助我解決任何問題。強烈推薦給所有想要創建線上課程的人！"',
+        'customer_name_2': '張天啟',
+        'customer_review_2': '"作為一名獨立培訓師，我需要一個既專業又經濟實惠的平台。AIEducation完美滿足了我的需求。客戶支持團隊總是快速響應，幫助我解決任何問題。強烈推薦給所有想要創建線上課程的人！"',
         
         'customer_title_3': '個人創業者',
-        'customer_name_3': '閆小坤',
-        'customer_review_3': '"我使用EduPlatform為學生提供培訓課程。平台的功能非常強大，特別是自定義域名和高級分析工具。我能夠精確跟蹤學生的學習進度，這對我的培訓計劃評估非常有幫助。"',
+        'customer_name_3': '李飛騰',
+        'customer_review_3': '"我使用AIEducation為學生提供培訓課程。平台的功能非常強大，特別是自定義域名和高級分析工具。我能夠精確跟蹤學生的學習進度，這對我的培訓計劃評估非常有幫助。"',
         
         // FAQ
         'faq_section_title': '常見問題',
@@ -925,7 +925,7 @@ const i18n = {
         'business_cooperation': '商務合作',
         
         // 教育諮詢頁面
-        'consultation_page_title': '教育諮詢 - EduPlatform專業諮詢服務',
+        'consultation_page_title': '教育諮詢 - AIEducation專業諮詢服務',
         'nav_consultation': '教育諮詢',
 
         'consultation_hero_title': '專業教育諮詢服務',
@@ -1006,7 +1006,7 @@ const i18n = {
         'about_hero_subtitle': '致力於通過創新技術推動教育數字化轉型，為全球教育機構提供領先的SaaS解決方案',
         'about_company_title': '公司簡介',
         'about_company_desc_1': '希望未來科技有限公司成立於2024年8月，是一家專注於教育科技創新的高新技術企業。我們致力於通過先進的SaaS技術，為教育機構、企業和個人提供全方位的在線教育解決方案。',
-        'about_company_desc_2': '公司總部位於香港，在北京、深圳等地設有研發中心，擁有一支由教育專家、技術工程師和產品設計師組成的專業團隊。我們深度理解教育行業需求，結合前沿技術，打造了EduPlatform這一領先的在線教育SaaS平台。',
+        'about_company_desc_2': '公司總部位於香港，在北京、深圳等地設有研發中心，擁有一支由教育專家、技術工程師和產品設計師組成的專業團隊。我們深度理解教育行業需求，結合前沿技術，打造了AIEducation這一領先的在線教育SaaS平台。',
         'about_company_desc_3': '截至目前，我們已服務超過5000家教育機構，覆蓋K12教育、高等教育、企業培訓等多個領域，累計幫助超過100萬學員實現在線學習。',
         'about_stats_institutions': '合作機構',
         'about_stats_students': '服務學員',
@@ -1033,7 +1033,7 @@ const i18n = {
         'about_timeline_2024_08_title': '公司成立',
         'about_timeline_2024_08_desc': '希望未來科技有限公司在香港正式成立，開始專注於教育科技領域的技術研發',
         'about_timeline_2025_02_title': '產品發布',
-        'about_timeline_2025_02_desc': 'EduPlatform 1.0正式發布，獲得首批100家教育機構的認可使用',
+        'about_timeline_2025_02_desc': 'AIEducation 1.0正式發布，獲得首批100家教育機構的認可使用',
         'about_timeline_2025_03_title': '業務擴展',
         'about_timeline_2025_03_desc': '服務客戶突破100家，產品功能不斷完善，獲得多項技術專利',
         'about_timeline_2025_05_title': '國際化發展',
@@ -1102,7 +1102,7 @@ const i18n = {
         'language': 'Language',
         
         // Hero Section
-        'hero_title': 'Online Classroom SaaS Solution',
+        'hero_title': 'AI Education Solution',
         'hero_subtitle': 'One-stop solution for individual teachers and educational institutions to easily create, manage and promote your online courses.',
         'start_free_trial': 'Start 14-Day Free Trial',
         'learn_more': 'Learn More',
@@ -1155,7 +1155,7 @@ const i18n = {
         'contact_email_title': 'Email',
         'contact_email': 'business@hopefuturetech.com',
         'contact_phone_title': 'Phone',
-        'contact_phone': '+852 5539 3275 or +86 159 1112 1975',
+        'contact_phone': '+852 5539 3275',
         'follow_us': 'Follow Us',
         'name': 'Name',
         'email': 'Email',
@@ -1172,8 +1172,8 @@ const i18n = {
         'send_message': 'Send Message',
         
         // Footer
-        'footer_description': 'EduPlatform is a leading online education SaaS platform helping individual teachers and educational institutions easily create, manage and sell online courses.',
-        'copyright': '© 2025 EduPlatform. All rights reserved.',
+        'footer_description': 'AIEducation is a leading online education SaaS platform helping individual teachers and educational institutions easily create, manage and sell online courses.',
+        'copyright': '© 2025 AIEducation. All rights reserved.',
         
         // Feature Cards
         'course_creation': 'Course Creation',
@@ -1243,7 +1243,7 @@ const i18n = {
         'cookie_policy': 'Cookie Policy',
         
         // Page Title
-        'page_title': 'EduPlatform - Professional Online Classroom SaaS Solution',
+        'page_title': 'AIEducation - Professional AI Education Solution',
         
         // Trust Badges Section
         'trusted_by': 'Trusted by Excellent Teachers and Leading Educational Institutions Worldwide',
@@ -1286,16 +1286,16 @@ const i18n = {
         
         // Customer Reviews
         'customer_title_1': 'Individual English Training Teacher',
-        'customer_name_1': 'Xia Zhiqiang',
-        'customer_review_1': '"After using EduPlatform, our course sales increased by 300%. The platform\'s ease of use allows us to focus on teaching content rather than technical issues. Student experience has also greatly improved, with course completion rates now 40% higher than before."',
+        'customer_name_1': 'Gao Hongfei',
+        'customer_review_1': '"After using AIEducation, our course sales increased by 300%. The platform\'s ease of use allows us to focus on teaching content rather than technical issues. Student experience has also greatly improved, with course completion rates now 40% higher than before."',
         
         'customer_title_2': 'Professional Skills Trainer',
-        'customer_name_2': 'Huang Tao',
-        'customer_review_2': '"As an independent trainer, I needed a platform that was both professional and affordable. EduPlatform perfectly meets my needs. The customer support team is always quick to respond and helps resolve any issues. Highly recommended for anyone looking to create online courses!"',
+        'customer_name_2': 'Zhang Tianqi',
+        'customer_review_2': '"As an independent trainer, I needed a platform that was both professional and affordable. AIEducation perfectly meets my needs. The customer support team is always quick to respond and helps resolve any issues. Highly recommended for anyone looking to create online courses!"',
         
         'customer_title_3': 'Individual Entrepreneur',
-        'customer_name_3': 'Yan Xiaokun',
-        'customer_review_3': '"I use EduPlatform to provide training courses for students. The platform features are very powerful, especially the custom domain and advanced analytics tools. I can accurately track student progress, which is very helpful for evaluating my training programs."',
+        'customer_name_3': 'Li Feiteng',
+        'customer_review_3': '"I use AIEducation to provide training courses for students. The platform features are very powerful, especially the custom domain and advanced analytics tools. I can accurately track student progress, which is very helpful for evaluating my training programs."',
         
         // FAQ
         'faq_section_title': 'Frequently Asked Questions',
@@ -1468,7 +1468,7 @@ const i18n = {
         'business_cooperation': 'Business Cooperation',
         
         // Education Consultation Page
-        'consultation_page_title': 'Education Consultation - EduPlatform Professional Services',
+        'consultation_page_title': 'Education Consultation - AIEducation Professional Services',
         'nav_consultation': 'Education Consultation',
 
         'consultation_hero_title': 'Professional Education Consultation Services',
@@ -1549,7 +1549,7 @@ const i18n = {
         'about_hero_subtitle': 'Committed to promoting educational digital transformation through innovative technology, providing leading SaaS solutions for global educational institutions',
         'about_company_title': 'Company Profile',
         'about_company_desc_1': 'Hope Future Technology Co., Ltd. was established in August 2024 as a high-tech enterprise focused on educational technology innovation. We are committed to providing comprehensive online education solutions for educational institutions, enterprises, and individuals through advanced SaaS technology.',
-        'about_company_desc_2': 'Headquartered in Hong Kong with R&D centers in Beijing and Shenzhen, we have a professional team composed of education experts, technical engineers, and product designers. We deeply understand the needs of the education industry and combine cutting-edge technology to create EduPlatform, a leading online education SaaS platform.',
+        'about_company_desc_2': 'Headquartered in Hong Kong with R&D centers in Beijing and Shenzhen, we have a professional team composed of education experts, technical engineers, and product designers. We deeply understand the needs of the education industry and combine cutting-edge technology to create AIEducation, a leading online education SaaS platform.',
         'about_company_desc_3': 'To date, we have served over 5,000 educational institutions, covering K12 education, higher education, corporate training, and other fields, helping over 1 million students achieve online learning.',
         'about_stats_institutions': 'Partner Institutions',
         'about_stats_students': 'Students Served',
@@ -1576,7 +1576,7 @@ const i18n = {
         'about_timeline_2024_08_title': 'Company Founded',
         'about_timeline_2024_08_desc': 'Hope Future Technology Co., Ltd. was officially established in Hong Kong, beginning to focus on educational technology research and development',
         'about_timeline_2025_02_title': 'Product Launch',
-        'about_timeline_2025_02_desc': 'EduPlatform 1.0 officially launched, gaining recognition and use from the first 100 educational institutions',
+        'about_timeline_2025_02_desc': 'AIEducation 1.0 officially launched, gaining recognition and use from the first 100 educational institutions',
         'about_timeline_2025_03_title': 'Business Expansion',
         'about_timeline_2025_03_desc': 'Service clients exceeded 100, product features continuously improved, obtained multiple technical patents',
         'about_timeline_2025_05_title': 'International Development',
