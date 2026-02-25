@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="privacy_page_title">隐私政策</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#7C3AED',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                }
+            }
+        };
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-custom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+            .bg-gradient-custom { background: linear-gradient(135deg, #165DFF 0%, #7C3AED 100%); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">AIEducation</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="myword.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_word_study">背单词</a>
+                    <a href="myclothes.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_clothes">AI换衣</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-gray-700 hover:text-blue-600 transition-custom font-medium" data-i18n="nav_apps">应用下载</a>
+                </div>
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-blue-600 transition-custom">
+                            <span id="current-lang" class="text-sm hidden sm:inline">简体中文</span>
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                    <button id="mobile-menu-toggle" class="md:hidden flex items-center text-gray-700 hover:text-blue-600 transition-custom p-1">
+                        <i class="fa fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏 -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-50 md:hidden hidden">
+        <div id="mobile-sidebar-overlay" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="ml-2 text-lg font-bold text-gray-900">AIEducation</span>
+                </div>
+                <button id="mobile-sidebar-close" class="text-gray-500 hover:text-gray-700"><i class="fa fa-times text-xl"></i></button>
+            </div>
+            <div class="p-4">
+                <a href="index.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_home"><i class="fa fa-home mr-3 text-gray-400"></i>首页</a>
+                <a href="index.html#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features"><i class="fa fa-star mr-3 text-gray-400"></i>功能</a>
+                <a href="index.html#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing"><i class="fa fa-tags mr-3 text-gray-400"></i>价格</a>
+                <a href="myword.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom"><i class="fa fa-book mr-3 text-gray-400"></i><span data-i18n="nav_word_study">背单词</span></a>
+                <a href="myclothes.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom"><i class="fa fa-tshirt mr-3 text-gray-400"></i><span data-i18n="nav_clothes">AI换衣</span></a>
+                <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation"><i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询</a>
+                <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about"><i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们</a>
+                <a href="apps.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_apps"><i class="fa fa-mobile mr-3 text-gray-400"></i>应用下载</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2" data-i18n="privacy_title">隐私政策</h1>
+        <p class="text-gray-500 mb-8" data-i18n="privacy_last_updated">最后更新：2026年2月</p>
+
+        <article class="prose prose-gray max-w-none space-y-8">
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s1_title">一、我们收集的信息</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_1_1">1.1 账号信息：手机号码（用于注册、登录及验证码服务）。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_1_2">1.2 您主动提供的信息：头像、昵称、五行档案、衣柜图片、穿搭照片等。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_1_3">1.3 设备与使用信息：设备型号、操作系统、使用时长等，用于优化服务体验。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_1_4">1.4 相册权限：仅在您选择上传图片时使用，用于衣柜管理、模特照、穿搭保存等功能。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_1_5">1.5 向 AI 服务传输的图片：为使用人像抠图、虚拟试穿、智能搭配等 AI 功能，在您明确同意后，我们会将您选择的照片传输至我们的服务器及合作 AI 服务商（如 Google Gemini）进行图像处理，仅用于实现上述功能，不会用于其他目的。具体数据内容、接收方及第三方保护说明见下方「五、第三方 AI 与数据说明」。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s2_title">二、信息使用目的</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_2_1">2.1 为您提供智能穿搭、衣柜管理、AI 换装、五行推荐等核心功能。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_2_2">2.2 保障账号安全，进行身份验证。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_2_3">2.3 改进产品与服务，优化算法与用户体验。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_2_4">2.4 在法律要求或经您同意的情况下，用于其他明确告知的用途。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s3_title">三、信息存储与保护</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_3_1">3.1 我们采用行业通行的安全措施保护您的个人信息。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_3_2">3.2 您的数据主要存储在您所使用设备的本地及我们的安全服务器中。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_3_3">3.3 我们会根据业务需要保留必要期限，超期后将进行删除或匿名化处理。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s4_title">四、信息共享与披露</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_4_1">4.1 我们不会出售您的个人信息。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_4_2">4.2 在以下情形下，我们可能会共享或披露信息：</p>
+                <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-3">
+                    <li data-i18n="privacy_4_2_1">经您明确同意；</li>
+                    <li data-i18n="privacy_4_2_2">为完成验证码、云存储等服务，与必要的第三方服务商共享（我们会要求其遵守严格的保密义务）；</li>
+                    <li data-i18n="privacy_4_2_3">根据法律法规或政府部门要求；</li>
+                    <li data-i18n="privacy_4_2_4">为保护本应用、用户或公众的合法权益所必需。</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s5_title">五、第三方 AI 与数据说明</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_5_intro">本应用使用第三方 AI 服务以提供「五行穿衣建议」「人像抠图」「虚拟试穿」「智能搭配」等功能。</p>
+                <p class="text-gray-700 mb-3"><strong data-i18n="privacy_5_obj_label">【数据发送对象】</strong> <span data-i18n="privacy_5_obj_text">我们使用的第三方 AI 服务商包括：(1) Google Gemini（用于人像抠图、虚拟试穿、智能搭配等图像处理）；(2) OpenAI 兼容接口服务商（用于五行穿衣建议）。我们与上述服务商均约定其须对数据处理提供与本政策相同或同等的保护。</span></p>
+                <p class="text-gray-700 mb-2" data-i18n="privacy_5_1_title">1) 五行建议：</p>
+                <p class="text-gray-700 mb-3 pl-4" data-i18n="privacy_5_1">仅向上述 AI 服务发送当日日期、星期、农历信息（不含手机号、设备标识等个人身份信息），用于生成当日五行与穿衣建议。使用该功能即表示您知悉并同意上述数据按本政策被发送至该 AI 服务商。</p>
+                <p class="text-gray-700 mb-2" data-i18n="privacy_5_2_title">2) 向 AI 服务传输图片：</p>
+                <p class="text-gray-700 mb-3 pl-4" data-i18n="privacy_5_2">人像抠图、虚拟试穿、智能搭配等功能需要将您上传的照片传输至我们的服务器，并由合作 AI 服务商（如 Google Gemini）进行图像处理。我们仅在您于应用内明确同意「AI 照片授权」后才会进行上述传输；传输的数据仅为您选择的照片图像，仅用于实现对应功能，不会将您的照片用于广告、训练其他模型或向其他第三方提供。您可随时在「设置」-「AI 照片授权」中更改授权。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_5_3">3) 我们会在隐私政策中持续披露所收集的数据、收集方式、全部用途以及与之共享数据的第三方；使用上述 AI 功能即表示您同意我们按本政策处理相关数据。您可随时在设置中清除数据或注销账号。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s6_title">六、您的权利</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_6_1">6.1 您可以在应用内修改头像、昵称等信息。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_6_2">6.2 您可以随时删除衣柜中的图片和搭配记录。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_6_3">6.3 您可在「设置」-「注销账号」中永久删除账号及全部本地数据（符合 App Store 要求）。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_6_4">6.4 您可以通过退出登录、卸载应用等方式停止我们继续收集您的信息。</p>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_6_5">6.5 如您对个人信息处理有异议，可通过应用内反馈或官方渠道联系我们。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s7_title">七、未成年人保护</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_7_1">本应用主要面向成年人。如您为未成年人，请在监护人指导下使用，我们不会主动收集未成年人的个人信息。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s8_title">八、政策更新</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_8_1">我们可能适时更新本政策。更新后的政策将在应用内公布，重大变更我们会通过适当方式通知您。继续使用即表示您同意更新后的政策。</p>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-900 mt-8 mb-4" data-i18n="privacy_s9_title">九、联系我们</h2>
+                <p class="text-gray-700 mb-3" data-i18n="privacy_9_1">如您对本隐私政策有任何疑问或建议，请通过应用内反馈或官方渠道与我们联系。</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="bg-dark text-white py-8 mt-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400" data-i18n="copyright">© 2025 AIEducation. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="js/version.js?v=1.0.0"></script>
+    <script src="js/i18n.js?v=1.0.0"></script>
+    <script src="js/language-switcher.js?v=1.0.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var t = document.getElementById('mobile-menu-toggle');
+            var s = document.getElementById('mobile-sidebar');
+            var o = document.getElementById('mobile-sidebar-overlay');
+            var c = document.getElementById('mobile-sidebar-close');
+            var content = s && s.querySelector('.absolute.left-0');
+            function open() { if (s && content) { s.classList.remove('hidden'); setTimeout(function() { content.classList.remove('-translate-x-full'); }, 10); document.body.style.overflow = 'hidden'; } }
+            function close() { if (s && content) { content.classList.add('-translate-x-full'); setTimeout(function() { s.classList.add('hidden'); }, 300); document.body.style.overflow = ''; } }
+            if (t) t.addEventListener('click', open);
+            if (c) c.addEventListener('click', close);
+            if (o) o.addEventListener('click', close);
+            var links = s && s.querySelectorAll('a');
+            if (links) links.forEach(function(el) { el.addEventListener('click', close); });
+        });
+    </script>
+</body>
+</html>
