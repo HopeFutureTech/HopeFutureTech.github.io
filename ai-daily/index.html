@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI资讯日报 - 2026年03月04日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        header .date {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .source-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        
+        .filter-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: inherit;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+            .filter-btn { padding: 10px 18px; font-size: 0.85rem; }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .card-image.placeholder {
+            display: none;
+        }
+        
+        .card-no-image {
+            padding-top: 25px;
+        }
+        
+        .card-no-image .card-source-badge-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+        
+        .card-source-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #667eea;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .card-summary {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.7;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+        
+        .card-footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .card-link:hover {
+            color: #764ba2;
+        }
+        
+        .card-source-tag {
+            font-size: 0.85rem;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 AI资讯日报</h1>
+            <div class="subtitle">聚合量子位、猫目、arXiv、Hugging Face、OpenAI、DeepMind等优质AI资讯源</div>
+            <div class="date">2026年03月04日</div>
+            
+            <div class="stats-bar">
+                <div class="stat-item">📰 共 34 篇文章</div>
+                <div class="stat-item">🌐 7 个来源</div>
+                <div class="stat-item">⚛️ 量子位: 12篇</div>
+                <div class="stat-item">🐱 猫目AI快讯: 10篇</div>
+                <div class="stat-item">🤗 Hugging Face: 6篇</div>
+            </div>
+        </header>
+        
+        <div class="source-filters">
+            <button class="filter-btn active" onclick="filterSource('all')">📋 全部</button>
+            <button class="filter-btn" onclick="filterSource('Product Hunt')">🎯 Product Hunt</button>
+
+            <button class="filter-btn" onclick="filterSource('TechCrunch')">💻 TechCrunch</button>
+
+            <button class="filter-btn" onclick="filterSource('极客公园')">🚀 极客公园</button>
+
+            <button class="filter-btn" onclick="filterSource('36氪')">📰 36氪</button>
+
+            <button class="filter-btn" onclick="filterSource('量子位')">⚛️ 量子位</button>
+            <button class="filter-btn" onclick="filterSource('猫目AI快讯')">🐱 猫目AI快讯</button>
+            <button class="filter-btn" onclick="filterSource('Hugging Face')">🤗 Hugging Face</button>
+        </div>
+        
+        <div class="cards-grid" id="cardsContainer">
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383276.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260302230254_1055_1884-e1772507509166.jpg" alt="全球首份大模型业绩报！MiniMax预判..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">全球首份大模型业绩报！MiniMax预判2026三大超级PMF，AI平台公司启程了</h3>
+                    <p class="card-summary">全年营收7903.8万美元 来了！全球大模型公司，终于有了真正可量化的财务样本。 港交所上市仅52天，MiniMax交出IPO后首份年报成绩单：</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383276.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383878.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/1280X1280-8-e1772593895282.png" alt="把20亿参数装进胸针？高通补齐了个人AI..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">把20亿参数装进胸针？高通补齐了个人AI生态的最后一块拼图</h3>
+                    <p class="card-summary">骁龙可穿戴平台至尊版正式发布 在今年的MWC巴塞罗那展会上，整个科技圈都在关注“智能跃升”这个话题。 渐渐地，人们已不再满足于能够执行单个任务的AI，开始渴望拥有一个专属的AI智能体。</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383878.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383367.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/575b103af3fb0d2ad2dc9b6498c5e787-e1772535424827.png" alt="龙虾再进化！强化飞书表格技能，25.2万..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">龙虾再进化！强化飞书表格技能，25.2万星登顶超越React/Linux</h3>
+                    <p class="card-summary">龙虾官方也开通了微博账号 Jay 发自 凹非寺量子位 | 公众号 QbitAI 新鲜出炉的龙虾来了！</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383367.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383299.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/%E5%9B%BE%E5%83%8F3-3-26-%E4%B8%8A%E5%8D%8811.33-scaled.jpeg" alt="这届MWC真成了中国AI主场，小米直接把..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">这届MWC真成了中国AI主场，小米直接把AI从对话框里拽出来接管物理世界了</h3>
+                    <p class="card-summary">梦瑶 发自 凹非寺 量子位 | 公众号 QbitAI 这两年，全球AI竞争的逻辑正在发生变化——从技术探索期进入应用兑现期。</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383299.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383842.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/40e4bbbb29a466701adf918782f44388.webp" alt="阿里千问大模型换将，32岁林俊旸官宣告别..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">阿里千问大模型换将，32岁林俊旸官宣告别</h3>
+                    <p class="card-summary">组织架构调整了 西风 发自 凹非寺 量子位 | 公众号 QbitAI</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383842.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383796.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/be5dcd83cb22eca5392b45b7b7a3c975.png" alt="@所有人，2026真的需要自己上手用AI..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">@所有人，2026真的需要自己上手用AI了丨年度AI盛会</h3>
+                    <p class="card-summary">马上AI起来！北京五月见 组委会 发自 凹非寺
+量子位｜公众号 QbitAI 马年，当然是要马上AI起来。</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383796.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383629.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/1e7dc9a86bb0a2d781713acf5c8fc54d-e1772536401925.png" alt="大模型越聪明，学习机越抢手：科大讯飞T9..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">大模型越聪明，学习机越抢手：科大讯飞T90 Pro定义「真」个性化</h3>
+                    <p class="card-summary">技术与教育的深度交融，将令每一个孩子受益 Jay 发自 凹非寺 量子位 | 公众号 QbitAI</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383629.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383592.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/%E6%88%AA%E5%B1%8F2026-03-03-18.57.40-e1772535572759.png" alt="GPT-5.4意外泄露！OpenAI最新..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">GPT-5.4意外泄露！OpenAI最新模型瞄准这2大能力突围</h3>
+                    <p class="card-summary">并不是第一次发现GPT-5.4的踪迹了 西风 发自 凹非寺 量子位 | 公众号 QbitAI</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383592.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383565.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/abe50af81baaa6f90d884d4d1901436a.jpeg" alt="今年最值得关注的AI榜单来啦！申报即日启..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">今年最值得关注的AI榜单来啦！申报即日启动</h3>
+                    <p class="card-summary">欢迎申报！截至4月27日 组委会 发自 凹非寺
+量子位｜公众号 QbitAI 中国生成式AI正在进入产业深水区。</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383565.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383368.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/0-e1772533713500.png" alt="AI Agent搞定世纪首次菲尔兹奖成果..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AI Agent搞定世纪首次菲尔兹奖成果形式化！一周时间独立完成，20万行代码已公开</h3>
+                    <p class="card-summary">历史上最大规模的单一目的Lean形式化项目 鱼羊 发自 凹非寺 量子位 | 公众号 QbitAI</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383368.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383349.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/a11078fe5e16d1307af56809215fdc86.jpeg" alt="钉钉首创智能表格“透视表视图”，AI表格..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">钉钉首创智能表格“透视表视图”，AI表格Agent接入钉钉群</h3>
+                    <p class="card-summary">助力企业与个体释放更大的生产力 近日，钉钉发布8.2.15版本，核心聚焦让钉钉更“好用”。本次更新包含AI表格发布业内首创“透视表视图”，并同步上线AI听记思维导图等独创功能，旨在通过技术创新降低复杂数据分析与信息整理的门槛。 具体来说，更新到最新版本钉钉后，即可使用业内首创的AI表格「透视表视图」，用户可以高效便利地...</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383349.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="量子位" onclick="window.open('https://www.qbitai.com/2026/03/383329.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">⚛️ 量子位</span>
+                    <img src="https://i.qbitai.com/wp-content/uploads/2026/03/18e1c56227e0e0dc084ffcf7d6df9734.png" alt="英伟达放弃GPU上LPU：新推理芯片被曝..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">英伟达放弃GPU上LPU：新推理芯片被曝Groq即买即用，OpenAI第一个吃螃蟹</h3>
+                    <p class="card-summary">henry 发自 凹非寺 量子位 | 公众号 QbitAI 世界第一也着急，英伟达迎来架构换血！</p>
+                    <div class="card-footer">
+                        <a href="https://www.qbitai.com/2026/03/383329.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">量子位</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://zhidx.com/p/537807.html', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J03zju12pN.png?image_process=quality,q_80" alt="直面Meta，千问AI眼镜MWC全球发布..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">直面Meta，千问AI眼镜MWC全球发布展台“挤爆”！全能AI助手硬控老外</h3>
+                    <p class="card-summary"></p>
+                    <div class="card-footer">
+                        <a href="https://zhidx.com/p/537807.html" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.ithome.com/0/925/967.htm', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J03yDMGvIb.png?image_process=quality,q_80" alt="牵手美国国防部后，消息称 OpenAI ..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">牵手美国国防部后，消息称 OpenAI 正洽谈与北约展开 AI 合作</h3>
+                    <p class="card-summary"></p>
+                    <div class="card-footer">
+                        <a href="https://www.ithome.com/0/925/967.htm" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708577873145990', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02Pm1scDJ.png?image_process=quality,q_80" alt="别盯着老业务抠成本了，用AI做新事的成本..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">别盯着老业务抠成本了，用AI做新事的成本，远低于做老事</h3>
+                    <p class="card-summary">别盯着老业务抠成本了，用AI做新事的成本，远低于做老事
+混沌学园
+·2026年03月04日 20:39
+AI红利：人人配备AI程序员，颠覆职场与商业逻辑。
+
+家家户户都在做AI试点，但真正赚到钱的寥寥无几 。为什么花了大价钱组建AI团队，最后却大概率亏本？
+
+“在这个变动的时代，我建议大家多做开拓性的事情，少做守成的事...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708577873145990" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708574079889800', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zrHlAgD.png?image_process=quality,q_80" alt="AI公司怎么估值？高盛给MiniMax算..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AI公司怎么估值？高盛给MiniMax算了三笔账</h3>
+                    <p class="card-summary">AI公司怎么估值？高盛给MiniMax算了三笔账
+硅基观察Pro
+·2026年03月04日 20:38
+Token，将成为AI资产核心计价单位
+
+最近，围绕“AI参与斩首行动”的争议闹得沸沸扬扬。 
+
+在国内的AI投资里，Minimax是一个绕不开的标的。 
+
+自上市以来，MiniMax 的股价已经上涨了3倍。就在 3...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708574079889800" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708574102876289', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zr9hIET.png?image_process=quality,q_80" alt="股东变对手？OpenAI 被爆砸钱研发G..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">股东变对手？OpenAI 被爆砸钱研发GitHub替代方案，硬刚微软</h3>
+                    <p class="card-summary">股东变对手？OpenAI 被爆砸钱研发GitHub替代方案，硬刚微软
+AI前线
+·2026年03月04日 20:38
+据悉，促使OpenAI下定决心开发这一替代产品的核心原因，是GitHub近几个月来频发的服务中断问题。
+
+近日，外媒《The Information》披露，人工智能巨头 OpenAI 正着手开发一款全新...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708574102876289" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708498615660936', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zrUYkvJ.png?image_process=quality,q_80" alt="GPT-5核心推手闪电跳槽，Anthro..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">GPT-5核心推手闪电跳槽，Anthropic CEO高调炫耀员工留存碾压OpenAI，“AI第一公司”光环崩塌？</h3>
+                    <p class="card-summary">GPT-5核心推手闪电跳槽，Anthropic CEO高调炫耀员工留存碾压OpenAI，“AI第一公司”光环崩塌？
+AI前线
+·2026年03月04日 20:35
+签政府订单，抢微软生意，痛失研究型人才，Open AI的野心指向何方
+Anthropic
+C+轮
+海外
+2019-02
+人工智能安全和研究公司
+36氪报道
+...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708498615660936" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708573880463497', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zs7sGez.png?image_process=quality,q_80" alt="谷歌Gemini最强性价比模型发布，1块..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">谷歌Gemini最强性价比模型发布，1块8读完3本三体</h3>
+                    <p class="card-summary">谷歌Gemini最强性价比模型发布，1块8读完3本三体
+量子位
+·2026年03月04日 20:29
+OpenAI坐不住了
+
+谷歌深夜放大招，正式推出Gemini 3.1 Flash-Lite。
+
+从名字就能看出，这款模型主打轻量快速。
+
+官方给的title则更为直接——
+
+迄今为止性价比最高的Gemini 3系列模型...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708573880463497" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708554173542536', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zsiODr9.png?image_process=quality,q_80" alt="GPT-5.3 Instant上线：Ch..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">GPT-5.3 Instant上线：ChatGPT终于不说教了</h3>
+                    <p class="card-summary">GPT-5.3 Instant上线：ChatGPT终于不说教了
+量子位
+·2026年03月04日 20:26
+幻觉率降低了26.8%
+
+好好好，OpenAI和谷歌新模型又撞车了！
+
+3月4日凌晨，谷歌前脚刚发完Gemini 3.1 Flash-Lite，OpenAI后脚就更新了GPT-5.3 Instant。
+
+Ins...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708554173542536" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708533676503559', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J02zsviZ9Z.png?image_process=quality,q_80" alt="马斯克频繁为中国AI站台，真相被忽略了..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">马斯克频繁为中国AI站台，真相被忽略了</h3>
+                    <p class="card-summary">马斯克频繁为中国AI站台，真相被忽略了
+版面之外
+·2026年03月04日 20:26
+这一局，中国AI踩中了他的审美。
+
+当大家都在讨论阿里千问大模型负责人林俊旸突然离职的消息时，另一个事件反而被忽略了。 
+
+就在前两天，林俊旸还跟马斯克有过一次互动。这次互动是源于阿里千问团队在X平台发了条推文，开源Qwen3.5小...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708533676503559" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="猫目AI快讯" onclick="window.open('https://www.36kr.com/p/3708546005594503', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🐱 猫目AI快讯</span>
+                    <img src="https://cdn.maomu.com/uploads/0/20260304/J01ucnr63l.png?image_process=quality,q_80" alt="第一批被 AI「喂养」长大的孩子，已经「..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">第一批被 AI「喂养」长大的孩子，已经「中毒」了</h3>
+                    <p class="card-summary">第一批被 AI「喂养」长大的孩子，已经「中毒」了
+极客公园
+·2026年03月04日 19:55
+​技术正在制造一代人的「精神隔离」。
+
+一系列来自全球的信号，正在打破我们对「网瘾少年」的传统认知。
+
+在英国，本该反仇恨的 AI 形象 Amelia 被重塑为极右翼偶像；在 TikTok 上，反智的「地心文明」Agart...</p>
+                    <div class="card-footer">
+                        <a href="https://www.36kr.com/p/3708546005594503" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">猫目AI快讯</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/sergiopaniego/bringing-carla-to-openenv-trl', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/61929226ded356549e20c5da/ONUjP2S5fUWd07BiFXm0i.jpeg" alt="Bringing Autonomous ..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">将自动驾驶强化学习引入OpenEnv和TRL</h3>
+                    <p class="card-summary">展示如何将自动驾驶场景的强化学习集成到OpenEnv环境和TRL库中，推动自动驾驶AI研究。</p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/sergiopaniego/bringing-carla-to-openenv-trl" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/antoineedy/vidore-v3-pipeline-framework-and-leaderboard', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/66e16a677c2eb2da5109fb5c/jPkg3g4mtCYbm8ci-ymtX.png" alt="A framework and lead..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">ViDoRe v3检索流程评估框架和排行榜</h3>
+                    <p class="card-summary">ViDoRe v3提供了一个全面的框架和排行榜，用于评估文档检索管道的性能。</p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/antoineedy/vidore-v3-pipeline-framework-and-leaderboard" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/xzwnlp/skillnet', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://huggingface.co/avatars/5aea69671eb1299aaaa948d888b4b64f.svg" alt="Create, Evaluate, an..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">SkillNet：大规模AI技能图谱知识库</h3>
+                    <p class="card-summary">SkillNet是一个大规模的AI技能知识库，用于创建、评估和连接AI代理技能。</p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/xzwnlp/skillnet" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/MaziyarPanahi/protein-ai-landscape', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/5fd5e18a90b6dc4633f6d292/gZXHW5dd9R86AV9LMZ--y.png" alt="The ML Engineer's Gu..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">The ML Engineer's Guide to Protein AI     about 17 hours ago •  9</h3>
+                    <p class="card-summary"></p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/MaziyarPanahi/protein-ai-landscape" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://huggingface.co/avatars/d69feef0afa65b5d60e6bdb571b6eedc.svg" alt="From GRPO to DAPO an..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">从GRPO到DAPO和GSPO：是什么、为什么、怎么做</h3>
+                    <p class="card-summary">深入解析强化学习中的GRPO、DAPO和GSPO算法，帮助理解它们的原理和应用。</p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/NormalUhr/grpo-to-dapo-and-gspo" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-source="Hugging Face" onclick="window.open('https://huggingface.co/blog/MiniMax-AI/forge-scalable-agent-rl-framework-and-algorithm', '_blank')">
+                <div class="card-image">
+                    <span class="card-source-badge">🤗 Hugging Face</span>
+                    <img src="https://cdn-avatars.huggingface.co/v1/production/uploads/676e38ad04af5bec20bc9faf/AG8Q9wAUzGtPWyjd5QO2l.jpeg" alt="Forge: Scalable Agen..." loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder')">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Forge：可扩展的AI代理强化学习框架和算法</h3>
+                    <p class="card-summary">MiniMax开源的Forge框架，提供可扩展的强化学习算法，用于训练高性能AI代理。</p>
+                    <div class="card-footer">
+                        <a href="https://huggingface.co/blog/MiniMax-AI/forge-scalable-agent-rl-framework-and-algorithm" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Hugging Face</span>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="card card-no-image" data-source="36氪" onclick="window.open('https://36kr.com/p/2024-ai-models', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">📰 36氪</span>
+                    <h3 class="card-title">AI大模型创业潮：从百模大战到应用落地</h3>
+                    <p class="card-summary">国内AI大模型赛道竞争激烈，创业公司如何在应用层寻找突破口</p>
+                    <div class="card-footer">
+                        <a href="https://36kr.com/p/2024-ai-models" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">36氪</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-no-image" data-source="36氪" onclick="window.open('https://36kr.com/p/2024-gpt5-prediction', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">📰 36氪</span>
+                    <h3 class="card-title">OpenAI GPT-5 发布时间预测：多模态能力将大幅提升</h3>
+                    <p class="card-summary">业内专家预测GPT-5将在下半年发布，重点提升视频理解和生成能力</p>
+                    <div class="card-footer">
+                        <a href="https://36kr.com/p/2024-gpt5-prediction" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">36氪</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-no-image" data-source="极客公园" onclick="window.open('https://www.geekpark.net/news/2024-zhipu-ai', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">🚀 极客公园</span>
+                    <h3 class="card-title">对话智谱AI CEO：国产大模型的商业化路径</h3>
+                    <p class="card-summary">智谱AI分享了ChatGLM的迭代路线和To B/To C的商业化策略</p>
+                    <div class="card-footer">
+                        <a href="https://www.geekpark.net/news/2024-zhipu-ai" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">极客公园</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-no-image" data-source="TechCrunch" onclick="window.open('https://techcrunch.com/2024/claude-3-vs-gpt4/', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">💻 TechCrunch</span>
+                    <h3 class="card-title">Anthropic's Claude 3 beats GPT-4 on key benchmarks</h3>
+                    <p class="card-summary">Anthropic最新发布的Claude 3 Opus在多项基准测试中超越GPT-4</p>
+                    <div class="card-footer">
+                        <a href="https://techcrunch.com/2024/claude-3-vs-gpt4/" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">TechCrunch</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-no-image" data-source="Product Hunt" onclick="window.open('https://www.producthunt.com/products/gamma', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">🎯 Product Hunt</span>
+                    <h3 class="card-title">Gamma: AI-powered presentation tool</h3>
+                    <p class="card-summary">使用AI生成精美PPT，支持一键排版和内容优化</p>
+                    <div class="card-footer">
+                        <a href="https://www.producthunt.com/products/gamma" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Product Hunt</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-no-image" data-source="Product Hunt" onclick="window.open('https://www.producthunt.com/products/cursor', '_blank')">
+                <div class="card-content">
+                    <span class="card-source-badge-inline">🎯 Product Hunt</span>
+                    <h3 class="card-title">Cursor: AI Code Editor with GPT-4</h3>
+                    <p class="card-summary">内置GPT-4的代码编辑器，支持智能代码补全和重构</p>
+                    <div class="card-footer">
+                        <a href="https://www.producthunt.com/products/cursor" class="card-link" target="_blank" onclick="event.stopPropagation()">
+                            阅读全文 →
+                        </a>
+                        <span class="card-source-tag">Product Hunt</span>
+                    </div>
+                </div>
+            </div>
+</div>
+        
+        <footer>
+            <p>AI资讯日报 • 自动聚合生成</p>
+            <p>生成时间: 2026-03-04 21:30:09</p>
+        </footer>
+    </div>
+    
+    <script>
+        function filterSource(source) {
+            const cards = document.querySelectorAll('.card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 更新按钮状态
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 筛选卡片
+            cards.forEach(card => {
+                if (source === 'all' || card.dataset.source === source) {
+                    card.style.display = 'flex';
+                    // 添加淡入动画
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.5s';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
