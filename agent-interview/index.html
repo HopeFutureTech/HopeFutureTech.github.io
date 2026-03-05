@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent 面试题完整攻略</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; font-size: 14px; }
+        .nav {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+        .nav-item {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-size: 14px;
+            color: #666;
+        }
+        .nav-item.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: white;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .question-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .answer {
+            color: #555;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        .answer p { margin-bottom: 10px; }
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #667eea30;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        tr:hover { background: #f8f9fa; }
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 5px 5px 5px 0;
+        }
+        .tag.secondary { background: #764ba2; }
+        .architecture-diagram {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 22px; }
+            .content { padding: 20px; }
+            .question-title { font-size: 14px; }
+            table { font-size: 12px; }
+            th, td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Agent 面试题完整攻略</h1>
+            <p>20道核心面试题 · 主流框架详解 · 实战答案参考</p>
+        </div>
+        
+        <div class="nav">
+            <div class="nav-item active" onclick="showSection('basics')">Agent 基础 (10题)</div>
+            <div class="nav-item" onclick="showSection('frameworks')">主流框架 (10题)</div>
+            <div class="nav-item" onclick="showSection('summary')">面试技巧</div>
+        </div>
+        
+        <div class="content">
+            <!-- Agent 基础部分 -->
+            <div id="basics" class="section active">
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">1</span>
+                        简述大模型 Agent 与传统 AI 系统的核心区别
+                    </div>
+                    <div class="answer">
+                        <table>
+                            <tr><th>维度</th><th>传统 AI 系统</th><th>大模型 Agent</th></tr>
+                            <tr><td>决策能力</td><td>基于规则或简单ML，决策固定</td><td>基于LLM推理，可动态决策</td></tr>
+                            <tr><td>工具使用</td><td>功能预定义，无法扩展</td><td>可动态调用API，自主规划</td></tr>
+                            <tr><td>上下文理解</td><td>局限在特定领域</td><td>跨领域通用理解</td></tr>
+                            <tr><td>自主性</td><td>被动响应，需人工干预</td><td>自主规划、执行、反思</td></tr>
+                            <tr><td>学习方式</td><td>需重新训练/微调</td><td>提示工程、RAG快速适配</td></tr>
+                        </table>
+                        <div class="highlight-box">
+                            <strong>核心区别总结</strong>：传统AI是"工具"，大模型Agent是"数字员工"——能理解目标、自主规划、调用工具、持续迭代直到完成任务。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">2</span>
+                        LLM Agent 的典型架构组成
+                    </div>
+                    <div class="answer">
+                        <div class="architecture-diagram">
+┌─────────────────────────────────────────────────────────────┐<br>
+│                    LLM Agent Architecture                   │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │<br>
+│  │ Planning │  │  Memory  │  │   Tools  │  │  Action  │    │<br>
+│  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘    │<br>
+│       └─────────────┴──────┬──────┴─────────────┘          │<br>
+│                            ▼                               │<br>
+│                    ┌──────────────┐                        │<br>
+│                    │  LLM Core    │                        │<br>
+│                    │  (推理引擎)   │                        │<br>
+│                    └──────────────┘                        │<br>
+└─────────────────────────────────────────────────────────────┘
+                        </div>
+                        <p><strong>各组件职责</strong>：</p>
+                        <p><span class="tag">LLM Core</span> 推理引擎，理解指令、生成响应</p>
+                        <p><span class="tag secondary">Planning</span> 任务分解、子目标生成、执行计划</p>
+                        <p><span class="tag">Memory</span> 短期记忆（上下文）+ 长期记忆（知识库）</p>
+                        <p><span class="tag secondary">Tools</span> API调用、代码执行、搜索引擎</p>
+                        <p><span class="tag">Action</span> 将决策转化为实际行动</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">3</span>
+                        Agent 如何在任务执行中做出决策
+                    </div>
+                    <div class="answer">
+                        <p>Agent 决策通常采用 <strong>ReAct（Reasoning + Acting）</strong> 模式：</p>
+                        <div class="code-block">
+Thought → Action → Observation → Thought → Action → ... → Final Answer
+                        </div>
+                        <p><strong>决策流程</strong>：</p>
+                        <p>1️⃣ <strong>推理（Reasoning）</strong>：分析当前状态，评估下一步做什么</p>
+                        <p>2️⃣ <strong>行动（Action）</strong>：选择并执行具体动作（调用工具、搜索等）</p>
+                        <p>3️⃣ <strong>观察（Observation）</strong>：获取行动结果</p>
+                        <p>4️⃣ <strong>迭代</strong>：基于新信息重新推理，直到达成目标</p>
+                        <div class="highlight-box">
+                            <strong>常见决策模式</strong>：ReAct（推理行动交替）、CoT（思维链）、ToT（树状思维）、Reflexion（自我反思）
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">4</span>
+                        Agent 的长期记忆如何实现
+                    </div>
+                    <div class="answer">
+                        <div class="architecture-diagram">
+┌──────────────────────────────────────────────────────┐<br>
+│                    Long-term Memory                   │<br>
+├────────────────────┬─────────────────────────────────┤<br>
+│   Episodic Memory  │        Semantic Memory          │<br>
+│   (情景记忆/经验)   │        (语义知识/事实)           │<br>
+├────────────────────┼─────────────────────────────────┤<br>
+│ • 对话历史摘要      │ • 领域知识库                     │<br>
+│ • 成功案例记录      │ • FAQ/常见问答                   │<br>
+│ • 失败教训          │ • 文档向量化存储                  │<br>
+│ • 用户偏好          │ • 知识图谱                       │<br>
+└────────────────────┴─────────────────────────────────┘
+                        </div>
+                        <p><strong>实现技术</strong>：</p>
+                        <p><span class="tag">向量数据库</span> Pinecone、Chroma、Milvus - 语义检索</p>
+                        <p><span class="tag secondary">RAG</span> 检索增强生成，将记忆注入上下文</p>
+                        <p><span class="tag">知识图谱</span> Neo4j - 结构化实体关系</p>
+                        <p><span class="tag secondary">摘要机制</span> 定期压缩历史，保留关键信息</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">5</span>
+                        怎样实现 Agent 的动态 API 调用
+                    </div>
+                    <div class="answer">
+                        <p><strong>方式1：Function Calling（函数调用）</strong></p>
+                        <div class="code-block">
+functions = [{
+    "name": "get_weather",
+    "description": "获取指定城市的天气",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "city": {"type": "string", "description": "城市名称"},
+            "date": {"type": "string", "description": "日期"}
+        },
+        "required": ["city"]
+    }
+}]
+
+# LLM自动选择并填充参数
+response = llm.generate(user_input, functions=functions)
+                        </div>
+                        <p><strong>方式2</strong>：Toolformer / Gorilla - LLM学习API文档自主调用</p>
+                        <p><strong>方式3</strong>：LangChain Tool机制 - 工具注册→意图匹配→参数提取→执行</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">6</span>
+                        多模态 Agent 如何处理视觉与语言的联合推理
+                    </div>
+                    <div class="answer">
+                        <p><strong>多模态Agent架构</strong>：</p>
+                        <div class="architecture-diagram">
+图像/文本/音频输入<br>
+       ↓<br>
+Vision Encoder (ViT/CLIP)<br>
+       ↓<br>
+多模态融合层 (Cross-Attention)<br>
+       ↓<br>
+Multimodal LLM (GPT-4V/Gemini)<br>
+       ↓<br>
+联合推理决策
+                        </div>
+                        <p><strong>关键技术</strong>：</p>
+                        <p>• <strong>视觉编码器</strong>：ViT、CLIP提取图像特征</p>
+                        <p>• <strong>跨模态对齐</strong>：图像特征映射到文本空间</p>
+                        <p>• <strong>统一表示</strong>：图文token混合输入</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">7</span>
+                        Agent 在复杂任务中的局限性
+                    </div>
+                    <div class="answer">
+                        <table>
+                            <tr><th>局限类型</th><th>具体表现</th><th>改进方向</th></tr>
+                            <tr><td>幻觉问题</td><td>生成虚假信息</td><td>RAG增强、事实验证</td></tr>
+                            <tr><td>长程规划</td><td>多步骤偏离目标</td><td>层次化任务分解</td></tr>
+                            <tr><td>上下文限制</td><td>无法处理超长上下文</td><td>记忆压缩、外部存储</td></tr>
+                            <tr><td>计算成本</td><td>多轮推理token消耗大</td><td>模型蒸馏、缓存优化</td></tr>
+                            <tr><td>安全性风险</td><td>可能执行危险操作</td><td>沙箱执行、权限控制</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">8</span>
+                        如何衡量 Agent 的性能
+                    </div>
+                    <div class="answer">
+                        <table>
+                            <tr><th>维度</th><th>指标</th><th>说明</th></tr>
+                            <tr><td>任务完成度</td><td>成功率、准确率</td><td>是否达成目标</td></tr>
+                            <tr><td>效率</td><td>步骤数、Token消耗</td><td>完成任务的成本</td></tr>
+                            <tr><td>质量</td><td>BLEU、ROUGE、人工评分</td><td>输出结果质量</td></tr>
+                            <tr><td>鲁棒性</td><td>错误恢复率</td><td>异常情况下表现</td></tr>
+                        </table>
+                        <p><strong>评估方法</strong>：WebArena、Mind2Web、AgentBench 等基准测试，LLM-as-Judge自动评估</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">9</span>
+                        未来可能出现的技术突破方向
+                    </div>
+                    <div class="answer">
+                        <p>1️⃣ <strong>更强的推理能力</strong> - 慢思考（Slow Thinking）机制</p>
+                        <p>2️⃣ <strong>多Agent协作系统</strong> - Agent社会模拟</p>
+                        <p>3️⃣ <strong>具身智能</strong> - 与机器人结合</p>
+                        <p>4️⃣ <strong>持续学习与自适应</strong> - 在线学习新知识</p>
+                        <p>5️⃣ <strong>安全与对齐</strong> - 更完善的安全机制</p>
+                        <p>6️⃣ <strong>效率优化</strong> - 边缘部署</p>
+                        <p>7️⃣ <strong>多模态统一</strong> - 图文音视频统一理解</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">10</span>
+                        设计一个简单的医学问答 Agent
+                    </div>
+                    <div class="answer">
+                        <p><strong>系统架构</strong>：</p>
+                        <div class="architecture-diagram">
+用户输入 → Query Analyzer（症状/意图/紧急度）<br>
+              ↓<br>
+    RAG模块（医学知识库+药品库+临床指南）<br>
+              ↓<br>
+    LLM推理引擎（医学Prompt+安全约束）<br>
+              ↓<br>
+    输出后处理（术语解释+免责声明+转诊建议）
+                        </div>
+                        <div class="tip-box">
+                            <strong>安全约束</strong>：不提供确诊、建议严重时就医、标注信息来源
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 主流框架部分 -->
+            <div id="frameworks" class="section">
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">11</span>
+                        LangChain 的核心概念
+                    </div>
+                    <div class="answer">
+                        <table>
+                            <tr><th>概念</th><th>说明</th><th>示例</th></tr>
+                            <tr><td>Chains</td><td>组件的有序组合</td><td>LLM + Prompt + Output Parser</td></tr>
+                            <tr><td>Agents</td><td>动态决策执行</td><td>根据输入选择不同工具</td></tr>
+                            <tr><td>Memory</td><td>状态持久化</td><td>对话历史存储</td></tr>
+                            <tr><td>Tools</td><td>外部能力封装</td><td>搜索、计算、API调用</td></tr>
+                            <tr><td>Indexes</td><td>数据检索</td><td>向量数据库、文档加载</td></tr>
+                        </table>
+                        <div class="highlight-box">
+                            <strong>核心价值</strong>：将LLM与外部数据、工具连接，构建复杂应用的标准化框架
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">12</span>
+                        LlamaIndex 如何进行数据索引
+                    </div>
+                    <div class="answer">
+                        <p><strong>索引流程</strong>：原始数据 → 加载 → 解析 → 分块 → 嵌入 → 存储 → 检索</p>
+                        <table>
+                            <tr><th>索引类型</th><th>适用场景</th><th>特点</th></tr>
+                            <tr><td>VectorStoreIndex</td><td>通用语义搜索</td><td>最常用，向量相似度</td></tr>
+                            <tr><td>SummaryIndex</td><td>全文总结</td><td>遍历所有节点</td></tr>
+                            <tr><td>TreeIndex</td><td>层次化查询</td><td>树状结构</td></tr>
+                            <tr><td>KeywordTableIndex</td><td>关键词匹配</td><td>基于倒排索引</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">13</span>
+                        AutoGPT 的工作原理
+                    </div>
+                    <div class="answer">
+                        <p><strong>核心循环</strong>：</p>
+                        <div class="code-block">
+目标设定 → 任务分解 → 循环执行 → 完成判断
+
+循环内：
+1. Think（思考）→ 制定计划
+2. Act（行动）→ 执行操作
+3. Observe（观察）→ 获取结果  
+4. Memory Update（记忆更新）→ 存储经验
+5. 循环直到完成
+                        </div>
+                        <p><strong>关键特性</strong>：自主决策、长期记忆（向量数据库）、文件系统操作、网页浏览</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">14</span>
+                        BabyAGI 的任务创建和优先级排序
+                    </div>
+                    <div class="answer">
+                        <div class="code-block">
+while True:
+    task = task_list[0]              # 执行第一个任务
+    result = execute_task(task)       # 执行
+    vectorstore.add(result)           # 存储结果
+    new_tasks = create_tasks(result)  # LLM生成新任务
+    task_list.extend(new_tasks)       # 添加到列表
+    prioritize_tasks(task_list)       # 优先级排序
+                        </div>
+                        <p><strong>与AutoGPT区别</strong>：更轻量，专注于任务列表管理，简化决策逻辑</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">15</span>
+                        CrewAI 的多 Agent 协作模式
+                    </div>
+                    <div class="answer">
+                        <p><strong>核心概念</strong>：</p>
+                        <p>• <strong>Agent</strong> - 具有特定角色、目标和背景</p>
+                        <p>• <strong>Task</strong> - 分配给Agent的具体工作</p>
+                        <p>• <strong>Crew</strong> - 多个Agent的协作组</p>
+                        <p>• <strong>Process</strong> - 任务执行顺序（顺序/并行/层级）</p>
+                        <div class="code-block">
+researcher = Agent(role='研究员', goal='收集信息')
+writer = Agent(role='撰稿人', goal='撰写报告')
+task1 = Task(description='研究AI市场', agent=researcher)
+task2 = Task(description='撰写报告', agent=writer, context=[task1])
+crew = Crew(agents=[researcher, writer], tasks=[task1, task2])
+result = crew.kickoff()
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">16</span>
+                        AgentGPT 与 AutoGPT 的主要区别
+                    </div>
+                    <div class="answer">
+                        <table>
+                            <tr><th>维度</th><th>AgentGPT</th><th>AutoGPT</th></tr>
+                            <tr><td>运行环境</td><td>浏览器/Web端</td><td>本地/Python脚本</td></tr>
+                            <tr><td>部署难度</td><td>开箱即用</td><td>需要配置环境</td></tr>
+                            <tr><td>可定制性</td><td>较低</td><td>高（代码级定制）</td></tr>
+                            <tr><td>目标用户</td><td>非技术用户</td><td>开发者</td></tr>
+                        </table>
+                        <p><strong>本质</strong>：AgentGPT = AutoGPT的Web封装版，降低使用门槛</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">17</span>
+                        LangGraph 的优势
+                    </div>
+                    <div class="answer">
+                        <p><strong>vs 传统Chain</strong>：</p>
+                        <p>• <strong>图结构</strong>（节点+边）vs 线性链式</p>
+                        <p>• 支持<strong>循环</strong>、<strong>条件分支</strong>、<strong>并行</strong></p>
+                        <p>• 内置<strong>状态管理</strong>（StateGraph）</p>
+                        <p>• 适合构建<strong>多Agent系统</strong></p>
+                        <div class="tip-box">适合场景：需要反复迭代的对话、条件判断、多Agent协作</div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">18</span>
+                        什么是 Agent 的 ReAct 模式
+                    </div>
+                    <div class="answer">
+                        <p><strong>ReAct = Reasoning（推理）+ Acting（行动）</strong></p>
+                        <p>让LLM交替进行思考和行动，利用外部工具获取信息</p>
+                        <div class="code-block">
+Prompt模板：
+
+问题：{question}
+你可以使用以下工具：{tools}
+
+请按以下格式回答：
+Thought: 你的思考过程
+Action: 工具名称[参数]
+Observation: 工具返回结果
+...（重复Thought/Action/Observation）
+Final Answer: 最终答案
+                        </div>
+                        <p><strong>优点</strong>：可解释性强、能处理需要外部信息的复杂问题</p>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">19</span>
+                        如何评估 Agent 框架的可扩展性
+                    </div>
+                    <div class="answer">
+                        <p><strong>评估维度</strong>：</p>
+                        <p>• <strong>工具扩展</strong> - 是否容易添加新Tool？</p>
+                        <p>• <strong>模型兼容</strong> - 是否支持多种LLM？</p>
+                        <p>• <strong>数据集成</strong> - 支持哪些数据源？</p>
+                        <p>• <strong>社区生态</strong> - 文档完善度、社区活跃度</p>
+                        <p>• <strong>企业特性</strong> - 权限管理、审计日志</p>
+                        <table>
+                            <tr><th>框架</th><th>扩展性特点</th></tr>
+                            <tr><td>LangChain</td><td>生态最丰富，扩展性最强</td></tr>
+                            <tr><td>LlamaIndex</td><td>专注RAG，数据层扩展性好</td></tr>
+                            <tr><td>CrewAI</td><td>多Agent编排，角色系统易扩展</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">20</span>
+                        不同框架的选型建议
+                    </div>
+                    <div class="answer">
+                        <p><strong>决策树</strong>：</p>
+                        <div class="architecture-diagram">
+需要什么？<br>
+├─ 复杂多Agent协作 → CrewAI / LangGraph<br>
+├─ 主要需求是RAG → LlamaIndex / LangChain<br>
+├─ 自主执行长期任务 → AutoGPT / BabyAGI<br>
+├─ 快速原型/MVP → LangChain / LlamaIndex<br>
+└─ 生产级企业应用 → LangChain + 自建架构
+                        </div>
+                        <table>
+                            <tr><th>场景</th><th>推荐框架</th></tr>
+                            <tr><td>企业知识库问答</td><td>LlamaIndex + LangChain</td></tr>
+                            <tr><td>自动化工作流</td><td>LangGraph</td></tr>
+                            <tr><td>多角色协作</td><td>CrewAI</td></tr>
+                            <tr><td>研究/实验</td><td>AutoGPT / BabyAGI</td></tr>
+                            <tr><td>聊天机器人</td><td>LangChain</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 面试技巧部分 -->
+            <div id="summary" class="section">
+                <div class="question-card">
+                    <div class="question-title">
+                        <span class="question-number">💡</span>
+                        面试技巧提示
+                    </div>
+                    <div class="answer">
+                        <p>1️⃣ <strong>结合实际项目</strong> - 举例说明你使用过的框架</p>
+                        <p>2️⃣ <strong>理解原理而非死记</strong> - 能解释"为什么这样设计"</p>
+                        <p>3️⃣ <strong>关注最新动态</strong> - Agent领域变化快，关注最新版本</p>
+                        <p>4️⃣ <strong>准备代码片段</strong> - 能写出简单的Agent示例代码</p>
+                        <p>5️⃣ <strong>展示系统设计能力</strong> - 如第10题，展示完整的架构思维</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
