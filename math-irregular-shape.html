@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小学五年级不规则图形面积计算练习题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .question {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .question-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .shape-container {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .answer-area {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+        
+        .answer-label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 20px;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📐 不规则图形面积计算</h1>
+            <p class="subtitle">小学五年级数学练习题</p>
+        </div>
+        
+        <!-- 第1题 -->
+        <div class="question">
+            <div class="question-text">
+                <span class="question-number">1</span>
+                计算下面组合图形的面积。（单位：厘米）
+            </div>
+            <div class="shape-container">
+                <svg width="400" height="250" viewBox="0 0 400 250">
+                    <!-- 背景网格 -->
+                    <defs>
+                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e9ecef" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="400" height="250" fill="url(#grid)"/>
+                    
+                    <!-- L形组合图形 -->
+                    <polygon points="50,200 50,50 150,50 150,100 300,100 300,200" 
+                             fill="#667eea" fill-opacity="0.3" stroke="#667eea" stroke-width="3"/>
+                    
+                    <!-- 尺寸标注 -->
+                    <!-- 左边高 -->
+                    <line x1="35" y1="50" x2="35" y2="200" stroke="#333" stroke-width="1"/>
+                    <line x1="30" y1="50" x2="40" y2="50" stroke="#333" stroke-width="1"/>
+                    <line x1="30" y1="200" x2="40" y2="200" stroke="#333" stroke-width="1"/>
+                    <text x="15" y="130" font-size="14" fill="#333">15</text>
+                    
+                    <!-- 底部宽 -->
+                    <line x1="150" y1="215" x2="300" y2="215" stroke="#333" stroke-width="1"/>
+                    <line x1="150" y1="210" x2="150" y2="220" stroke="#333" stroke-width="1"/>
+                    <line x1="300" y1="210" x2="300" y2="220" stroke="#333" stroke-width="1"/>
+                    <text x="215" y="235" font-size="14" fill="#333">15</text>
+                    
+                    <!-- 左边宽 -->
+                    <line x1="35" y1="215" x2="150" y2="215" stroke="#333" stroke-width="1"/>
+                    <line x1="35" y1="210" x2="35" y2="220" stroke="#333" stroke-width="1"/>
+                    <line x1="150" y1="210" x2="150" y2="220" stroke="#333" stroke-width="1"/>
+                    <text x="85" y="235" font-size="14" fill="#333">10</text>
+                    
+                    <!-- 上部宽 -->
+                    <line x1="50" y1="35" x2="150" y2="35" stroke="#333" stroke-width="1"/>
+                    <line x1="50" y1="30" x2="50" y2="40" stroke="#333" stroke-width="1"/>
+                    <line x1="150" y1="30" x2="150" y2="40" stroke="#333" stroke-width="1"/>
+                    <text x="95" y="25" font-size="14" fill="#333">10</text>
+                    
+                    <!-- 右边高 -->
+                    <line x1="315" y1="100" x2="315" y2="200" stroke="#333" stroke-width="1"/>
+                    <line x1="310" y1="100" x2="320" y2="100" stroke="#333" stroke-width="1"/>
+                    <line x1="310" y1="200" x2="320" y2="200" stroke="#333" stroke-width="1"/>
+                    <text x="325" y="155" font-size="14" fill="#333">10</text>
+                    
+                    <!-- 上部分高 -->
+                    <line x1="135" y1="50" x2="135" y2="100" stroke="#333" stroke-width="1"/>
+                    <line x1="130" y1="50" x2="140" y2="50" stroke="#333" stroke-width="1"/>
+                    <line x1="130" y1="100" x2="140" y2="100" stroke="#333" stroke-width="1"/>
+                    <text x="110" y="80" font-size="14" fill="#333">5</text>
+                </svg>
+            </div>
+            <div class="hint">
+                💡 提示：可以用"补全法"或"分割法"来计算。这个图形可以看作是一个大长方形减去一个小长方形。
+            </div>
+            <div class="answer-area">
+                <div class="answer-label">解答：</div>
+            </div>
+        </div>
+        
+        <!-- 第2题 -->
+        <div class="question">
+            <div class="question-text">
+                <span class="question-number">2</span>
+                求下图阴影部分的面积。（单位：分米）
+            </div>
+            <div class="shape-container">
+                <svg width="400" height="280" viewBox="0 0 400 280">
+                    <!-- 背景网格 -->
+                    <rect width="400" height="280" fill="url(#grid)"/>
+                    
+                    <!-- 大长方形 -->
+                    <rect x="50" y="50" width="300" height="180" 
+                          fill="none" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- 阴影三角形 -->
+                    <polygon points="50,230 200,50 350,230" 
+                             fill="#764ba2" fill-opacity="0.5" stroke="#764ba2" stroke-width="2"/>
+                    
+                    <!-- 尺寸标注 -->
+                    <text x="190" y="40" font-size="14" fill="#333">20</text>
+                    <text x="360" y="150" font-size="14" fill="#333">12</text>
+                    
+                    <!-- 标注线 -->
+                    <line x1="50" y1="40" x2="350" y2="40" stroke="#333" stroke-width="1"/>
+                    <line x1="50" y1="35" x2="50" y2="45" stroke="#333" stroke-width="1"/>
+                    <line x1="350" y1="35" x2="350" y2="45" stroke="#333" stroke-width="1"/>
+                    
+                    <line x1="365" y1="50" x2="365" y2="230" stroke="#333" stroke-width="1"/>
+                    <line x1="360" y1="50" x2="370" y2="50" stroke="#333" stroke-width="1"/>
+                    <line x1="360" y1="230" x2="370" y2="230" stroke="#333" stroke-width="1"/>
+                    
+                    <!-- 图例 -->
+                    <rect x="60" y="250" width="15" height="15" fill="#764ba2" fill-opacity="0.5" stroke="#764ba2"/>
+                    <text x="85" y="262" font-size="14" fill="#333">阴影部分</text>
+                </svg>
+            </div>
+            <div class="hint">
+                💡 提示：阴影是一个三角形。三角形的面积 = 底 × 高 ÷ 2
+            </div>
+            <div class="answer-area">
+                <div class="answer-label">解答：</div>
+            </div>
+        </div>
+        
+        <!-- 第3题 -->
+        <div class="question">
+            <div class="question-text">
+                <span class="question-number">3</span>
+                计算下面图形的面积。（单位：厘米）
+            </div>
+            <div class="shape-container">
+                <svg width="400" height="300" viewBox="0 0 400 300">
+                    <!-- 背景网格 -->
+                    <rect width="400" height="300" fill="url(#grid)"/>
+                    
+                    <!-- 梯形 -->
+                    <polygon points="100,250 300,250 350,50 50,50" 
+                             fill="#28a745" fill-opacity="0.3" stroke="#28a745" stroke-width="3"/>
+                    
+                    <!-- 尺寸标注 -->
+                    <!-- 上底 -->
+                    <line x1="50" y1="35" x2="350" y2="35" stroke="#333" stroke-width="1"/>
+                    <line x1="50" y1="30" x2="50" y2="40" stroke="#333" stroke-width="1"/>
+                    <line x1="350" y1="30" x2="350" y2="40" stroke="#333" stroke-width="1"/>
+                    <text x="190" y="25" font-size="14" fill="#333">30</text>
+                    
+                    <!-- 下底 -->
+                    <line x1="100" y1="265" x2="300" y2="265" stroke="#333" stroke-width="1"/>
+                    <line x1="100" y1="260" x2="100" y2="270" stroke="#333" stroke-width="1"/>
+                    <line x1="300" y1="260" x2="300" y2="270" stroke="#333" stroke-width="1"/>
+                    <text x="190" y="285" font-size="14" fill="#333">20</text>
+                    
+                    <!-- 高 -->
+                    <line x1="35" y1="50" x2="35" y2="250" stroke="#333" stroke-width="1"/>
+                    <line x1="30" y1="50" x2="40" y2="50" stroke="#333" stroke-width="1"/>
+                    <line x1="30" y1="250" x2="40" y2="250" stroke="#333" stroke-width="1"/>
+                    <text x="10" y="155" font-size="14" fill="#333">20</text>
+                </svg>
+            </div>
+            <div class="hint">
+                💡 提示：这是一个梯形。梯形面积 = (上底 + 下底) × 高 ÷ 2
+            </div>
+            <div class="answer-area">
+                <div class="answer-label">解答：</div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
