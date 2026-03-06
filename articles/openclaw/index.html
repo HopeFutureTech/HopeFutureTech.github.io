@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 源码深度解析</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .card h2 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .card h3 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+        
+        .card p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .architecture {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            font-family: "Courier New", monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: "Courier New", monospace;
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+        
+        .code-block .comment {
+            color: #75715e;
+        }
+        
+        .code-block .string {
+            color: #e6db74;
+        }
+        
+        .code-block .keyword {
+            color: #f92672;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 3px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .feature-item h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .feature-item p {
+            font-size: 0.9em;
+            margin: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .architecture {
+                font-size: 0.75em;
+            }
+        }
+        
+        .toc {
+            position: sticky;
+            top: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+        }
+        
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔬 OpenClaw 源码深度解析</h1>
+            <p class="subtitle">架构设计与核心技术实现</p>
+        </header>
+        
+        <div class="card">
+            <div class="highlight-box">
+                <strong>导读：</strong>基于官方文档与源码分析的技术拆解，带你理解"小龙虾"的内部运作机制。
+            </div>
+        </div>
+        
+        <nav class="toc">
+            <h3>📑 目录</h3>
+            <ul>
+                <li><a href="#section1">一、整体架构概览</a></li>
+                <li><a href="#section2">二、Agent Runtime 深度剖析</a></li>
+                <li><a href="#section3">三、Gateway 控制平面架构</a></li>
+                <li><a href="#section4">四、Streaming 流式机制</a></li>
+                <li><a href="#section5">五、Tools 工具系统架构</a></li>
+                <li><a href="#section6">六、Session 与 Memory 系统</a></li>
+                <li><a href="#section7">七、多 Agent 与 Subagent 架构</a></li>
+                <li><a href="#section8">八、Cron 与 Heartbeat 调度</a></li>
+                <li><a href="#section9">九、生产级配置示例</a></li>
+                <li><a href="#section10">十、技术亮点总结</a></li>
+            </ul>
+        </nav>
+
+        <section class="card" id="section1">
+            <h2>一、整体架构概览</h2>
+            <p>OpenClaw 采用<strong>分层架构设计</strong>，核心组件包括：</p>
+            
+            <div class="architecture">
+┌─────────────────────────────────────────────────────────────┐
+│                    消息渠道层 (Channels)                      │
+│  WhatsApp | Telegram | Slack | Discord | 飞书 | iMessage...  │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────────┐
+│                    Gateway 控制平面                           │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Session    │  │   Agent      │  │   Tools      │       │
+│  │   Manager    │  │   Runtime    │  │   Registry   │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Cron       │  │   WebSocket  │  │   Control    │       │
+│  │   Scheduler  │  │   RPC        │  │   UI         │       │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────────────────────┐
+│                    Agent 运行时 (pi-mono)                     │
+│  - 基于 pi-mono 代码库改造                                    │
+│  - 独立 Session 管理                                          │
+│  - 工具流式调用 (Tool Streaming)                              │
+└─────────────────────────────────────────────────────────────┘
+            </div>
+            
+            <div class="highlight-box">
+                <strong>核心设计哲学：</strong><br>
+                • Gateway 是控制平面，Agent 是产品<br>
+                • Local-first：优先本地运行，数据不上云<br>
+                • Multi-channel：统一接入 20+ 消息平台
+            </div>
+        </section>
+
+        <section class="card" id="section2">
+            <h2>二、Agent Runtime 深度剖析</h2>
+            
+            <h3>2.1 基于 pi-mono 的改造</h3>
+            <p>OpenClaw 的 Agent Runtime 源自 <strong>pi-mono</strong> 代码库，但做了大量改造：</p>
+            
+            <table>
+                <tr>
+                    <th>特性</th>
+                    <th>pi-mono</th>
+                    <th>OpenClaw</th>
+                </tr>
+                <tr>
+                    <td>pi-coding agent</td>
+                    <td>✅ 有</td>
+                    <td>❌ 移除</td>
+                </tr>
+                <tr>
+                    <td>Session 管理</td>
+                    <td>pi/tau 目录</td>
+                    <td>OpenClaw 自有</td>
+                </tr>
+                <tr>
+                    <td>工具调用</td>
+                    <td>基础工具</td>
+                    <td>流式工具调用</td>
+                </tr>
+                <tr>
+                    <td>配置</td>
+                    <td>~/.pi/agent</td>
+                    <td>openclaw.json</td>
+                </tr>
+            </table>
+            
+            <div class="code-block">
+<span class="comment">// OpenClaw 重写了一套 Session 管理</span>
+<span class="comment">// Session 文件存储路径：</span>
+~/.openclaw/agents/&lt;agentId&gt;/sessions/&lt;SessionId&gt;.jsonl
+            </div>
+            
+            <h3>2.2 Bootstrap 文件注入机制</h3>
+            <p>每个 Session 的第一轮对话，OpenClaw 会自动注入以下文件内容：</p>
+            
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>AGENTS.md</h4>
+                    <p>操作指令 + 记忆</p>
+                </div>
+                <div class="feature-item">
+                    <h4>SOUL.md</h4>
+                    <p>人设、边界、语气</p>
+                </div>
+                <div class="feature-item">
+                    <h4>TOOLS.md</h4>
+                    <p>工具使用说明</p>
+                </div>
+                <div class="feature-item">
+                    <h4>IDENTITY.md</h4>
+                    <p>名字/头像/emoji</p>
+                </div>
+            </div>
+            
+            <h3>2.3 Steering 机制（实时干预）</h3>
+            <p>OpenClaw 支持在 AI 生成过程中<strong>实时介入</strong>：</p>
+            
+            <div class="highlight-box">
+                <strong>应用场景：</strong>当 AI 开始"胡言乱语"时，用户可以立即打断纠正。
+            </div>
+        </section>
+
+        <section class="card" id="section3">
+            <h2>三、Gateway 控制平面架构</h2>
+            
+            <h3>3.1 运行时模型</h3>
+            <div class="architecture">
+单一常驻进程
+    ├── WebSocket 控制/RPC
+    ├── HTTP APIs (OpenAI-compatible)
+    ├── Control UI
+    └── 渠道连接管理
+            </div>
+            
+            <h3>3.2 WebSocket 协议</h3>
+            <p><strong>连接握手流程：</strong></p>
+            <div class="architecture">
+Client          Gateway
+  │                │
+  │ ── connect ──> │
+  │                │
+  │ &lt;- hello-ok ─- │ (返回 presence/health/stateVersion/uptime)
+  │                │
+  │ ── req() ────> │
+  │ &lt;── res() ──── │
+            </div>
+            
+            <h3>3.3 热重载机制</h3>
+            <table>
+                <tr>
+                    <th>模式</th>
+                    <th>行为</th>
+                </tr>
+                <tr>
+                    <td><span class="tag">off</span></td>
+                    <td>不重载</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">hot</span></td>
+                    <td>仅热安全变更</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">restart</span></td>
+                    <td>需要时重启</td>
+                </tr>
+                <tr>
+                    <td><span class="tag">hybrid</span></td>
+                    <td>安全时热重载，需要时重启（默认）</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card" id="section4">
+            <h2>四、Streaming 流式机制（核心创新）</h2>
+            <p>OpenClaw 实现了<strong>双层流式架构</strong>：</p>
+            
+            <h3>4.1 Block Streaming（块级流式）</h3>
+            <div class="architecture">
+Model 输出
+    ↓
+text_delta/events (模型原生流)
+    ↓
+EmbeddedBlockChunker (分块器)
+    ├── 低水位: minChars (默认 800)
+    ├── 高水位: maxChars (默认 1200)
+    └── 断点偏好: paragraph &gt; newline &gt; sentence &gt; whitespace
+    ↓
+Channel 发送 (Block 回复)
+            </div>
+            
+            <h3>4.2 Preview Streaming（预览流式）</h3>
+            <table>
+                <tr>
+                    <th>模式</th>
+                    <th>Telegram</th>
+                    <th>Discord</th>
+                    <th>Slack</th>
+                </tr>
+                <tr>
+                    <td>off</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>partial</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>block</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td>progress</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                </tr>
+            </table>
+            
+            <h3>4.3 人性化延迟 (Human-like Pacing)</h3>
+            <div class="highlight-box">
+                <strong>效果：</strong>多块回复之间加入 800-2500ms 随机延迟，更像真人打字。
+            </div>
+        </section>
+
+        <section class="card" id="section5">
+            <h2>五、Tools 工具系统架构</h2>
+            
+            <h3>5.1 三层权限模型</h3>
+            <div class="architecture">
+Tool Profile (基础白名单)
+    ↓
+Provider-specific Policy (按模型限制)
+    ↓
+global allow/deny (最终过滤)
+            </div>
+            
+            <h3>5.2 工具组 (Tool Groups)</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>group:runtime</h4>
+                    <p>exec, bash, process</p>
+                </div>
+                <div class="feature-item">
+                    <h4>group:fs</h4>
+                    <p>read, write, edit, apply_patch</p>
+                </div>
+                <div class="feature-item">
+                    <h4>group:sessions</h4>
+                    <p>sessions_list, spawn, status...</p>
+                </div>
+                <div class="feature-item">
+                    <h4>group:memory</h4>
+                    <p>memory_search, memory_get</p>
+                </div>
+            </div>
+            
+            <h3>5.3 exec 工具安全机制</h3>
+            <div class="highlight-box">
+                • <strong>elevated</strong> 需双重允许<br>
+                • 仅 sandbox 模式下生效<br>
+                • 等价于 host=gateway + security=full
+            </div>
+        </section>
+
+        <section class="card" id="section6">
+            <h2>六、Session 与 Memory 系统</h2>
+            
+            <h3>6.1 Session 存储格式</h3>
+            <div class="code-block">
+~/.openclaw/agents/&lt;agentId&gt;/sessions/&lt;SessionId&gt;.jsonl
+            </div>
+            <p><strong>格式：</strong>JSON Lines，每行一个事件。</p>
+            
+            <h3>6.2 Memory 系统（RAG 实现）</h3>
+            <div class="architecture">
+用户查询
+    ↓
+Embedding 编码
+    ↓
+向量检索 (语义匹配)
+    ↓
+相关记忆片段
+    ↓
+注入 Prompt 上下文
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Memory.md 三层结构：</strong><br>
+                • 核心事实（长期保留）<br>
+                • 动态记录（定期清理）<br>
+                • 归档（可丢弃）
+            </div>
+        </section>
+
+        <section class="card" id="section7">
+            <h2>七、多 Agent 与 Subagent 架构</h2>
+            
+            <table>
+                <tr>
+                    <th>类型</th>
+                    <th>用途</th>
+                </tr>
+                <tr>
+                    <td>Main Session</td>
+                    <td>主对话线程</td>
+                </tr>
+                <tr>
+                    <td>Subagent Session</td>
+                    <td>独立任务执行</td>
+                </tr>
+                <tr>
+                    <td>Cron Session</td>
+                    <td>定时任务</td>
+                </tr>
+            </table>
+            
+            <h3>Subagent 通信模型</h3>
+            <div class="architecture">
+Main Agent (协调者)
+    ├── spawn Subagent A (任务 1)
+    ├── spawn Subagent B (任务 2)
+    └── spawn Subagent C (任务 3)
+            ↓
+    并行执行，结果汇总
+            </div>
+        </section>
+
+        <section class="card" id="section8">
+            <h2>八、Cron 与 Heartbeat 调度系统</h2>
+            
+            <table>
+                <tr>
+                    <th>特性</th>
+                    <th>Heartbeat</th>
+                    <th>Cron</th>
+                </tr>
+                <tr>
+                    <td>触发方式</td>
+                    <td>Session 轮询</td>
+                    <td>定时触发</td>
+                </tr>
+                <tr>
+                    <td>状态依赖</td>
+                    <td>依赖当前 Session</td>
+                    <td>独立执行</td>
+                </tr>
+                <tr>
+                    <td>容错性</td>
+                    <td>低 (Session 挂则停止)</td>
+                    <td>高 (独立进程)</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card" id="section9">
+            <h2>九、生产级配置示例</h2>
+            
+            <div class="code-block">
+<span class="comment">// openclaw.json 生产环境配置</span>
+{
+  <span class="string">gateway</span>: {
+    <span class="string">port</span>: <span class="keyword">18789</span>,
+    <span class="string">bind</span>: <span class="string">"loopback"</span>,
+    <span class="string">auth</span>: {
+      <span class="string">token</span>: { <span class="string">ref</span>: <span class="string">"env:GATEWAY_TOKEN"</span> }
+    },
+    <span class="string">reload</span>: { <span class="string">mode</span>: <span class="string">"hybrid"</span> }
+  },
+  
+  <span class="string">agents</span>: {
+    <span class="string">defaults</span>: {
+      <span class="string">workspace</span>: <span class="string">"~/.openclaw/agents/production"</span>,
+      <span class="string">model</span>: <span class="string">"moonshot/kimi-k2.5"</span>,
+      <span class="string">blockStreamingDefault</span>: <span class="string">"on"</span>,
+      <span class="string">maxTokens</span>: <span class="keyword">4000</span>
+    }
+  },
+  
+  <span class="string">tools</span>: {
+    <span class="string">profile</span>: <span class="string">"coding"</span>,
+    <span class="string">deny</span>: [<span class="string">"apply_patch"</span>]
+  }
+}
+            </div>
+        </section>
+
+        <section class="card" id="section10">
+            <h2>十、技术亮点总结</h2>
+            
+            <table>
+                <tr>
+                    <th>特性</th>
+                    <th>实现方式</th>
+                    <th>优势</th>
+                </tr>
+                <tr>
+                    <td>双层流式</td>
+                    <td>Block + Preview</td>
+                    <td>既快又自然</td>
+                </tr>
+                <tr>
+                    <td>实时干预</td>
+                    <td>Steering 机制</td>
+                    <td>可控可打断</td>
+                </tr>
+                <tr>
+                    <td>工具权限</td>
+                    <td>三层权限模型</td>
+                    <td>细粒度安全</td>
+                </tr>
+                <tr>
+                    <td>热重载</td>
+                    <td>Hybrid 模式</td>
+                    <td>零停机更新</td>
+                </tr>
+                <tr>
+                    <td>多 Agent</td>
+                    <td>Subagent 隔离</td>
+                    <td>并行任务</td>
+                </tr>
+                <tr>
+                    <td>本地优先</td>
+                    <td>Local Gateway</td>
+                    <td>数据私密</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2>📚 参考资源</h2>
+            <table>
+                <tr>
+                    <td>GitHub 仓库</td>
+                    <td><a href="https://github.com/openclaw/openclaw" target="_blank">github.com/openclaw/openclaw</a></td>
+                </tr>
+                <tr>
+                    <td>官方文档</td>
+                    <td><a href="https://docs.openclaw.ai" target="_blank">docs.openclaw.ai</a></td>
+                </tr>
+                <tr>
+                    <td>完整文档索引</td>
+                    <td><a href="https://docs.openclaw.ai/llms.txt" target="_blank">docs.openclaw.ai/llms.txt</a></td>
+                </tr>
+            </table>
+        </section>
+
+        <footer class="footer">
+            <p>本文基于 OpenClaw 官方文档与源码分析整理</p>
+            <p>最后更新：2025年3月</p>
+        </footer>
+    </div>
+</body>
+</html>
