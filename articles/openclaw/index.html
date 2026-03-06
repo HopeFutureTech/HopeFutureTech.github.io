@@ -348,7 +348,7 @@
 </head>
 <body>
     <!-- 目录切换按钮 -->
-    <button class="toc-toggle" id="tocToggle" aria-label="打开目录">
+    <button class="toc-toggle" id="tocToggle" aria-label="打开目录" onclick="toggleToc()">
         <span></span>
         <span></span>
         <span></span>
@@ -837,12 +837,14 @@ Main Agent (协调者)
 
     <script>
         // 目录切换功能
-        const tocToggle = document.getElementById('tocToggle');
-        const tocDrawer = document.getElementById('tocDrawer');
-        const tocOverlay = document.getElementById('tocOverlay');
-        const tocLinks = document.querySelectorAll('.toc-content a');
+        var tocToggle = document.getElementById('tocToggle');
+        var tocDrawer = document.getElementById('tocDrawer');
+        var tocOverlay = document.getElementById('tocOverlay');
+        var tocLinks = document.querySelectorAll('.toc-content a');
+        var isOpen = false;
 
         function openToc() {
+            isOpen = true;
             tocToggle.classList.add('active');
             tocDrawer.classList.add('active');
             tocOverlay.classList.add('active');
@@ -850,19 +852,20 @@ Main Agent (协调者)
         }
 
         function closeToc() {
+            isOpen = false;
             tocToggle.classList.remove('active');
             tocDrawer.classList.remove('active');
             tocOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        tocToggle.addEventListener('click', function() {
-            if (tocDrawer.classList.contains('active')) {
+        function toggleToc() {
+            if (isOpen) {
                 closeToc();
             } else {
                 openToc();
             }
-        });
+        }
 
         tocOverlay.addEventListener('click', closeToc);
 
