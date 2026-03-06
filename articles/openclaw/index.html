@@ -24,6 +24,139 @@
             padding: 20px;
         }
         
+        /* 目录按钮 */
+        .toc-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .toc-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .toc-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .toc-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* 遮罩层 */
+        .toc-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 侧边目录抽屉 */
+        .toc-drawer {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .toc-drawer.active {
+            right: 0;
+        }
+        
+        .toc-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .toc-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toc-content {
+            padding: 15px 0;
+        }
+        
+        .toc-content ul {
+            list-style: none;
+        }
+        
+        .toc-content li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .toc-content a {
+            display: block;
+            padding: 14px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95em;
+        }
+        
+        .toc-content a:hover {
+            background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+            color: #667eea;
+            padding-left: 25px;
+        }
+        
+        .toc-content a::before {
+            content: "📄 ";
+            margin-right: 8px;
+        }
+        
         .header {
             text-align: center;
             padding: 60px 20px;
@@ -205,56 +338,31 @@
             .architecture {
                 font-size: 0.75em;
             }
-        }
-        
-        .toc {
-            position: sticky;
-            top: 20px;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        
-        .toc h3 {
-            margin-top: 0;
-        }
-        
-        .toc ul {
-            list-style: none;
-        }
-        
-        .toc li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .toc a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        
-        .toc a:hover {
-            text-decoration: underline;
+            
+            .toc-drawer {
+                width: 280px;
+                right: -280px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>🔬 OpenClaw 源码深度解析</h1>
-            <p class="subtitle">架构设计与核心技术实现</p>
-        </header>
-        
-        <div class="card">
-            <div class="highlight-box">
-                <strong>导读：</strong>基于官方文档与源码分析的技术拆解，带你理解"小龙虾"的内部运作机制。
-            </div>
+    <!-- 目录切换按钮 -->
+    <button class="toc-toggle" id="tocToggle" aria-label="打开目录">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- 遮罩层 -->
+    <div class="toc-overlay" id="tocOverlay"></div>
+    
+    <!-- 侧边目录抽屉 -->
+    <nav class="toc-drawer" id="tocDrawer">
+        <div class="toc-header">
+            <h3>📑 文章目录</h3>
         </div>
-        
-        <nav class="toc">
-            <h3>📑 目录</h3>
+        <div class="toc-content">
             <ul>
                 <li><a href="#section1">一、整体架构概览</a></li>
                 <li><a href="#section2">二、Agent Runtime 深度剖析</a></li>
@@ -266,8 +374,22 @@
                 <li><a href="#section8">八、Cron 与 Heartbeat 调度</a></li>
                 <li><a href="#section9">九、生产级配置示例</a></li>
                 <li><a href="#section10">十、技术亮点总结</a></li>
+                <li><a href="#section11">参考资源</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>🔬 OpenClaw 源码深度解析</h1>
+            <p class="subtitle">架构设计与核心技术实现</p>
+        </header>
+        
+        <div class="card">
+            <div class="highlight-box">
+                <strong>导读：</strong>基于官方文档与源码分析的技术拆解，带你理解"小龙虾"的内部运作机制。
+            </div>
+        </div>
 
         <section class="card" id="section1">
             <h2>一、整体架构概览</h2>
@@ -689,7 +811,7 @@ Main Agent (协调者)
             </table>
         </section>
 
-        <section class="card">
+        <section class="card" id="section11">
             <h2>📚 参考资源</h2>
             <table>
                 <tr>
@@ -712,5 +834,59 @@ Main Agent (协调者)
             <p>最后更新：2025年3月</p>
         </footer>
     </div>
+
+    <script>
+        // 目录切换功能
+        const tocToggle = document.getElementById('tocToggle');
+        const tocDrawer = document.getElementById('tocDrawer');
+        const tocOverlay = document.getElementById('tocOverlay');
+        const tocLinks = document.querySelectorAll('.toc-content a');
+
+        function openToc() {
+            tocToggle.classList.add('active');
+            tocDrawer.classList.add('active');
+            tocOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeToc() {
+            tocToggle.classList.remove('active');
+            tocDrawer.classList.remove('active');
+            tocOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        tocToggle.addEventListener('click', function() {
+            if (tocDrawer.classList.contains('active')) {
+                closeToc();
+            } else {
+                openToc();
+            }
+        });
+
+        tocOverlay.addEventListener('click', closeToc);
+
+        // 点击目录链接后自动关闭
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                closeToc();
+                setTimeout(() => {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 300);
+            });
+        });
+
+        // ESC 键关闭目录
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && tocDrawer.classList.contains('active')) {
+                closeToc();
+            }
+        });
+    </script>
 </body>
 </html>
