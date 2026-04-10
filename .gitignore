@@ -1,2 +1,1 @@
-# GitHub blocks files over 100 MB; host APKs via releases or external CDN instead
-sources/*.apk
+# Binary APKs in sources/ are tracked with Git LFS (see .gitattributes).
