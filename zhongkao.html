@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="zhongkao_page_title">中考应试 - 全科备考查阅</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0D9488',
+                        secondary: '#14B8A6',
+                        accent: '#0F766E',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #0D9488 0%, #14B8A6 45%, #0F766E 100%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                            <i class="fa fa-graduation-cap text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-dark">AIEducation</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_home">首页</a>
+                    <a href="index.html#features" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_features">功能</a>
+                    <a href="index.html#pricing" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_pricing">价格</a>
+                    <a href="myword.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_word_study">背单词</a>
+                    <a href="zhongkao.html" class="text-teal-600 font-medium" data-i18n="nav_zhongkao">中考应试</a>
+                    <a href="myclothes.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_clothes">AI换衣</a>
+                    <a href="consultation.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_consultation">教育咨询</a>
+                    <a href="about.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_about">关于我们</a>
+                    <a href="apps.html" class="text-gray-700 hover:text-teal-600 transition-custom font-medium" data-i18n="nav_apps">应用下载</a>
+                </div>
+                
+                <div class="flex items-center space-x-3 sm:space-x-4">
+                    <div class="relative">
+                        <button id="lang-toggle" class="flex items-center space-x-1 sm:space-x-2 text-gray-700 hover:text-teal-600 transition-custom">
+                            <span id="current-lang" class="text-sm hidden sm:inline">简体中文</span>
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-CN">简体中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="zh-TW">繁體中文</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-custom" data-lang="en-US">English</a>
+                        </div>
+                    </div>
+                    
+                    <button id="mobile-menu-toggle" class="md:hidden flex items-center text-gray-700 hover:text-teal-600 transition-custom p-1">
+                        <i class="fa fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 移动端侧边栏菜单 -->
+    <div id="mobile-sidebar" class="fixed inset-0 z-50 md:hidden hidden">
+        <div id="mobile-sidebar-overlay" class="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        <div class="absolute left-0 top-0 h-full w-64 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-700 flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-sm"></i>
+                    </div>
+                    <span class="ml-2 text-lg font-bold text-gray-900">AIEducation</span>
+                </div>
+                <button id="mobile-sidebar-close" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-4">
+                <div class="space-y-2">
+                    <a href="index.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_home">
+                        <i class="fa fa-home mr-3 text-gray-400"></i>首页
+                    </a>
+                    <a href="index.html#features" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_features">
+                        <i class="fa fa-star mr-3 text-gray-400"></i>功能
+                    </a>
+                    <a href="index.html#pricing" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_pricing">
+                        <i class="fa fa-tags mr-3 text-gray-400"></i>价格
+                    </a>
+                    <a href="myword.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom">
+                        <i class="fa fa-book mr-3 text-gray-400"></i><span data-i18n="nav_word_study">背单词</span>
+                    </a>
+                    <a href="zhongkao.html" class="flex items-center px-3 py-2 text-teal-600 bg-teal-50 rounded-md font-medium">
+                        <i class="fa fa-columns mr-3 text-teal-500"></i><span data-i18n="nav_zhongkao">中考应试</span>
+                    </a>
+                    <a href="myclothes.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom">
+                        <i class="fa fa-tshirt mr-3 text-gray-400"></i><span data-i18n="nav_clothes">AI换衣</span>
+                    </a>
+                    <a href="consultation.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_consultation">
+                        <i class="fa fa-comments mr-3 text-gray-400"></i>教育咨询
+                    </a>
+                    <a href="about.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_about">
+                        <i class="fa fa-info-circle mr-3 text-gray-400"></i>关于我们
+                    </a>
+                    <a href="apps.html" class="flex items-center px-3 py-2 text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-i18n="nav_apps">
+                        <i class="fa fa-mobile mr-3 text-gray-400"></i>应用下载
+                    </a>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <div class="text-sm font-medium text-gray-700 mb-3" data-i18n="language">语言</div>
+                    <div class="space-y-2">
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="zh-CN">
+                            <i class="fa fa-globe mr-2"></i>简体中文
+                        </button>
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="zh-TW">
+                            <i class="fa fa-globe mr-2"></i>繁體中文
+                        </button>
+                        <button class="w-full text-left px-3 py-2 text-sm text-gray-700 hover:text-teal-600 hover:bg-gray-50 rounded-md transition-custom" data-lang="en-US">
+                            <i class="fa fa-globe mr-2"></i>English
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-200">
+                    <div class="text-xs text-gray-500 text-center">
+                        © 2026 希望未来科技
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 英雄区域 -->
+    <section class="py-20 bg-gradient-custom text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-center mb-6 gap-4">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold" data-i18n="zhongkao_hero_title">中考应试</h1>
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-xl shadow-lg bg-white/15 flex items-center justify-center backdrop-blur-sm border border-white/30">
+                    <i class="fa fa-columns text-3xl md:text-4xl"></i>
+                </div>
+            </div>
+            <p class="text-xl opacity-90 max-w-3xl mx-auto mb-8" data-i18n="zhongkao_hero_subtitle">
+                面向北京中考备考的全科学习与查阅应用，在手机上集中查看各科试卷结构与真题类内容
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#tabs" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-custom" data-i18n="zhongkao_view_tabs">
+                    科目与 Tab
+                </a>
+                <a href="#about" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-custom" data-i18n="zhongkao_learn_more">
+                    应用说明
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用下载 -->
+    <section id="download" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="zhongkao_download_title">获取应用</h2>
+                    <p class="text-lg text-gray-600" data-i18n="zhongkao_download_subtitle">Android、iOS 与 Web 多端提供一致备考体验，应用陆续上架中</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-apple text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="zhongkao_ios_title">iOS（SwiftUI）</h3>
+                        <p class="text-gray-600 mb-6" data-i18n="zhongkao_ios_desc">工程名 AIZhongkao，与官网展示名「中考应试」一致</p>
+                        <span class="inline-block bg-gray-100 text-gray-600 px-6 py-3 rounded-lg font-semibold mb-6 cursor-default" data-i18n="zhongkao_coming_soon">即将上线</span>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+                        <div class="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-android text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="zhongkao_android_title">Android（Jetpack Compose）</h3>
+                        <p class="text-gray-600 mb-6" data-i18n="zhongkao_android_desc">与 iOS、Web 数据及 JSON 资源对齐</p>
+                        <span class="inline-block bg-gray-100 text-gray-600 px-6 py-3 rounded-lg font-semibold mb-6 cursor-default" data-i18n="zhongkao_coming_soon">即将上线</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="apps.html" class="inline-flex items-center justify-center bg-primary hover:bg-accent text-white px-8 py-3 rounded-lg font-semibold transition-custom">
+                        <i class="fa fa-mobile mr-2"></i><span data-i18n="zhongkao_download_apps_btn">前往应用下载页</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用定位 -->
+    <section id="positioning" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="zhongkao_positioning_title">应用定位</h2>
+                </div>
+                <div class="prose prose-lg max-w-none text-gray-600 space-y-4 text-left">
+                    <p data-i18n="zhongkao_positioning_p1">
+                        面向北京中考备考的全科学习与查阅应用：在手机上集中查看语文、数学、英语、物理、道德与法治等科目的试卷结构说明与真题类内容，并配套英语词库、阅读与作文等能力。
+                    </p>
+                    <p data-i18n="zhongkao_positioning_p2">
+                        本仓库包含 Android（Jetpack Compose）、iOS（SwiftUI）与 Web 前端，数据与 JSON 资源在 web/data 与各端 assets 间对齐。
+                    </p>
+                </div>
+
+                <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-th-large text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="zhongkao_feature1_title">全科查阅</h3>
+                        <p class="text-gray-600" data-i18n="zhongkao_feature1_desc">按科目组织试卷结构、真题与专项能力，便于系统备考</p>
+                    </div>
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-book text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="zhongkao_feature2_title">真题与结构</h3>
+                        <p class="text-gray-600" data-i18n="zhongkao_feature2_desc">条目列表、分区浏览与试卷图等多种形式，贴近查阅习惯</p>
+                    </div>
+                    <div class="text-center p-6 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-language text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-i18n="zhongkao_feature3_title">英语专项</h3>
+                        <p class="text-gray-600" data-i18n="zhongkao_feature3_desc">词库、阅读、作文与识图辅助等能力集中在一处</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 Tab 与科目 -->
+    <section id="tabs" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="zhongkao_tabs_title">科目与底部 Tab</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-i18n="zhongkao_tabs_subtitle">以下为各 Tab 主要内容要点，具体以应用内为准</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-red-50 text-red-600 flex items-center justify-center"><i class="fa fa-pencil"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_lang_title">语文</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_lang_desc">试卷结构、作文、中考真题（分区浏览）</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa fa-calculator"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_math_title">数学</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_math_desc">试卷结构、历年真题（条目列表与试卷图）</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center"><i class="fa fa-font"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_eng_title">英语</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_eng_desc">试卷结构、词库、英语阅读（识图/文本）、阅读高频、阅读技巧、21 天 688 词、英语作文等</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center"><i class="fa fa-flask"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_physics_title">物理</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_physics_desc">试卷结构、中考真题</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center"><i class="fa fa-balance-scale"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_moral_title">道法</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_moral_desc">试卷结构、主观题、历年中考题等</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-custom">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center"><i class="fa fa-user"></i></span>
+                        <h3 class="text-lg font-bold text-gray-900" data-i18n="zhongkao_tab_mine_title">我的</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_tab_mine_desc">字体等设置；英语生词本、扫描相关能力与模型配置（因端而异）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明与能力 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4" data-i18n="zhongkao_about_section_title">能力与说明</h2>
+                    <p class="text-lg text-gray-600" data-i18n="zhongkao_about_section_subtitle">英语模块中的进阶能力可能依赖网络或本地代理，请以各端「我的」或应用内说明为准</p>
+                </div>
+
+                <div class="bg-teal-50 border border-teal-100 rounded-xl p-6 md:p-8 mb-10">
+                    <h3 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fa fa-info-circle text-primary"></i>
+                        <span data-i18n="zhongkao_ai_note_title">拍照识图与 AI 分析</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-i18n="zhongkao_ai_note_body">
+                        拍照/相册识图、AI 深度分析等功能可能依赖网络或本地代理；各端在「我的」中提供相关配置与说明。
+                    </p>
+                </div>
+
+                <div class="rounded-xl border border-gray-200 bg-gray-50 p-6">
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="zhongkao_disclaimer">
+                        题目与解析以备考参考为主，内容持续校对，请以应用内展示为准。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-custom flex items-center justify-center text-white">
+                        <i class="fa fa-graduation-cap text-xl"></i>
+                    </div>
+                    <span class="ml-3 text-xl font-bold">AIEducation</span>
+                </div>
+                <p class="text-gray-400" data-i18n="copyright">© 2026 AIEducation. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/version.js?v=1.0.0"></script>
+    <script src="js/i18n.js?v=1.0.0"></script>
+    <script src="js/language-switcher.js?v=1.0.0"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+            const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
+            const sidebarContent = mobileSidebar?.querySelector('.absolute.left-0');
+            
+            function openSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    mobileSidebar.classList.remove('hidden');
+                    setTimeout(() => {
+                        sidebarContent.classList.remove('-translate-x-full');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            function closeSidebar() {
+                if (mobileSidebar && sidebarContent) {
+                    sidebarContent.classList.add('-translate-x-full');
+                    setTimeout(() => {
+                        mobileSidebar.classList.add('hidden');
+                    }, 300);
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', openSidebar);
+            }
+            if (mobileSidebarClose) {
+                mobileSidebarClose.addEventListener('click', closeSidebar);
+            }
+            if (mobileSidebarOverlay) {
+                mobileSidebarOverlay.addEventListener('click', closeSidebar);
+            }
+            const sidebarMenuItems = mobileSidebar?.querySelectorAll('a');
+            if (sidebarMenuItems) {
+                sidebarMenuItems.forEach(item => {
+                    item.addEventListener('click', closeSidebar);
+                });
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                    closeSidebar();
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
