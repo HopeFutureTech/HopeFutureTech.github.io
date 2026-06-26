@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>高一秋季全科系统课</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #8b5cf6;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,.12);
+      --radius: 12px;
+      --sidebar-w: 220px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
+      color: #fff;
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 0.875rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+      min-width: 200px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: inherit;
+      backdrop-filter: blur(8px);
+      transition: background .2s;
+    }
+
+    .search-box input::placeholder { color: rgba(255,255,255,.65); }
+    .search-box input:focus {
+      outline: none;
+      background: rgba(255,255,255,.28);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .header-title-block {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .logout-btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background .15s;
+    }
+
+    .logout-btn:hover { background: rgba(255,255,255,.3); }
+
+    /* Layout */
+    .layout {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      padding: 24px 32px 48px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 100px;
+      align-self: flex-start;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-left: 4px;
+    }
+
+    .subject-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .subject-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .15s;
+      text-align: left;
+      width: 100%;
+    }
+
+    .subject-btn:hover { background: var(--surface); box-shadow: var(--shadow); }
+    .subject-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(59,130,246,.35);
+    }
+
+    .subject-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .subject-btn:not(.active) .subject-icon { background: var(--primary-light); color: var(--primary); }
+    .subject-btn.active .subject-icon { background: rgba(255,255,255,.2); color: #fff; }
+
+    .subject-count {
+      margin-left: auto;
+      font-size: 0.75rem;
+      opacity: 0.6;
+      background: rgba(0,0,0,.06);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .subject-btn.active .subject-count { background: rgba(255,255,255,.2); opacity: 0.9; }
+
+    /* Main content */
+    .main { flex: 1; min-width: 0; }
+
+    .subject-header {
+      margin-bottom: 20px;
+    }
+
+    .subject-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subject-meta {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-top: 4px;
+    }
+
+    /* Course cards */
+    .course-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .course-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .course-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s;
+    }
+
+    .course-header:hover { background: #f8fafc; }
+
+    .course-chevron {
+      width: 20px;
+      height: 20px;
+      transition: transform .2s;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .course-card.open .course-chevron { transform: rotate(90deg); }
+
+    .course-info { flex: 1; min-width: 0; }
+
+    .course-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .course-teacher {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .course-badge {
+      font-size: 0.75rem;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .session-list {
+      display: none;
+      border-top: 1px solid var(--border);
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .course-card.open .session-list { display: block; }
+
+    .session-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px 12px 52px;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background .12s;
+    }
+
+    .session-item:last-child { border-bottom: none; }
+    .session-item:hover { background: #f8fafc; }
+
+    .session-index {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .session-name {
+      flex: 1;
+      font-size: 0.875rem;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .15s, transform .1s;
+    }
+
+    .play-btn:hover { background: var(--primary-dark); }
+    .play-btn:active { transform: scale(0.97); }
+
+    /* Video Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: modalIn .25s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    .modal-btn {
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .modal-btn:hover { background: #f8fafc; }
+    .modal-btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .modal-btn.primary:hover { background: var(--primary-dark); }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: background .15s;
+    }
+
+    .modal-close:hover { background: #e2e8f0; color: var(--text); }
+
+    .modal-body {
+      flex: 1;
+      min-height: 0;
+      background: #0f172a;
+      position: relative;
+    }
+
+    .modal-body iframe {
+      width: 100%;
+      height: 60vh;
+      min-height: 400px;
+      border: none;
+    }
+
+    /* Loading & empty */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+      gap: 16px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg { opacity: 0.4; margin-bottom: 12px; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .header {
+        padding: max(16px, env(safe-area-inset-top)) 16px 16px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .header-row {
+        width: 100%;
+        align-items: center;
+      }
+
+      .header h1 { font-size: 1.15rem; line-height: 1.3; }
+      .header p { font-size: 0.8rem; }
+
+      .search-box {
+        flex: none;
+        max-width: none;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .search-box input {
+        font-size: 16px;
+        padding: 12px 16px 12px 40px;
+      }
+
+      .logout-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+
+      .layout {
+        flex-direction: column;
+        padding: 12px 16px max(24px, env(safe-area-inset-bottom));
+        gap: 16px;
+      }
+
+      .sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+      }
+
+      .subject-nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+
+      .subject-nav::-webkit-scrollbar { display: none; }
+
+      .subject-btn {
+        width: auto;
+        flex-shrink: 0;
+        padding: 8px 12px;
+      }
+
+      .subject-count { display: none; }
+
+      .subject-header h2 { font-size: 1.35rem; }
+
+      .course-header {
+        padding: 14px 16px;
+        align-items: flex-start;
+      }
+
+      .course-name {
+        white-space: normal;
+        line-height: 1.4;
+      }
+
+      .course-badge { display: none; }
+
+      .session-list { max-height: none; }
+
+      .session-item {
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 12px 16px;
+        gap: 8px;
+      }
+
+      .session-name {
+        flex: 1 1 calc(100% - 40px);
+        white-space: normal;
+        line-height: 1.45;
+        min-width: 0;
+      }
+
+      .play-btn {
+        flex: 1 1 100%;
+        justify-content: center;
+        padding: 10px 14px;
+        font-size: 0.875rem;
+      }
+
+      .modal-overlay {
+        padding: 0;
+        align-items: stretch;
+      }
+
+      .modal {
+        max-width: none;
+        max-height: none;
+        height: 100%;
+        border-radius: 0;
+      }
+
+      .modal-header {
+        padding: 12px 16px;
+        padding-top: max(12px, env(safe-area-inset-top));
+      }
+
+      .modal-title {
+        white-space: normal;
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+
+      .modal-actions .modal-btn { display: none; }
+
+      .modal-body iframe {
+        height: calc(100dvh - 56px - env(safe-area-inset-top));
+        min-height: 240px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .header h1 { font-size: 1.05rem; }
+      .subject-btn { font-size: 0.85rem; padding: 8px 10px; }
+      .subject-icon { width: 28px; height: 28px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-row">
+        <div class="header-title-block">
+          <h1>高一秋季全科系统课</h1>
+          <p>按科目浏览课程，点击播放观看视频</p>
+        </div>
+        <button type="button" id="logoutBtn" class="logout-btn">退出登录</button>
+      </div>
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="搜索课程或场次名称...">
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">选择科目</div>
+      <nav class="subject-nav" id="subjectNav"></nav>
+    </aside>
+
+    <main class="main" id="mainContent">
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>正在加载课程数据...</span>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle"></span>
+        <div class="modal-actions">
+          <button class="modal-btn" id="openNewTab">新窗口打开</button>
+          <button class="modal-close" id="closeModal" title="关闭">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="videoFrame" allowfullscreen allow="autoplay; fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      if (sessionStorage.getItem('highschool_auth') !== '1') {
+        window.location.replace('login.html');
+      }
+    })();
+
+    const SUBJECT_COLORS = {
+      '语文': '#ef4444', '数学': '#3b82f6', '英语': '#8b5cf6',
+      '物理': '#06b6d4', '化学': '#10b981', '生物': '#22c55e',
+      '历史': '#f59e0b', '地理': '#ec4899', '政治': '#6366f1'
+    };
+
+    let courseData = {};
+    let currentSubject = '';
+    let currentVideoUrl = '';
+    let searchQuery = '';
+
+    async function init() {
+      try {
+        const res = await fetch('data/courses.json');
+        courseData = await res.json();
+        renderSubjectNav();
+        const first = Object.keys(courseData)[0];
+        if (first) selectSubject(first);
+      } catch (e) {
+        document.getElementById('mainContent').innerHTML =
+          '<div class="empty-state"><p>加载数据失败，请确保通过本地服务器访问此页面。</p></div>';
+      }
+      document.getElementById('loading')?.remove();
+    }
+
+    function getSessionCount(courses) {
+      return courses.reduce((sum, c) => sum + c.sessions.length, 0);
+    }
+
+    function renderSubjectNav() {
+      const nav = document.getElementById('subjectNav');
+      nav.innerHTML = Object.keys(courseData).map(subj => {
+        const count = getSessionCount(courseData[subj]);
+        const color = SUBJECT_COLORS[subj] || '#3b82f6';
+        return `
+          <button class="subject-btn${subj === currentSubject ? ' active' : ''}"
+                  data-subject="${subj}" onclick="selectSubject('${subj}')">
+            <span class="subject-icon" style="background:${subj === currentSubject ? 'rgba(255,255,255,.2)' : color + '18'};color:${subj === currentSubject ? '#fff' : color}">${subj[0]}</span>
+            ${subj}
+            <span class="subject-count">${count}</span>
+          </button>`;
+      }).join('');
+    }
+
+    function selectSubject(subj) {
+      currentSubject = subj;
+      renderSubjectNav();
+      renderCourses();
+    }
+
+    function filterCourses(courses) {
+      if (!searchQuery) return courses;
+      const q = searchQuery.toLowerCase();
+      return courses.map(course => {
+        const nameMatch = course.courseName.toLowerCase().includes(q) ||
+                          course.teacher.toLowerCase().includes(q);
+        const matchedSessions = course.sessions.filter(s =>
+          s.name.toLowerCase().includes(q)
+        );
+        if (nameMatch) return course;
+        if (matchedSessions.length) return { ...course, sessions: matchedSessions };
+        return null;
+      }).filter(Boolean);
+    }
+
+    function renderCourses() {
+      const main = document.getElementById('mainContent');
+      const courses = filterCourses(courseData[currentSubject] || []);
+      const totalSessions = getSessionCount(courses);
+      const color = SUBJECT_COLORS[currentSubject] || '#3b82f6';
+
+      if (!courses.length) {
+        main.innerHTML = `
+          <div class="subject-header">
+            <h2 style="color:${color}">${currentSubject}</h2>
+          </div>
+          <div class="empty-state">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <p>未找到匹配的课程或场次</p>
+          </div>`;
+        return;
+      }
+
+      main.innerHTML = `
+        <div class="subject-header">
+          <h2 style="color:${color}">${currentSubject}</h2>
+          <div class="subject-meta">${courses.length} 门课程 · ${totalSessions} 个场次${searchQuery ? '（搜索结果）' : ''}</div>
+        </div>
+        <div class="course-list">
+          ${courses.map((course, ci) => `
+            <div class="course-card" data-index="${ci}">
+              <div class="course-header" onclick="toggleCourse(${ci})">
+                <svg class="course-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+                <div class="course-info">
+                  <div class="course-name" title="${esc(course.courseName)}">${esc(course.courseName)}</div>
+                  <div class="course-teacher">主讲：${esc(course.teacher)} · ${esc(course.year)} ${esc(course.term)}</div>
+                </div>
+                <span class="course-badge">${course.sessions.length} 场</span>
+              </div>
+              <div class="session-list">
+                ${course.sessions.map((s, si) => `
+                  <div class="session-item">
+                    <span class="session-index">${si + 1}</span>
+                    <span class="session-name" title="${esc(s.name)}">${esc(s.name)}</span>
+                    <button class="play-btn" data-video="${esc(s.video)}" data-title="${esc(s.name)}">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                      播放
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>`;
+    }
+
+    function toggleCourse(index) {
+      const cards = document.querySelectorAll('.course-card');
+      cards.forEach((card, i) => {
+        if (i === index) card.classList.toggle('open');
+      });
+    }
+
+    function playVideo(url, title) {
+      currentVideoUrl = url;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('videoFrame').src = url;
+      document.getElementById('videoModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('videoModal').classList.remove('show');
+      document.getElementById('videoFrame').src = '';
+      document.body.style.overflow = '';
+    }
+
+    function esc(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    document.getElementById('mainContent').addEventListener('click', (e) => {
+      const btn = e.target.closest('.play-btn');
+      if (btn) playVideo(btn.dataset.video, btn.dataset.title);
+    });
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('openNewTab').addEventListener('click', () => {
+      if (currentVideoUrl) window.open(currentVideoUrl, '_blank');
+    });
+    document.getElementById('videoModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    let searchTimer;
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        searchQuery = e.target.value.trim();
+        renderCourses();
+      }, 250);
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function () {
+      sessionStorage.removeItem('highschool_auth');
+      sessionStorage.removeItem('highschool_user');
+      window.location.replace('login.html');
+    });
+
+    init();
+  </script>
+</body>
+</html>

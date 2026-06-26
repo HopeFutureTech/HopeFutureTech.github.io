@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>登录 - 高一秋季全科系统课</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --primary-light: #eff6ff;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+      --shadow-lg: 0 8px 30px rgba(0,0,0,.12);
+      --radius: 12px;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
+      color: #fff;
+      padding: 32px 24px;
+      padding-top: max(32px, env(safe-area-inset-top));
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 0.875rem;
+      opacity: 0.85;
+      margin-top: 6px;
+    }
+
+    .login-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px 48px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      animation: cardIn .3s ease;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .login-card .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color .15s, box-shadow .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+    }
+
+    .error-msg {
+      display: none;
+      background: var(--danger-light);
+      color: var(--danger);
+      font-size: 0.875rem;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .error-msg.show { display: block; }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      min-height: 48px;
+    }
+
+    .login-btn:hover { background: var(--primary-dark); }
+    .login-btn:active { transform: scale(0.98); }
+    .login-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 24px 16px;
+        padding-top: max(24px, env(safe-area-inset-top));
+      }
+
+      .header h1 { font-size: 1.2rem; }
+      .header p { font-size: 0.8125rem; }
+
+      .login-wrap {
+        padding: 24px 16px max(32px, env(safe-area-inset-bottom));
+        align-items: flex-start;
+        padding-top: 20px;
+      }
+
+      .login-card {
+        padding: 28px 20px;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .login-card h2 { font-size: 1.15rem; }
+    }
+
+    @media (max-width: 380px) {
+      .header h1 { font-size: 1.1rem; }
+      .login-card { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>高一秋季全科系统课</h1>
+    <p>请登录后浏览课程与视频</p>
+  </header>
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <h2>账号登录</h2>
+      <p class="subtitle">输入用户名和密码进入系统</p>
+
+      <div class="error-msg" id="errorMsg">用户名或密码错误，请重试</div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input type="text" id="username" name="username" placeholder="请输入邮箱或用户名" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" id="password" name="password" placeholder="请输入密码" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="login-btn" id="loginBtn">登 录</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const AUTH_KEY = 'highschool_auth';
+    const VALID_USER = 'yktest2101000596@100tal.com';
+    const VALID_PASS = 'a123456';
+
+    if (sessionStorage.getItem(AUTH_KEY) === '1') {
+      window.location.replace('index.html');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const loginBtn = document.getElementById('loginBtn');
+
+      errorMsg.classList.remove('show');
+      loginBtn.disabled = true;
+      loginBtn.textContent = '登录中...';
+
+      setTimeout(function () {
+        if (username === VALID_USER && password === VALID_PASS) {
+          sessionStorage.setItem(AUTH_KEY, '1');
+          sessionStorage.setItem('highschool_user', username);
+          window.location.replace('index.html');
+        } else {
+          errorMsg.classList.add('show');
+          loginBtn.disabled = false;
+          loginBtn.textContent = '登 录';
+        }
+      }, 300);
+    });
+  </script>
+</body>
+</html>
