@@ -702,7 +702,7 @@
 
     async function init() {
       try {
-        const res = await fetch('data/courses.json');
+        const res = await fetch('data/courses.json?v=' + Date.now(), { cache: 'no-store' });
         courseData = await res.json();
         renderSubjectNav();
         const first = Object.keys(courseData)[0];

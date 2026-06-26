@@ -1,19 +1,61 @@
 #!/usr/bin/env python3
 """将 Excel 课程数据转换为网站所需的 JSON 格式。"""
 
+import argparse
 import json
 import os
 from collections import defaultdict
 
 import pandas as pd
 
-EXCEL_PATH = os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据.xlsx')
+EXCEL_CANDIDATES = [
+    os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据new.xlsx'),
+    os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据.xlsx'),
+]
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), 'data', 'courses.json')
 SUBJECT_ORDER = ['语文', '数学', '英语', '物理', '化学', '生物', '历史', '地理', '政治']
+YELLOW_RGB = 'FFFFFF00'
+
+
+def get_excel_path():
+    for path in EXCEL_CANDIDATES:
+        if os.path.isfile(path):
+            return path
+    raise FileNotFoundError('未找到 Excel 文件，请将数据文件放在 highschool 目录下')
+
+
+def remove_yellow_rows(excel_path=None):
+    """删除 Excel 中背景标黄（FFFFFF00）的数据行。"""
+    from openpyxl import load_workbook
+
+    excel_path = excel_path or get_excel_path()
+
+    def is_yellow(cell):
+        fill = cell.fill
+        if fill is None or fill.fill_type != 'solid':
+            return False
+        fg = fill.fgColor
+        if fg and fg.type == 'rgb' and fg.rgb:
+            return str(fg.rgb).upper().replace(' ', '') == YELLOW_RGB
+        return False
+
+    wb = load_workbook(excel_path)
+    ws = wb.active
+    yellow_rows = [
+        r for r in range(2, ws.max_row + 1)
+        if any(is_yellow(ws.cell(r, c)) for c in range(1, ws.max_column + 1))
+    ]
+    for r in sorted(yellow_rows, reverse=True):
+        ws.delete_rows(r)
+    wb.save(excel_path)
+    print(f'已从 {excel_path} 删除 {len(yellow_rows)} 行标黄数据')
+    return len(yellow_rows)
 
 
 def convert():
-    df = pd.read_excel(EXCEL_PATH)
+    excel_path = get_excel_path()
+    print(f'读取: {excel_path}')
+    df = pd.read_excel(excel_path)
     data = defaultdict(lambda: defaultdict(lambda: {
         'courseId': None,
         'courseName': '',
@@ -65,4 +107,9 @@ def convert():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Excel 转 JSON，可选删除标黄行')
+    parser.add_argument('--remove-yellow', action='store_true', help='删除 Excel 中背景标黄的行后再转换')
+    args = parser.parse_args()
+    if args.remove_yellow:
+        remove_yellow_rows()
     convert()
