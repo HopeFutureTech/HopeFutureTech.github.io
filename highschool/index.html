@@ -354,111 +354,11 @@
       cursor: pointer;
       flex-shrink: 0;
       transition: background .15s, transform .1s;
+      text-decoration: none;
     }
 
     .play-btn:hover { background: var(--primary-dark); }
     .play-btn:active { transform: scale(0.97); }
-
-    /* Video Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      backdrop-filter: blur(4px);
-    }
-
-    .modal-overlay.show { display: flex; }
-
-    .modal {
-      background: var(--surface);
-      border-radius: 16px;
-      width: 100%;
-      max-width: 1100px;
-      max-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      animation: modalIn .25s ease;
-    }
-
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.95) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-      gap: 12px;
-    }
-
-    .modal-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      flex: 1;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .modal-actions { display: flex; gap: 8px; flex-shrink: 0; }
-
-    .modal-btn {
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--text);
-      font-size: 0.8rem;
-      font-family: inherit;
-      cursor: pointer;
-      transition: all .15s;
-    }
-
-    .modal-btn:hover { background: #f8fafc; }
-    .modal-btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-    .modal-btn.primary:hover { background: var(--primary-dark); }
-
-    .modal-close {
-      width: 32px;
-      height: 32px;
-      border: none;
-      border-radius: 8px;
-      background: #f1f5f9;
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: background .15s;
-    }
-
-    .modal-close:hover { background: #e2e8f0; color: var(--text); }
-
-    .modal-body {
-      flex: 1;
-      min-height: 0;
-      background: #0f172a;
-      position: relative;
-    }
-
-    .modal-body iframe {
-      width: 100%;
-      height: 60vh;
-      min-height: 400px;
-      border: none;
-    }
 
     /* Loading & empty */
     .loading {
@@ -595,36 +495,6 @@
         padding: 10px 14px;
         font-size: 0.875rem;
       }
-
-      .modal-overlay {
-        padding: 0;
-        align-items: stretch;
-      }
-
-      .modal {
-        max-width: none;
-        max-height: none;
-        height: 100%;
-        border-radius: 0;
-      }
-
-      .modal-header {
-        padding: 12px 16px;
-        padding-top: max(12px, env(safe-area-inset-top));
-      }
-
-      .modal-title {
-        white-space: normal;
-        font-size: 0.875rem;
-        line-height: 1.4;
-      }
-
-      .modal-actions .modal-btn { display: none; }
-
-      .modal-body iframe {
-        height: calc(100dvh - 56px - env(safe-area-inset-top));
-        min-height: 240px;
-      }
     }
 
     @media (max-width: 380px) {
@@ -667,21 +537,6 @@
     </main>
   </div>
 
-  <div class="modal-overlay" id="videoModal">
-    <div class="modal">
-      <div class="modal-header">
-        <span class="modal-title" id="modalTitle"></span>
-        <div class="modal-actions">
-          <button class="modal-btn" id="openNewTab">新窗口打开</button>
-          <button class="modal-close" id="closeModal" title="关闭">&times;</button>
-        </div>
-      </div>
-      <div class="modal-body">
-        <iframe id="videoFrame" allowfullscreen allow="autoplay; fullscreen"></iframe>
-      </div>
-    </div>
-  </div>
-
   <script>
     (function () {
       if (sessionStorage.getItem('highschool_auth') !== '1') {
@@ -697,7 +552,6 @@
 
     let courseData = {};
     let currentSubject = '';
-    let currentVideoUrl = '';
     let searchQuery = '';
 
     async function init() {
@@ -797,10 +651,10 @@
                   <div class="session-item">
                     <span class="session-index">${si + 1}</span>
                     <span class="session-name" title="${esc(s.name)}">${esc(s.name)}</span>
-                    <button class="play-btn" data-video="${esc(s.video)}" data-title="${esc(s.name)}">
+                    <a href="${esc(s.video)}" target="_blank" rel="noopener noreferrer" class="play-btn" title="${esc(s.name)}">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                       播放
-                    </button>
+                    </a>
                   </div>
                 `).join('')}
               </div>
@@ -816,39 +670,9 @@
       });
     }
 
-    function playVideo(url, title) {
-      currentVideoUrl = url;
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('videoFrame').src = url;
-      document.getElementById('videoModal').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('videoModal').classList.remove('show');
-      document.getElementById('videoFrame').src = '';
-      document.body.style.overflow = '';
-    }
-
     function esc(str) {
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
     }
-
-    document.getElementById('mainContent').addEventListener('click', (e) => {
-      const btn = e.target.closest('.play-btn');
-      if (btn) playVideo(btn.dataset.video, btn.dataset.title);
-    });
-
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('openNewTab').addEventListener('click', () => {
-      if (currentVideoUrl) window.open(currentVideoUrl, '_blank');
-    });
-    document.getElementById('videoModal').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
 
     let searchTimer;
     document.getElementById('searchInput').addEventListener('input', (e) => {
