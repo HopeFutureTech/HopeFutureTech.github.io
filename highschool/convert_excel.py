@@ -9,19 +9,45 @@ from collections import defaultdict
 import pandas as pd
 
 EXCEL_CANDIDATES = [
-    os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据new.xlsx'),
     os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据.xlsx'),
+    os.path.join(os.path.dirname(__file__), '高一秋季全科系统课场次数据new.xlsx'),
 ]
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), 'data', 'courses.json')
 SUBJECT_ORDER = ['语文', '数学', '英语', '物理', '化学', '生物', '历史', '地理', '政治']
 YELLOW_RGB = 'FFFFFF00'
+# 新版 Excel 列名与旧版映射
+COLUMN_ALIASES = {
+    '学科名称': ('学科名称', '学科'),
+    '学期名称': ('学期名称', '学期'),
+    '学年名称': ('学年名称', '学年'),
+    '课程ID': ('课程ID',),
+    '课程名称': ('课程名称',),
+    '主讲老师名称': ('主讲老师名称', '师名'),
+    '场次ID': ('场次ID',),
+    '场次名称': ('场次名称',),
+    '课程视频': ('课程视频', '视频'),
+}
 
 
 def get_excel_path():
-    for path in EXCEL_CANDIDATES:
-        if os.path.isfile(path):
-            return path
-    raise FileNotFoundError('未找到 Excel 文件，请将数据文件放在 highschool 目录下')
+    existing = [p for p in EXCEL_CANDIDATES if os.path.isfile(p)]
+    if not existing:
+        raise FileNotFoundError('未找到 Excel 文件，请将数据文件放在 highschool 目录下')
+    return max(existing, key=os.path.getmtime)
+
+
+def normalize_columns(df):
+    """统一新旧 Excel 列名。"""
+    rename = {}
+    for canonical, aliases in COLUMN_ALIASES.items():
+        for alias in aliases:
+            if alias in df.columns:
+                rename[alias] = canonical
+                break
+    missing = [k for k in COLUMN_ALIASES if k not in rename.values() and k not in df.columns]
+    if missing:
+        raise ValueError(f'Excel 缺少必要列: {missing}，当前列: {list(df.columns)}')
+    return df.rename(columns=rename)
 
 
 def remove_yellow_rows(excel_path=None):
@@ -55,7 +81,7 @@ def remove_yellow_rows(excel_path=None):
 def convert():
     excel_path = get_excel_path()
     print(f'读取: {excel_path}')
-    df = pd.read_excel(excel_path)
+    df = normalize_columns(pd.read_excel(excel_path))
     data = defaultdict(lambda: defaultdict(lambda: {
         'courseId': None,
         'courseName': '',
