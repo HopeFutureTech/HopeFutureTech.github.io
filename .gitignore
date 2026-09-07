@@ -1,1 +1,4 @@
 # Binary APKs in sources/ are tracked with Git LFS (see .gitattributes).
+
+# APK only published under sources/ (avoid duplicate LFS objects)
+听写助手/听写助手.apk
