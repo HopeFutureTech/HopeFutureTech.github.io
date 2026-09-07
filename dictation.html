@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="dictation_page_title">听写助手 - 语文英语听写学习应用</title>
+  <meta name="description" content="听写助手：语文与英语双科听写，拍照识词、错题本、标准发音，随时随地练默写。" />
+  <link rel="icon" href="听写助手/assets/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #15202b;
+      --ink-soft: #3d4f5f;
+      --muted: #6b7c8a;
+      --paper: #eef3f6;
+      --paper-deep: #dce6ec;
+      --jade: #0f7a6c;
+      --jade-deep: #0a5c51;
+      --coral: #e06b4a;
+      --white: #ffffff;
+      --line: rgba(21, 32, 43, 0.08);
+      --shadow: 0 18px 40px rgba(21, 32, 43, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Outfit", "PingFang SC", "Hiragino Sans GB", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+    .serif {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+    }
+
+    /* nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(238, 243, 246, 0.86);
+      border-bottom: 1px solid transparent;
+    }
+    .nav.is-solid { border-bottom-color: var(--line); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1rem;
+      position: relative;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--jade); }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--white);
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--jade-deep); }
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    /* hero — one composition, brand first */
+    .hero {
+      position: relative;
+      min-height: min(58vh, 520px);
+      overflow: hidden;
+      isolation: isolate;
+      display: grid;
+      align-items: end;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(120deg, rgba(15, 122, 108, 0.55), rgba(21, 32, 43, 0.72)),
+        url("听写助手/assets/splash.png") center / cover no-repeat;
+    }
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.18), transparent 45%),
+        linear-gradient(to top, rgba(21, 32, 43, 0.55), transparent 42%);
+    }
+    .hero-content {
+      padding: 5.5rem 0 2.8rem;
+      color: var(--white);
+      max-width: 36rem;
+      animation: rise 0.9s ease both;
+    }
+    .hero-brand {
+      font-size: clamp(2.8rem, 7vw, 4.6rem);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1.8rem;
+      max-width: 28rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--white);
+      color: var(--ink);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+    .btn-jade {
+      background: var(--jade);
+      color: var(--white);
+    }
+    .btn-jade:hover { background: var(--jade-deep); }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    section { padding: 5rem 0; }
+    #download { background: var(--white); padding-top: 3.2rem; }
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 2.4rem;
+      max-width: 36rem;
+    }
+
+    /* download */
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    .download-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      background:
+        linear-gradient(160deg, rgba(15, 122, 108, 0.06), transparent 55%),
+        var(--white);
+    }
+    .download-panel h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.4rem;
+    }
+    .download-panel p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+    .download-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .qr-slot {
+      width: 108px;
+      height: 108px;
+      border-radius: 12px;
+      border: 1px dashed rgba(15, 122, 108, 0.35);
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          rgba(15, 122, 108, 0.05),
+          rgba(15, 122, 108, 0.05) 6px,
+          transparent 6px,
+          transparent 12px
+        );
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    /* about */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .about-copy p {
+      color: var(--ink-soft);
+      margin-bottom: 1.6rem;
+      font-size: 1.05rem;
+    }
+    .pillars {
+      display: grid;
+      gap: 1rem;
+    }
+    .pillar {
+      padding: 1.1rem 1.2rem;
+      border-left: 3px solid var(--jade);
+      background: rgba(255,255,255,0.7);
+    }
+    .pillar strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .pillar span { color: var(--muted); font-size: 0.95rem; }
+    .about-visual {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      aspect-ratio: 4 / 5;
+      background: #c5d5d1;
+    }
+    .about-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* screenshots */
+    #screenshots { background: var(--white); }
+    .shot-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(220px, 260px);
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.6rem;
+      scroll-snap-type: x mandatory;
+    }
+    .shot {
+      scroll-snap-align: start;
+      border-radius: 24px;
+      background: linear-gradient(165deg, #1b2a33, #0f7a6c 140%);
+      color: white;
+      min-height: 420px;
+      padding: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .shot::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      pointer-events: none;
+    }
+    .shot-top {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-bottom: 1.4rem;
+    }
+    .shot h4 {
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+    .shot p { opacity: 0.85; font-size: 0.92rem; }
+    .shot-mock {
+      margin-top: 1.6rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+    }
+    .bar.short { width: 55%; }
+    .bar.mid { width: 78%; }
+    .chip-row { display: flex; gap: 0.4rem; margin-top: 0.8rem; flex-wrap: wrap; }
+    .chip {
+      font-size: 0.72rem;
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+    }
+
+    /* features */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .feature {
+      padding: 1.4rem 1.3rem 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .feature:hover {
+      border-color: rgba(15, 122, 108, 0.35);
+      transform: translateY(-2px);
+    }
+    .feature-index {
+      color: var(--jade);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.08em;
+    }
+    .feature h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.45rem;
+    }
+    .feature p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0 2.6rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+    .footer-brand img {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(238, 243, 246, 0.98);
+        padding: 1rem 1.25rem 1.2rem;
+        border-bottom: 1px solid var(--line);
+        align-items: flex-start;
+      }
+      .menu-btn { display: inline-flex; }
+      .download-grid,
+      .about-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-content { padding-top: 4.5rem; padding-bottom: 2.2rem; }
+      .hero { min-height: min(52vh, 440px); }
+    }
+
+    .lang-wrap { position: relative; margin-left: 0.4rem; }
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.7);
+      color: var(--ink-soft);
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .lang-toggle:hover { color: var(--jade); border-color: rgba(15,122,108,0.35); }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 0.4rem);
+      min-width: 8rem;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      z-index: 50;
+    }
+    .lang-dropdown a {
+      display: block;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+    .lang-dropdown a:hover { background: rgba(15,122,108,0.08); color: var(--jade); }
+    .lang-dropdown.hidden { display: none !important; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <img src="听写助手/assets/app-icon.png" alt="听写助手图标" />
+        <span data-i18n="nav_dictation">听写助手</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav_home">首页</a>
+        <a href="myword.html" data-i18n="nav_word_study">中考单词</a>
+        <a href="dictation.html" data-i18n="nav_dictation">听写助手</a>
+        <a href="#download" data-i18n="dictation_nav_download">下载</a>
+        <a href="#about" data-i18n="dictation_nav_about">关于</a>
+        <a href="#features" data-i18n="nav_features">功能</a>
+        <a class="nav-cta" href="#download" data-i18n="dictation_cta_download">立即下载</a>
+      </nav>
+      <div class="nav-right">
+        <div class="lang-wrap">
+          <button id="lang-toggle" class="lang-toggle" type="button">
+            <span id="current-lang">简体中文</span>
+          </button>
+          <div id="lang-dropdown" class="lang-dropdown hidden">
+            <a href="#" data-lang="zh-CN">简体中文</a>
+            <a href="#" data-lang="zh-TW">繁體中文</a>
+            <a href="#" data-lang="en-US">English</a>
+          </div>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="打开菜单" data-i18n="dictation_menu">菜单</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap hero-content">
+        <h1 class="hero-brand serif" data-i18n="dictation_hero_title">听写助手</h1>
+        <p class="hero-lead" data-i18n="dictation_hero_subtitle">语文与英语双科听写。听得懂，写得出——每天一小步。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#download" data-i18n="dictation_cta_download">立即下载</a>
+          <a class="btn btn-ghost" href="#features" data-i18n="dictation_learn_features">了解功能</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="wrap">
+        <h2 class="section-title serif" data-i18n="dictation_download_title">立即下载</h2>
+        <p class="section-sub" data-i18n="dictation_download_subtitle">支持 iOS 与 Android，平板与手机都能练听写。</p>
+        <div class="download-grid">
+          <article class="download-panel">
+            <h3 data-i18n="dictation_ios_title">iOS 版本</h3>
+            <p data-i18n="dictation_ios_desc">建议 iOS 17 及以上，适配 iPhone / iPad。</p>
+            <div class="download-actions">
+              <a class="btn btn-jade" href="#" aria-disabled="true" style="opacity:0.65;cursor:not-allowed" data-i18n="dictation_ios_coming">App Store 即将上线</a>
+              <div class="qr-slot" data-i18n="dictation_coming_soon">即将上线</div>
+            </div>
+          </article>
+          <article class="download-panel">
+            <h3 data-i18n="dictation_android_title">Android 版本</h3>
+            <p data-i18n="dictation_android_desc">支持 Android 6.0 及以上，可直接安装 APK。</p>
+            <div class="download-actions">
+              <a class="btn btn-jade" href="https://hopefuturetech.com/sources/听写助手.apk" target="_blank" rel="noopener noreferrer" data-i18n="dictation_download_android">直接下载 APK</a>
+              <img src="imgs/dictation-android.png" alt="Android 下载二维码" width="108" height="108" style="width:108px;height:108px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:4px" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <h2 class="section-title serif" data-i18n="dictation_about_title">关于应用</h2>
+          <p data-i18n="dictation_about_desc">
+            听写助手把语文听写与英语听写放在同一个应用里。首页切换科目，按计划听写、拍照圈词生成任务，错题自动收录，方便反复巩固。
+          </p>
+          <div class="pillars">
+            <div class="pillar">
+              <strong data-i18n="dictation_pillar1_title">双科一体</strong>
+              <span data-i18n="dictation_pillar1_desc">语文字词成语 + 英语初高中词汇，数据按科目隔离</span>
+            </div>
+            <div class="pillar">
+              <strong data-i18n="dictation_pillar2_title">拍照识词</strong>
+              <span data-i18n="dictation_pillar2_desc">拍摄词表页，自动圈选词条，也可手动画框调整</span>
+            </div>
+            <div class="pillar">
+              <strong data-i18n="dictation_pillar3_title">错题闭环</strong>
+              <span data-i18n="dictation_pillar3_desc">听写出错自动进错题本，听对减次，清零即移除</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <img src="听写助手/assets/app-icon.png" alt="听写助手应用图标" />
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots">
+      <div class="wrap">
+        <h2 class="section-title serif" data-i18n="dictation_screenshots_title">应用界面</h2>
+        <p class="section-sub" data-i18n="dictation_screenshots_subtitle">从计划、听写到错题复习，流程简洁顺手。</p>
+        <div class="shot-rail" aria-label="应用界面示意">
+          <article class="shot">
+            <div class="shot-top" data-i18n="dictation_shot1_tag">首页</div>
+            <h4 data-i18n="dictation_shot1_title">今日听写</h4>
+            <p data-i18n="dictation_shot1_desc">切换语文 / 英语，一键开始今日计划。</p>
+            <div class="shot-mock">
+              <div class="bar mid"></div>
+              <div class="bar"></div>
+              <div class="bar short"></div>
+              <div class="chip-row">
+                <span class="chip" data-i18n="dictation_chip_cn">语文</span>
+                <span class="chip" data-i18n="dictation_chip_en">英语</span>
+                <span class="chip" data-i18n="dictation_chip_streak">连续打卡</span>
+              </div>
+            </div>
+          </article>
+          <article class="shot" style="background: linear-gradient(165deg, #203040, #e06b4a 160%);">
+            <div class="shot-top" data-i18n="dictation_shot2_tag">听写</div>
+            <h4 data-i18n="dictation_shot2_title">连续 / 逐词</h4>
+            <p data-i18n="dictation_shot2_desc">适合纸笔默写，也可边听边输入即时判分。</p>
+            <div class="shot-mock">
+              <div class="bar"></div>
+              <div class="bar mid"></div>
+              <div class="bar short"></div>
+              <div class="chip-row">
+                <span class="chip" data-i18n="dictation_chip_read">朗读</span>
+                <span class="chip" data-i18n="dictation_chip_score">判分</span>
+              </div>
+            </div>
+          </article>
+          <article class="shot" style="background: linear-gradient(165deg, #1a2b26, #2f8f82 150%);">
+            <div class="shot-top" data-i18n="dictation_shot3_tag">拍照</div>
+            <h4 data-i18n="dictation_shot3_title">圈选词条</h4>
+            <p data-i18n="dictation_shot3_desc">识别词表并自动圈词，支持缩放与转正。</p>
+            <div class="shot-mock">
+              <div class="bar mid"></div>
+              <div class="bar short"></div>
+              <div class="bar"></div>
+              <div class="chip-row">
+                <span class="chip">OCR</span>
+                <span class="chip" data-i18n="dictation_chip_phrase">短语</span>
+              </div>
+            </div>
+          </article>
+          <article class="shot" style="background: linear-gradient(165deg, #2a1f1c, #c45b3e 150%);">
+            <div class="shot-top" data-i18n="dictation_shot4_tag">错题本</div>
+            <h4 data-i18n="dictation_shot4_title">错题重听</h4>
+            <p data-i18n="dictation_shot4_desc">查看错误次数，针对性再练，直到掌握。</p>
+            <div class="shot-mock">
+              <div class="bar short"></div>
+              <div class="bar mid"></div>
+              <div class="bar"></div>
+              <div class="chip-row">
+                <span class="chip" data-i18n="dictation_chip_errors">错误 ×3</span>
+                <span class="chip" data-i18n="dictation_chip_retry">重听</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <h2 class="section-title serif" data-i18n="dictation_features_title">核心功能</h2>
+        <p class="section-sub" data-i18n="dictation_features_subtitle">从词库到发音、计划到错题，覆盖日常听写场景。</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-index">01</div>
+            <h3 data-i18n="dictation_f1_title">双科切换</h3>
+            <p data-i18n="dictation_f1_desc">同一应用内切换语文与英语，词库、进度、日志各自独立。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-index">02</div>
+            <h3 data-i18n="dictation_f2_title">每日计划</h3>
+            <p data-i18n="dictation_f2_desc">按顺序或随机抽词，可避开近期做对的词，形成稳定练习节奏。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-index">03</div>
+            <h3 data-i18n="dictation_f3_title">标准发音</h3>
+            <p data-i18n="dictation_f3_desc">英语优先词典真人发音；语文支持清晰中文朗读，便于跟读。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-index">04</div>
+            <h3 data-i18n="dictation_f4_title">拍照生成任务</h3>
+            <p data-i18n="dictation_f4_desc">拍摄课本或词表，自动识别并圈选词条，也可手动增减。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-index">05</div>
+            <h3 data-i18n="dictation_f5_title">错题本</h3>
+            <p data-i18n="dictation_f5_desc">听写出错自动收录；听对减次，次数归零后移出，形成闭环。</p>
+          </article>
+          <article class="feature">
+            <div class="feature-index">06</div>
+            <h3 data-i18n="dictation_f6_title">练习记录</h3>
+            <p data-i18n="dictation_f6_desc">保留听写日志与正确率，方便回顾坚持天数与薄弱项。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <img src="听写助手/assets/app-icon.png" alt="" />
+        <span data-i18n="nav_dictation">听写助手</span>
+      </div>
+      <p data-i18n="dictation_footer">© 2026 听写助手 · AIEducation</p>
+    </div>
+  </footer>
+
+  <script src="js/version.js?v=1.0.0"></script>
+  <script src="js/i18n.js?v=1.0.0"></script>
+  <script src="js/language-switcher.js?v=1.0.0"></script>
+  <script>
+    const nav = document.getElementById("nav");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("is-solid", window.scrollY > 12);
+    });
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // title via dedicated key
+    document.addEventListener('languageChanged', () => {
+      const t = (window.i18n && window.i18n[window.getCurrentLanguage?.() || 'zh-CN'] || {})['dictation_page_title'];
+      if (t) document.title = t;
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const lang = window.getCurrentLanguage ? window.getCurrentLanguage() : 'zh-CN';
+        const t = (window.i18n && window.i18n[lang] || {})['dictation_page_title'];
+        if (t) document.title = t;
+      }, 0);
+    });
+  </script>
+</body>
+</html>
